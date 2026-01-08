@@ -85,6 +85,52 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 {
+  document.addEventListener("scroll", () => {
+    const navbar = document.querySelector(".navbar");
+    const sections = document.querySelectorAll("section[data-nav]");
+
+    let currentNav = "dark";
+
+    sections.forEach((section) => {
+      const top = section.offsetTop - 120;
+      const bottom = top + section.offsetHeight;
+
+      if (window.scrollY >= top && window.scrollY < bottom) {
+        currentNav = section.dataset.nav;
+      }
+    });
+
+    navbar.classList.remove("nav-dark", "nav-light");
+    navbar.classList.add(`nav-${currentNav}`);
+  });
+
+  document.addEventListener("scroll", () => {
+    const navbar = document.querySelector(".navbar");
+    const sections = document.querySelectorAll("section[data-nav]");
+    const footer = document.querySelector("#footer");
+
+    let currentNav = "dark";
+
+    sections.forEach((section) => {
+      const top = section.offsetTop - 120;
+      const bottom = top + section.offsetHeight;
+
+      if (window.scrollY >= top && window.scrollY < bottom) {
+        currentNav = section.dataset.nav;
+      }
+    });
+
+    if (footer) {
+      const footerTop = footer.offsetTop - 120;
+      if (window.scrollY >= footerTop) {
+        currentNav = "dark";
+      }
+    }
+
+    navbar.classList.remove("nav-dark", "nav-light");
+    navbar.classList.add(`nav-${currentNav}`);
+  });
+
   /* <script>
       // Scroll to top functionality
       const scrollTopBtn = document.querySelector(".scroll-top");

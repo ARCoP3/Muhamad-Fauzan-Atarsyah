@@ -640,6 +640,65 @@ svg {
   animation-delay: 0.4s;
 }
 
+.navbar.nav-dark {
+  background-color: rgba(15, 23, 42, 0.95) !important;
+}
+
+.navbar.nav-light {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.navbar.nav-light .nav-link {
+  color: #0f172a !important;
+}
+
+.navbar.nav-light .navbar-brand span {
+  color: #0f172a;
+}
+
+.navbar.nav-light {
+  background-color: #fbefef !important;
+}
+
+.navbar.nav-light .navbar-brand,
+.navbar.nav-light .nav-link,
+.navbar.nav-light .nav-text,
+.navbar.nav-light .action-icon {
+  color: #0f172a !important;
+}
+
+.navbar.nav-light .nav-link.active {
+  color: #1e40af !important;
+  background-color: rgba(30, 64, 175, 0.1);
+}
+
+.navbar.nav-light .nav-link::before {
+  background: #1e40af;
+}
+
+.navbar.nav-light .navbar-toggler {
+  border-color: #0f172a;
+}
+
+.navbar.nav-light .navbar-toggler-icon {
+  filter: invert(1) brightness(0.3);
+}
+
+.navbar.nav-light .navbar-actions .btn-outline-light {
+  color: #0f172a;
+  border-color: #0f172a;
+}
+
+.navbar.nav-light .navbar-actions .btn-outline-light:hover {
+  background-color: rgba(15, 23, 42, 0.1);
+  color: #0f172a;
+  border-color: #0f172a;
+}
+
+.navbar.nav-light .navbar-actions .btn-outline-light .action-icon {
+  color: #0f172a;
+}
+
 /* Tambahkan di style.css */
 .card-img-container {
   height: 200px;
