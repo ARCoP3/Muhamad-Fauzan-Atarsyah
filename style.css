@@ -723,6 +723,40 @@ svg {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%230f172a' stroke-width='2' stroke-linecap='round' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
+@media (max-width: 991.98px) {
+  .navbar.nav-dark .navbar-collapse {
+    background-color: rgba(15, 23, 42, 0.98);
+  }
+
+  .navbar.nav-light .navbar-collapse {
+    background-color: #fbefef;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .navbar.nav-dark .nav-link {
+    color: #ffffff !important;
+  }
+
+  .navbar.nav-light .nav-link {
+    color: #0f172a !important;
+  }
+
+  .navbar.nav-light .nav-link.active {
+    color: #1e40af !important;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .navbar.nav-light .nav-link:hover {
+    background-color: rgba(15, 23, 42, 0.08);
+  }
+
+  .navbar.nav-dark .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+  }
+}
+
 /* Tambahkan di style.css */
 .card-img-container {
   height: 200px;
