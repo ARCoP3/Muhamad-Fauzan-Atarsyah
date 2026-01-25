@@ -324,11 +324,13 @@
     <section id="navbar" data-nav="dark">
       <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm">
         <div class="container">
-          <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
-            <img src="img/Muhamad Fauzan Atarsyah.png" alt="Muhamad Fauzan Atarsyah" width="50" class="rounded-circle" />
-            <span class="ms-3">MFA</span>
+          <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+            <img src="img/Muhamad Fauzan Atarsyah.png" alt="image" width="50" class="rounded-circle" />
+            <span class="ms-3 d-none d-sm-inline">MFA</span>
+            <span class="ms-3 d-sm-none">MFA</span>
           </a>
 
+          <!-- Mobile Menu Button -->
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -336,40 +338,59 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">
-                  <span class="nav-icon"><i class="fas fa-home"></i></span>
+                <a class="nav-link active" href="./index.html">
+                  <span class="nav-icon d-none d-md-inline">🏠</span>
                   <span class="nav-text">Home</span>
+                  <span class="mobile-badge d-md-none ms-2">•</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="index.html#About-Me">
-                  <span class="nav-icon"><i class="fas fa-user"></i></span>
+                  <span class="nav-icon d-none d-md-inline">👤</span>
                   <span class="nav-text">About Me</span>
+                  <span class="mobile-badge d-md-none ms-2">•</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="index.html#hasil">
-                  <span class="nav-icon"><i class="fas fa-briefcase"></i></span>
-                  <span class="nav-text">Documentations</span>
+                <a class="nav-link" href="#hasil">
+                  <span class="nav-icon d-none d-md-inline">💼</span>
+                  <span class="nav-text">Projects</span>
+                  <span class="mobile-badge d-md-none ms-2">•</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="index.html#footer">
-                  <span class="nav-icon"><i class="fas fa-share-alt"></i></span>
-                  <span class="nav-text">Media Sosial</span>
+                <a class="nav-link" href="#contact">
+                  <span class="nav-icon d-none d-md-inline">📧</span>
+                  <span class="nav-text">Contact</span>
+                  <span class="mobile-badge d-md-none ms-2">•</span>
                 </a>
               </li>
             </ul>
 
-            <div class="navbar-actions">
-              <a href="https://www.linkedin.com/in/muhamad-fauzan-atarsyah-b16764376/" target="_blank" class="btn btn-outline-light btn-sm me-2 d-none d-md-inline-flex">
-                <span class="action-icon"><i class="fab fa-linkedin"></i></span>
+            <!-- Desktop Actions -->
+            <div class="navbar-actions d-none d-lg-flex">
+              <a href="https://www.linkedin.com/in/muhamad-fauzan-atarsyah-b16764376/" target="_blank" class="btn btn-outline-light btn-sm me-2">
+                <i class="fab fa-linkedin me-1"></i>
                 <span>LinkedIn</span>
               </a>
-              <a href="index.html#contact" class="btn btn-primary btn-sm">
-                <span class="action-icon"><i class="fas fa-envelope"></i></span>
+              <a href="#contact" class="btn btn-primary btn-sm">
+                <i class="fas fa-envelope me-1"></i>
                 <span>Hire Me</span>
               </a>
+            </div>
+
+            <!-- Mobile Actions (inside menu) -->
+            <div class="d-lg-none mt-3 mobile-only">
+              <div class="d-flex flex-column gap-2">
+                <a href="https://www.linkedin.com/in/muhamad-fauzan-atarsyah-b16764376/" target="_blank" class="btn btn-outline-light w-100">
+                  <i class="fab fa-linkedin me-2"></i>
+                  LinkedIn
+                </a>
+                <a href="#contact" class="btn btn-primary w-100">
+                  <i class="fas fa-envelope me-2"></i>
+                  Hire Me
+                </a>
+              </div>
             </div>
           </div>
         </div>
