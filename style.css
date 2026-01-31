@@ -1713,3 +1713,43 @@ textarea {
     font-size: 2.5rem !important;
   }
 }
+
+/* Style untuk navbar di dalam Jumbotron */
+.jumbotron-dark .navbar {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030;
+  background-color: rgba(15, 23, 42, 0.95) !important;
+}
+
+/* Pastikan konten Jumbotron tidak tertutup navbar */
+.jumbotron-dark .container.py-5 {
+  padding-top: 100px !important; /* Sesuaikan dengan tinggi navbar */
+}
+
+/* Sembunyikan navbar di luar Jumbotron */
+#About-Me .navbar,
+#Pengalaman .navbar,
+#hasil .navbar,
+#contact .navbar,
+.professional-footer .navbar {
+  display: none !important;
+}
+
+/* Atur tinggi Jumbotron untuk mengakomodasi navbar */
+@media (max-width: 768px) {
+  .jumbotron-dark .container.py-5 {
+    padding-top: 80px !important;
+  }
+
+  .jumbotron-dark .navbar {
+    padding: 0.5rem 0 !important;
+  }
+}
+
+/* Untuk scroll yang mulus ke bagian About Me */
+html {
+  scroll-behavior: smooth;
+}
