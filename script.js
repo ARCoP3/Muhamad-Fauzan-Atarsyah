@@ -7,10 +7,53 @@ document.addEventListener("DOMContentLoaded", function () {
   const footer = document.querySelector("#footer");
   const sections = document.querySelectorAll("section[id]");
   const navSections = document.querySelectorAll("section[data-nav]");
+  const aboutMeSection = document.querySelector("#About-Me");
+
+  let lastScrollTop = 0;
+  let isNavbarVisible = true;
+  let aboutMeOffset = 0;
+
+  /* ================= INITIALIZE ================= */
+  function initialize() {
+    if (aboutMeSection) {
+      aboutMeOffset = aboutMeSection.offsetTop - 100;
+    }
+
+    // Set initial state
+    handleScroll();
+
+    // Set current year in footer
+    const yearEl = document.getElementById("currentYear");
+    if (yearEl) {
+      yearEl.textContent = new Date().getFullYear();
+    }
+  }
 
   /* ================= SCROLL HANDLER ================= */
   function handleScroll() {
     const scrollY = window.scrollY;
+    const aboutMeReached = scrollY >= aboutMeOffset;
+
+    // Hide/show navbar based on scroll direction and section
+    if (aboutMeReached) {
+      const scrollDirection = scrollY > lastScrollTop ? "down" : "up";
+
+      if (scrollDirection === "down" && isNavbarVisible) {
+        // Hide navbar when scrolling down past About Me
+        hideNavbar();
+      } else if (scrollDirection === "up" && !isNavbarVisible) {
+        // Show navbar when scrolling up
+        showNavbar();
+      } else if (scrollY < 100) {
+        // Always show navbar at the top
+        showNavbar();
+      }
+    } else {
+      // Always show navbar before About Me section
+      showNavbar();
+    }
+
+    lastScrollTop = scrollY;
 
     // Navbar shadow
     if (scrollY > 50) {
@@ -61,8 +104,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  /* ================= NAVBAR VISIBILITY FUNCTIONS ================= */
+  function hideNavbar() {
+    navbar.classList.add("navbar-hidden");
+    navbar.classList.remove("navbar-visible");
+    isNavbarVisible = false;
+  }
+
+  function showNavbar() {
+    navbar.classList.remove("navbar-hidden");
+    navbar.classList.add("navbar-visible");
+    isNavbarVisible = true;
+  }
+
+  /* ================= EVENT LISTENERS ================= */
   window.addEventListener("scroll", handleScroll);
-  handleScroll();
 
   /* ================= NAV CLICK ================= */
   navLinks.forEach((link) => {
@@ -78,6 +134,9 @@ document.addEventListener("DOMContentLoaded", function () {
           if (navbarCollapse.classList.contains("show")) {
             navbarToggler.click();
           }
+
+          // Show navbar when clicking on a nav link
+          showNavbar();
 
           window.scrollTo({
             top: target.offsetTop - 80,
@@ -106,15 +165,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  /* ================= FOOTER YEAR ================= */
-  const yearEl = document.getElementById("currentYear");
-  if (yearEl) {
-    yearEl.textContent = new Date().getFullYear();
-  }
-
   /* ================= SCROLL TOP ================= */
   if (scrollTopBtn) {
     scrollTopBtn.addEventListener("click", () => {
+      showNavbar();
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
@@ -158,14 +212,9 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
-});
 
-// Mobile detection and adjustments
-document.addEventListener("DOMContentLoaded", function () {
+  /* ================= MOBILE SPECIFIC ================= */
   const isMobile = window.innerWidth <= 767;
-
-  // Set current year in footer
-  document.getElementById("currentYear").textContent = new Date().getFullYear();
 
   // Mobile-specific adjustments
   if (isMobile) {
@@ -176,31 +225,6 @@ document.addEventListener("DOMContentLoaded", function () {
       button.style.display = "flex";
       button.style.alignItems = "center";
       button.style.justifyContent = "center";
-    });
-
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener("click", function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute("href");
-        if (targetId === "#") return;
-
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          // Close mobile menu if open
-          const navbarCollapse = document.getElementById("navbarNav");
-          if (navbarCollapse.classList.contains("show")) {
-            const bsCollapse = new bootstrap.Collapse(navbarCollapse);
-            bsCollapse.hide();
-          }
-
-          // Scroll to element
-          window.scrollTo({
-            top: targetElement.offsetTop - 70,
-            behavior: "smooth",
-          });
-        }
-      });
     });
 
     // Add touch feedback to cards
@@ -216,60 +240,14 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Scroll to top button
-  const scrollTopBtn = document.querySelector(".scroll-top");
-  if (scrollTopBtn) {
-    window.addEventListener("scroll", function () {
-      if (window.pageYOffset > 300) {
-        scrollTopBtn.style.display = "block";
-      } else {
-        scrollTopBtn.style.display = "none";
-      }
-    });
+  /* ================= INITIALIZATION ================= */
+  initialize();
 
-    scrollTopBtn.addEventListener("click", function () {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    });
-  }
-
-  // Contact form validation
-  const contactForm = document.getElementById("contactForm");
-  if (contactForm) {
-    contactForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      // Simple validation
-      const name = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
-      const message = document.getElementById("message").value;
-
-      if (name && email && message) {
-        // In a real application, you would send this data to a server
-        alert("Thank you for your message! I will get back to you soon.");
-        contactForm.reset();
-      } else {
-        alert("Please fill in all required fields.");
-      }
-    });
-  }
-});
-
-// Handle window resize
-window.addEventListener("resize", function () {
-  // Update mobile/desktop states if needed
-  const isMobileNow = window.innerWidth <= 767;
-
-  // You can add any resize-specific logic here
-  if (isMobileNow) {
-    document.body.classList.add("mobile-view");
-    document.body.classList.remove("desktop-view");
-  } else {
-    document.body.classList.add("desktop-view");
-    document.body.classList.remove("mobile-view");
-  }
+  // Reset navbar visibility on resize
+  window.addEventListener("resize", function () {
+    aboutMeOffset = aboutMeSection ? aboutMeSection.offsetTop - 100 : 0;
+    handleScroll();
+  });
 });
 
 // Fix for mobile navigation
@@ -295,39 +273,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   setVH();
   window.addEventListener("resize", setVH);
-
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault();
-
-      const targetId = this.getAttribute("href");
-      if (targetId === "#") return;
-
-      const targetElement = document.querySelector(targetId);
-      if (targetElement) {
-        window.scrollTo({
-          top: targetElement.offsetTop - 70,
-          behavior: "smooth",
-        });
-      }
-    });
-  });
 });
 
 // Test if footer is loading properly
-console.log("Footer loaded:", document.querySelector("#footer") !== null);
-
-// Check for common mobile issues
-if (window.innerWidth <= 768) {
-  console.log("Mobile device detected");
-
-  // Force reflow for footer
-  const footer = document.querySelector("#footer");
-  if (footer) {
-    footer.style.display = "none";
-    setTimeout(() => {
-      footer.style.display = "";
-    }, 10);
-  }
-}
+console.log("Portfolio loaded successfully");
