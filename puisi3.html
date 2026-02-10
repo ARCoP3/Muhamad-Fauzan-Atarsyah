@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Di Antara Rindu dan Jarak - Koleksi Puisi | Blog Pribadi</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+    <style>
+      /* Additional styles for puisi-detail page */
+      .puisi-detail-page {
+        padding: 120px 0 80px;
+        background-color: #f8f9fa;
+        min-height: 100vh;
+      }
+
+      .puisi-detail-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .puisi-detail-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 350px;
+        gap: 40px;
+      }
+
+      /* Left Column - Puisi Detail */
+      .puisi-detail-left {
+        background-color: white;
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      }
+
+      /* Hero Image */
+      .puisi-hero-image {
+        width: 100%;
+        height: 400px;
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 30px;
+        position: relative;
+      }
+
+      .puisi-hero-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .puisi-hero-image:hover img {
+        transform: scale(1.05);
+      }
+
+      .image-overlay-text {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        color: white;
+        padding: 30px;
+        font-family: "Georgia", serif;
+        font-style: italic;
+        font-size: 18px;
+        line-height: 1.6;
+      }
+
+      .puisi-header {
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .puisi-genre-badge {
+        display: inline-block;
+        padding: 6px 15px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        background-color: #333;
+        color: white;
+      }
+
+      .genre-cinta {
+        background-color: #e74c3c;
+      }
+
+      .genre-alam {
+        background-color: #27ae60;
+      }
+
+      .genre-renungan {
+        background-color: #3498db;
+      }
+
+      .genre-inspirasi {
+        background-color: #9b59b6;
+      }
+
+      .genre-kehidupan {
+        background-color: #f39c12;
+      }
+
+      .puisi-detail-title {
+        font-size: 32px;
+        font-weight: 700;
+        color: #222;
+        line-height: 1.3;
+        margin-bottom: 10px;
+      }
+
+      .puisi-meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 20px;
+        color: #666;
+        font-size: 14px;
+        margin-top: 15px;
+      }
+
+      .puisi-meta-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .puisi-meta-item i {
+        color: #4a6cf7;
+      }
+
+      .puisi-content {
+        margin: 40px 0;
+        font-size: 18px;
+        line-height: 1.8;
+        color: #333;
+        white-space: pre-line;
+        font-family: "Georgia", serif;
+      }
+
+      .puisi-stanzas {
+        margin-bottom: 30px;
+      }
+
+      .puisi-stanza {
+        margin-bottom: 30px;
+        padding-left: 20px;
+        position: relative;
+      }
+
+      .puisi-stanza::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(to bottom, #4a6cf7, #6a8cff);
+        border-radius: 2px;
+      }
+
+      .puisi-line {
+        margin-bottom: 10px;
+      }
+
+      /* Gallery Images */
+      .puisi-gallery {
+        margin: 40px 0;
+      }
+
+      .gallery-title {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        color: #222;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .gallery-title i {
+        color: #4a6cf7;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .gallery-item {
+        border-radius: 8px;
+        overflow: hidden;
+        height: 150px;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.1);
+      }
+
+      .gallery-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .gallery-item:hover .gallery-overlay {
+        opacity: 1;
+      }
+
+      .gallery-overlay i {
+        color: white;
+        font-size: 24px;
+      }
+
+      /* Puisi Actions */
+      .puisi-actions {
+        display: flex;
+        gap: 15px;
+        margin-top: 40px;
+        padding-top: 25px;
+        border-top: 1px solid #eee;
+      }
+
+      .btn-puisi-action {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        background-color: #f5f7ff;
+        border-radius: 30px;
+        color: #4a6cf7;
+        font-weight: 600;
+        font-size: 15px;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      .btn-puisi-action:hover {
+        background-color: #4a6cf7;
+        color: white;
+        transform: translateY(-3px);
+      }
+
+      /* Author Info */
+      .author-info-card {
+        background: linear-gradient(135deg, #f5f7ff 0%, #eef2ff 100%);
+        border-radius: 12px;
+        padding: 25px;
+        margin-top: 40px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .author-img {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid white;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .author-details h4 {
+        font-size: 18px;
+        margin-bottom: 5px;
+        color: #222;
+      }
+
+      .author-details p {
+        color: #666;
+        font-size: 14px;
+      }
+
+      /* Right Column - Sidebar with Tabs */
+      .puisi-detail-right {
+        position: sticky;
+        top: 120px;
+        align-self: start;
+      }
+
+      /* Sidebar Tabs */
+      .sidebar-tabs {
+        background-color: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      }
+
+      .tabs-header {
+        display: flex;
+        background: linear-gradient(45deg, #4a6cf7, #6a8cff);
+      }
+
+      .tab-button {
+        flex: 1;
+        padding: 15px;
+        background: none;
+        border: none;
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: center;
+      }
+
+      .tab-button.active {
+        color: white;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .tab-button:hover:not(.active) {
+        color: white;
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .tab-button i {
+        margin-right: 8px;
+      }
+
+      .tab-content {
+        display: none;
+        padding: 0;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      /* Related Puisi */
+      .related-puisi-list {
+        padding: 0;
+      }
+
+      .related-puisi-item {
+        display: flex;
+        padding: 15px;
+        border-bottom: 1px solid #eee;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: inherit;
+        gap: 12px;
+      }
+
+      .related-puisi-item:hover {
+        background-color: #f9f9f9;
+        transform: translateX(5px);
+      }
+
+      .related-puisi-item:last-child {
+        border-bottom: none;
+      }
+
+      .related-puisi-img {
+        width: 70px;
+        height: 70px;
+        border-radius: 8px;
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+
+      .related-puisi-content {
+        flex: 1;
+      }
+
+      .related-puisi-genre {
+        font-size: 11px;
+        font-weight: 600;
+        padding: 3px 10px;
+        border-radius: 12px;
+        margin-bottom: 5px;
+        display: inline-block;
+        color: white;
+      }
+
+      .related-puisi-title {
+        font-size: 15px;
+        font-weight: 600;
+        color: #222;
+        margin-bottom: 3px;
+        line-height: 1.4;
+      }
+
+      .related-puisi-date {
+        font-size: 12px;
+        color: #888;
+      }
+
+      /* Stats Tab */
+      .stats-list {
+        padding: 20px;
+      }
+
+      .stat-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+      .stat-item:last-child {
+        border-bottom: none;
+      }
+
+      .stat-label {
+        color: #666;
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .stat-label i {
+        color: #4a6cf7;
+        width: 20px;
+      }
+
+      .stat-value {
+        font-weight: 700;
+        color: #4a6cf7;
+        font-size: 16px;
+      }
+
+      /* Genres Tab */
+      .genres-list {
+        padding: 20px;
+      }
+
+      .genre-tag {
+        display: inline-block;
+        padding: 6px 15px;
+        margin: 5px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 600;
+        color: white;
+        text-decoration: none;
+        transition: transform 0.3s ease;
+      }
+
+      .genre-tag:hover {
+        transform: translateY(-3px);
+        opacity: 0.9;
+      }
+
+      /* Popular Tab */
+      .popular-puisi-list {
+        padding: 20px;
+      }
+
+      .popular-puisi-item {
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+      .popular-puisi-item:last-child {
+        border-bottom: none;
+      }
+
+      .popular-rank {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f5f7ff;
+        border-radius: 50%;
+        font-weight: 700;
+        color: #4a6cf7;
+        font-size: 14px;
+        margin-right: 15px;
+      }
+
+      .popular-rank.top {
+        background-color: #4a6cf7;
+        color: white;
+      }
+
+      .popular-content h4 {
+        font-size: 14px;
+        font-weight: 600;
+        color: #222;
+        margin-bottom: 3px;
+      }
+
+      .popular-meta {
+        font-size: 12px;
+        color: #888;
+      }
+
+      /* Back Button */
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: #4a6cf7;
+        font-weight: 600;
+        margin-bottom: 30px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      .back-button:hover {
+        gap: 15px;
+        color: #3a5ce5;
+      }
+
+      /* Lightbox Modal */
+      .lightbox-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 2000;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .lightbox-content {
+        max-width: 90%;
+        max-height: 90%;
+        position: relative;
+      }
+
+      .lightbox-content img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+      }
+
+      .lightbox-close {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        color: white;
+        font-size: 30px;
+        cursor: pointer;
+        background: none;
+        border: none;
+      }
+
+      .lightbox-nav {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        transform: translateY(-50%);
+        padding: 0 20px;
+      }
+
+      .lightbox-nav-btn {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        font-size: 20px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .lightbox-nav-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 992px) {
+        .puisi-detail-wrapper {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+
+        .puisi-detail-right {
+          position: static;
+        }
+
+        .puisi-detail-title {
+          font-size: 28px;
+        }
+
+        .puisi-content {
+          font-size: 17px;
+        }
+
+        .puisi-hero-image {
+          height: 350px;
+        }
+
+        .tabs-header {
+          flex-wrap: wrap;
+        }
+
+        .tab-button {
+          min-width: 50%;
+          font-size: 13px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .puisi-detail-page {
+          padding: 100px 0 60px;
+        }
+
+        .puisi-detail-left {
+          padding: 30px 25px;
+        }
+
+        .puisi-detail-title {
+          font-size: 24px;
+        }
+
+        .puisi-content {
+          font-size: 16px;
+          line-height: 1.7;
+        }
+
+        .puisi-hero-image {
+          height: 300px;
+        }
+
+        .image-overlay-text {
+          padding: 20px;
+          font-size: 16px;
+        }
+
+        .puisi-meta {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+
+        .puisi-actions {
+          flex-wrap: wrap;
+        }
+
+        .author-info-card {
+          flex-direction: column;
+          text-align: center;
+          padding: 20px;
+        }
+
+        .gallery-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 480px) {
+        .puisi-detail-left {
+          padding: 25px 20px;
+        }
+
+        .puisi-detail-title {
+          font-size: 22px;
+        }
+
+        .puisi-hero-image {
+          height: 250px;
+        }
+
+        .image-overlay-text {
+          padding: 15px;
+          font-size: 14px;
+        }
+
+        .puisi-stanza {
+          padding-left: 15px;
+        }
+
+        .tab-button {
+          min-width: 100%;
+          padding: 12px;
+        }
+
+        .related-puisi-item {
+          padding: 12px 15px;
+        }
+
+        .gallery-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .gallery-item {
+          height: 180px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Ganti section navbar di index.html -->
+    <nav class="split-navbar">
+      <div class="nav-left">
+        <div class="logo">
+          <a href="#">
+            <span class="logo-main">Blog</span>
+            <span class="logo-sub">Atr</span>
+          </a>
+        </div>
+
+        <div class="nav-divider"></div>
+
+        <ul class="nav-menu">
+          <li>
+            <a href="#home" class="nav-link active">
+              <i class="fas fa-home"></i>
+              <span>Beranda</span>
+            </a>
+          </li>
+          <li>
+            <a href="#about" class="nav-link">
+              <i class="fas fa-user-tie"></i>
+              <span>Profil</span>
+            </a>
+          </li>
+          <li>
+            <a href="#blog" class="nav-link">
+              <i class="fas fa-newspaper"></i>
+              <span>Artikel</span>
+            </a>
+          </li>
+          <li>
+            <a href="#puisi" class="nav-link">
+              <i class="fas fa-newspaper"></i>
+              <span>Puisi</span>
+            </a>
+          </li>
+          <li>
+            <a href="#cerpen" class="nav-link">
+              <i class="fas fa-newspaper"></i>
+              <span>Cerpen</span>
+            </a>
+          </li>
+          <a href="#portfolio" class="nav-link">
+              <i class="fas fa-newspaper"></i>
+              <span>Portfolio</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+        <div class="nav-divider"></div>
+
+        <div class="nav-actions">
+          <a href="#contact" class="btn-nav-cta">Hire Me</a>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="nav-mobile-toggle" id="navMobileToggle">
+        <div class="menu-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay">
+      <div class="mobile-menu">
+        <div class="mobile-header">
+          <div class="mobile-logo">Blog Atr</div>
+          <button class="mobile-close" id="mobileClose">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <ul class="mobile-nav">
+          <li>
+            <a href="index.html#puisi" class="mobile-nav-link active">
+              <i class="fas fa-home"></i>
+              <span>Beranda</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html#about" class="mobile-nav-link">
+              <i class="fas fa-user-tie"></i>
+              <span>Profil</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html#blog" class="mobile-nav-link">
+              <i class="fas fa-newspaper"></i>
+              <span>Artikel</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html#puisi" class="mobile-nav-link">
+              <i class="fas fa-newspaper"></i>
+              <span>Puisi</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html#cerpen" class="mobile-nav-link">
+              <i class="fas fa-newspaper"></i>
+              <span>Cerpen</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html#portfolio" class="mobile-nav-link">
+              <i class="fas fa-briefcase"></i>
+              <span>Portfolio</span>
+            </a>
+          </li>
+        </ul>
+        <div class="mobile-actions">
+          <a href="#contact" class="btn-mobile-cta">Hire Me</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-modal" id="lightboxModal">
+      <button class="lightbox-close" id="lightboxClose">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="lightbox-content">
+        <img id="lightboxImage" src="" alt="Gambar Puisi" />
+      </div>
+      <div class="lightbox-nav">
+        <button class="lightbox-nav-btn" id="lightboxPrev">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="lightbox-nav-btn" id="lightboxNext">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Puisi Detail Section -->
+    <section class="puisi-detail-page">
+      <div class="puisi-detail-container">
+        <!-- Back Button -->
+        <a href="index.html#puisi" class="back-button"> <i class="fas fa-arrow-left"></i> Kembali ke Koleksi Puisi </a>
+
+        <!-- Main Content -->
+        <div class="puisi-detail-wrapper">
+          <!-- Left Column - Puisi Detail -->
+          <div class="puisi-detail-left">
+            <!-- Hero Image -->
+            <div class="puisi-hero-image">
+              <img src="img/puisi2.webp" alt="Di Antara Rindu dan Jarak" />
+              <div class="image-overlay-text">"Ia masuk dan merenggut kebahagian hidupku tanpa permisis"</div>
+            </div>
+
+            <div class="puisi-header">
+              <span class="puisi-genre-badge genre-cinta">Renungan</span>
+              <h1 class="puisi-detail-title">Dalam Diam</h1>
+
+              <div class="puisi-meta">
+                <div class="puisi-meta-item">
+                  <i class="fas fa-calendar-alt"></i>
+                  <span>5 Febuari 2026</span>
+                </div>
+                <div class="puisi-meta-item">
+                  <i class="fas fa-clock"></i>
+                  <span>3 min read</span>
+                </div>
+                <div class="puisi-meta-item">
+                  <i class="fas fa-heart"></i>
+                  <span>0 likes</span>
+                </div>
+                <div class="puisi-meta-item">
+                  <i class="fas fa-image"></i>
+                  <span>5 gambar</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="puisi-content">
+              <div class="puisi-stanzas">
+                <div class="puisi-stanza">
+                  <div class="puisi-line">
+                    Bodoh nya diriku terus membiarkan luka ini mencabik-cabik jiwa dan ragaku. Begitu banyak luka yang yang ku jahit dengan tawaku yang begitu lepas. 
+                    Dibalik tawaku yang kau kira ikhlas ada banyak sayatan yang kusembunyikan dibalik senyum yang ku paksakan..    
+                  </div>
+                </div>
+              </div>
+
+              <p style="font-style: italic; margin-top: 30px; color: #666; text-align: center; padding: 20px; border-top: 1px solid #eee; border-bottom: 1px solid #eee">"Ia masuk dan merenggut kebahagian hidupku tanpa permisi"</p>
+            </div>
+
+            <!-- Gallery Images -->
+            <div class="puisi-gallery">
+              <h3 class="gallery-title"><i class="fas fa-images"></i> Galeri</h3>
+              <p style="color: #666; margin-bottom: 15px; font-size: 15px">Kumpulan gambar asli yang di foto langsung oleh saya sendiri dan menginspirasi penulisan puisi ini.</p>
+
+              <div class="gallery-grid">
+                <div class="gallery-item" data-src="img/puisi1.webp">
+                  <img src="img/puisi1.webp" alt="Lautan dan Langit" />
+                  <div class="gallery-overlay">
+                    <i class="fas fa-search-plus"></i>
+                  </div>
+                </div>
+                <div class="gallery-item" data-src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Siluet di Pantai" />
+                  <div class="gallery-overlay">
+                    <i class="fas fa-search-plus"></i>
+                  </div>
+                </div>
+                <div class="gallery-item" data-src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                  <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Cahaya Matahari Terbenam" />
+                  <div class="gallery-overlay">
+                    <i class="fas fa-search-plus"></i>
+                  </div>
+                </div>
+                <div class="gallery-item" data-src="https://images.unsplash.com/photo-1505852679233-d9fd70aff56d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                  <img src="https://images.unsplash.com/photo-1505852679233-d9fd70aff56d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Bintang di Malam Hari" />
+                  <div class="gallery-overlay">
+                    <i class="fas fa-search-plus"></i>
+                  </div>
+                </div>
+                <div class="gallery-item" data-src="https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60">
+                  <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60" alt="Pemandangan Gunung" />
+                  <div class="gallery-overlay">
+                    <i class="fas fa-search-plus"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="puisi-actions">
+              <button class="btn-puisi-action like-button"><i class="fas fa-heart"></i> Sukai Puisi</button>
+              <button class="btn-puisi-action"><i class="fas fa-share-alt"></i> Bagikan</button>
+              <button class="btn-puisi-action"><i class="fas fa-bookmark"></i> Simpan</button>
+              <button class="btn-puisi-action"><i class="fas fa-print"></i> Cetak</button>
+              <a href="#" class="btn-puisi-action"> <i class="fas fa-download"></i> Download PDF </a>
+            </div>
+
+            <div class="author-info-card">
+              <img src="img/Muhamad Fauzan Atarsyah.png" alt="Penulis" class="author-img" />
+              <div class="author-details">
+                <h4>Muhamad Fauzan Atarsyah</h4>
+                <p>Penulis puisi dan konten kreatif. Menulis sejak 2018 dengan fokus pada puisi bertema cinta, kehidupan, dan refleksi diri.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column - Sidebar with Tabs -->
+          <div class="puisi-detail-right">
+            <!-- Sidebar Tabs -->
+            <div class="sidebar-tabs">
+              <div class="tabs-header">
+                <button class="tab-button active" data-tab="puisi-lainnya"><i class="fas fa-book-reader"></i> Puisi Lainnya</button>
+                <button class="tab-button" data-tab="statistik"><i class="fas fa-chart-bar"></i> Statistik</button>
+                <button class="tab-button" data-tab="genres"><i class="fas fa-tags"></i> Genre</button>
+                <button class="tab-button" data-tab="populer"><i class="fas fa-fire"></i> Populer</button>
+              </div>
+
+              <!-- Tab Content: Puisi Lainnya -->
+              <div class="tab-content active" id="puisi-lainnya">
+                <div class="related-puisi-list">
+                  <a href="#" class="related-puisi-item">
+                    <img src="img/puisi1.webp" alt="Sunset di Pesisir" class="related-puisi-img" />
+                    <div class="related-puisi-content">
+                      <span class="related-puisi-genre genre-cinta">Cinta</span>
+                      <h4 class="related-puisi-title">Aku Dan Suara Mu</h4>
+                      <span class="related-puisi-date">1 Januari 2026</span>
+                    </div>
+                  </a>
+                  <a href="#" class="related-puisi-item">
+                    <img src="img/puisi2.webp" alt="Dalam Diam" class="related-puisi-img" />
+                    <div class="related-puisi-content">
+                      <span class="related-puisi-genre genre-renungan">Renungan</span>
+                      <h4 class="related-puisi-title">Kembalikan Kebahagian Yang Kau Renggut</h4>
+                      <span class="related-puisi-date">10 Januari 2026</span>
+                    </div>
+                  </a>
+                  <a href="#" class="related-puisi-item">
+                    <img src="img/puisi3.webp" alt="Hanya Untukmu" class="related-puisi-img" />
+                    <div class="related-puisi-content">
+                      <span class="related-puisi-genre genre-cinta">Renungan</span>
+                      <h4 class="related-puisi-title">Dalam Diam</h4>
+                      <span class="related-puisi-date">5 Februari 2026</span>
+                    </div>
+                  </a>
+                  <a href="#" class="related-puisi-item">
+                    <img src="https://images.unsplash.com/photo-1501139083538-0139583c060f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Terbang Tinggi" class="related-puisi-img" />
+                    <div class="related-puisi-content">
+                      <span class="related-puisi-genre genre-inspirasi">Inspirasi</span>
+                      <h4 class="related-puisi-title">Terbang Tinggi</h4>
+                      <span class="related-puisi-date">28 Desember 2025</span>
+                    </div>
+                  </a>
+                  <a href="#" class="related-puisi-item">
+                    <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Pelangi Setelah Hujan" class="related-puisi-img" />
+                    <div class="related-puisi-content">
+                      <span class="related-puisi-genre genre-kehidupan">Kehidupan</span>
+                      <h4 class="related-puisi-title">Pelangi Setelah Hujan</h4>
+                      <span class="related-puisi-date">15 Desember 2025</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Tab Content: Statistik -->
+              <div class="tab-content" id="statistik">
+                <div class="stats-list">
+                  <div class="stat-item">
+                    <span class="stat-label"> <i class="fas fa-eye"></i> Total Dilihat </span>
+                    <span class="stat-value">0</span>
+                  </div>
+                  <div class="stat-item">
+                    <span class="stat-label"> <i class="fas fa-heart"></i> Disukai </span>
+                    <span class="stat-value">0</span>
+                  </div>
+                  <div class="stat-item">
+                    <span class="stat-label"> <i class="fas fa-share-alt"></i> Dibagikan </span>
+                    <span class="stat-value">0</span>
+                  </div>
+                  <div class="stat-item">
+                    <span class="stat-label"> <i class="fas fa-clock"></i> Durasi Baca </span>
+                    <span class="stat-value">3 min</span>
+                  </div>
+                  <div class="stat-item">
+                    <span class="stat-label"> <i class="fas fa-font"></i> Kata </span>
+                    <span class="stat-value">156</span>
+                  </div>
+                  <div class="stat-item">
+                    <span class="stat-label"> <i class="fas fa-image"></i> Gambar </span>
+                    <span class="stat-value">5</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tab Content: Genres -->
+              <div class="tab-content" id="genres">
+                <div class="genres-list">
+                  <a href="#" class="genre-tag genre-cinta">Cinta</a>
+                  <a href="#" class="genre-tag genre-alam">Alam</a>
+                  <a href="#" class="genre-tag genre-renungan">Renungan</a>
+                  <a href="#" class="genre-tag genre-inspirasi">Inspirasi</a>
+                  <a href="#" class="genre-tag genre-kehidupan">Kehidupan</a>
+                  <a href="#" class="genre-tag" style="background-color: #2c3e50">Romantis</a>
+                  <a href="#" class="genre-tag" style="background-color: #16a085">Spiritual</a>
+                  <a href="#" class="genre-tag" style="background-color: #c0392b">Sedih</a>
+                  <a href="#" class="genre-tag" style="background-color: #d35400">Bahagia</a>
+                  <a href="#" class="genre-tag" style="background-color: #7f8c8d">Patah Hati</a>
+                </div>
+              </div>
+
+              <!-- Tab Content: Populer -->
+              <div class="tab-content" id="populer">
+                <div class="popular-puisi-list">
+                  <div class="popular-puisi-item">
+                    <div class="popular-rank top">1</div>
+                    <div class="popular-content">
+                      <h4>Sunset di Pesisir</h4>
+                      <div class="popular-meta">10 views • 5 likes</div>
+                    </div>
+                  </div>
+                  <div class="popular-puisi-item">
+                    <div class="popular-rank top">2</div>
+                    <div class="popular-content">
+                      <h4>Dalam Diam</h4>
+                      <div class="popular-meta">5 views • 3 likes</div>
+                    </div>
+                  </div>
+                  <div class="popular-puisi-item">
+                    <div class="popular-rank">3</div>
+                    <div class="popular-content">
+                      <h4>Hanya Untukmu</h4>
+                      <div class="popular-meta">4 views • 3 likes</div>
+                    </div>
+                  </div>
+                  <div class="popular-puisi-item">
+                    <div class="popular-rank">4</div>
+                    <div class="popular-content">
+                      <h4>Terbang Tinggi</h4>
+                      <div class="popular-meta">4 views • 3 likes</div>
+                    </div>
+                  </div>
+                  <div class="popular-puisi-item">
+                    <div class="popular-rank">5</div>
+                    <div class="popular-content">
+                      <h4>Pelangi Setelah Hujan</h4>
+                      <div class="popular-meta">2 views • 1 likes</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="professional-footer">
+      <div class="footer-container">
+        <div class="footer-bottom">
+          <div class="copyright">
+            <p>&copy; <span id="currentYear">2026</span> Muhamad Fauzan Atarsyah. All rights reserved.</p>
+          </div>
+          <div class="footer-legal">
+            <a href="#" class="legal-link">Privacy Policy</a>
+            <span class="separator">•</span>
+            <a href="#" class="legal-link">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+      <button id="backToTop" class="back-to-top" aria-label="Scroll to top">
+        <i class="fas fa-chevron-up"></i>
+      </button>
+    </footer>
+
+    <script>
+      // JavaScript for puisi detail page
+      document.addEventListener("DOMContentLoaded", function () {
+        // Set current year in footer
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+        // Tab functionality
+        const tabButtons = document.querySelectorAll(".tab-button");
+        const tabContents = document.querySelectorAll(".tab-content");
+
+        tabButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const tabId = button.getAttribute("data-tab");
+
+            // Remove active class from all buttons and contents
+            tabButtons.forEach((btn) => btn.classList.remove("active"));
+            tabContents.forEach((content) => content.classList.remove("active"));
+
+            // Add active class to clicked button and corresponding content
+            button.classList.add("active");
+            document.getElementById(tabId).classList.add("active");
+          });
+        });
+
+        // Mobile Menu Toggle
+        const mobileToggle = document.getElementById("navMobileToggle");
+        const mobileOverlay = document.getElementById("mobileOverlay");
+        const mobileClose = document.getElementById("mobileClose");
+        const menuIcon = document.querySelector(".menu-icon");
+
+        if (mobileToggle && mobileOverlay) {
+          mobileToggle.addEventListener("click", function () {
+            mobileOverlay.classList.add("active");
+            menuIcon.classList.add("active");
+            document.body.style.overflow = "hidden";
+          });
+
+          mobileClose.addEventListener("click", function () {
+            mobileOverlay.classList.remove("active");
+            menuIcon.classList.remove("active");
+            document.body.style.overflow = "";
+          });
+
+          // Close menu when clicking links
+          document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+            link.addEventListener("click", function () {
+              mobileOverlay.classList.remove("active");
+              menuIcon.classList.remove("active");
+              document.body.style.overflow = "";
+            });
+          });
+        }
+
+        // Theme toggle
+        const themeToggle = document.getElementById("themeToggle");
+        const mobileThemeToggle = document.querySelector(".mobile-theme");
+
+        function toggleTheme() {
+          document.body.classList.toggle("dark-theme");
+          const theme = document.body.classList.contains("dark-theme") ? "dark" : "light";
+          localStorage.setItem("theme", theme);
+
+          // Update all theme toggle icons
+          const icons = document.querySelectorAll(".theme-toggle i, .mobile-theme i");
+          icons.forEach((icon) => {
+            if (document.body.classList.contains("dark-theme")) {
+              icon.classList.remove("fa-moon");
+              icon.classList.add("fa-sun");
+            } else {
+              icon.classList.remove("fa-sun");
+              icon.classList.add("fa-moon");
+            }
+          });
+        }
+
+        if (themeToggle) {
+          themeToggle.addEventListener("click", toggleTheme);
+        }
+
+        if (mobileThemeToggle) {
+          mobileThemeToggle.addEventListener("click", toggleTheme);
+        }
+
+        // Check for saved theme
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "dark") {
+          document.body.classList.add("dark-theme");
+          const icons = document.querySelectorAll(".theme-toggle i, .mobile-theme i");
+          icons.forEach((icon) => {
+            icon.classList.remove("fa-moon");
+            icon.classList.add("fa-sun");
+          });
+        }
+
+        // Navbar Scroll Effect
+        const navbar = document.querySelector(".split-navbar");
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+          } else {
+            navbar.classList.remove("scrolled");
+          }
+        });
+
+        // Back to top button
+        const backToTopBtn = document.getElementById("backToTop");
+        if (backToTopBtn) {
+          window.addEventListener("scroll", function () {
+            if (window.scrollY > 300) {
+              backToTopBtn.classList.add("active");
+            } else {
+              backToTopBtn.classList.remove("active");
+            }
+          });
+
+          backToTopBtn.addEventListener("click", function () {
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
+          });
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            const href = this.getAttribute("href");
+            if (href === "#") return;
+
+            const target = document.querySelector(href);
+            if (target) {
+              e.preventDefault();
+              window.scrollTo({
+                top: target.offsetTop - 80,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+
+        // Like button functionality
+        const likeButton = document.querySelector(".like-button");
+        if (likeButton) {
+          likeButton.addEventListener("click", function (e) {
+            e.preventDefault();
+            const isLiked = this.classList.contains("liked");
+            const icon = this.querySelector("i");
+
+            if (!isLiked) {
+              this.classList.add("liked");
+              icon.style.color = "#e74c3c";
+              this.innerHTML = '<i class="fas fa-heart" style="color: #e74c3c"></i> Disukai';
+
+              // Update like count in stats
+              const likeStat = document.querySelector(".stat-item:nth-child(2) .stat-value");
+              let currentLikes = parseInt(likeStat.textContent);
+              likeStat.textContent = currentLikes + 1;
+
+              // Update like count in header
+              const headerLikes = document.querySelector(".puisi-meta-item:nth-child(3) span");
+              headerLikes.textContent = currentLikes + 1 + " likes";
+            } else {
+              this.classList.remove("liked");
+              icon.style.color = "";
+              this.innerHTML = '<i class="fas fa-heart"></i> Sukai Puisi';
+
+              // Update like count in stats
+              const likeStat = document.querySelector(".stat-item:nth-child(2) .stat-value");
+              let currentLikes = parseInt(likeStat.textContent);
+              likeStat.textContent = currentLikes - 1;
+
+              // Update like count in header
+              const headerLikes = document.querySelector(".puisi-meta-item:nth-child(3) span");
+              headerLikes.textContent = currentLikes - 1 + " likes";
+            }
+          });
+        }
+
+        // View count simulation (increase on page load)
+        setTimeout(() => {
+          const viewStat = document.querySelector(".stat-item:first-child .stat-value");
+          let currentViews = parseInt(viewStat.textContent.replace(",", ""));
+          viewStat.textContent = (currentViews + 1).toLocaleString();
+        }, 2000);
+
+        // Add animation to puisi stanzas
+        const stanzas = document.querySelectorAll(".puisi-stanza");
+        stanzas.forEach((stanza, index) => {
+          stanza.style.opacity = "0";
+          stanza.style.transform = "translateY(20px)";
+          stanza.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+
+          setTimeout(() => {
+            stanza.style.opacity = "1";
+            stanza.style.transform = "translateY(0)";
+          }, 300 + index * 200);
+        });
+
+        // Lightbox Gallery
+        const lightboxModal = document.getElementById("lightboxModal");
+        const lightboxImage = document.getElementById("lightboxImage");
+        const lightboxClose = document.getElementById("lightboxClose");
+        const lightboxPrev = document.getElementById("lightboxPrev");
+        const lightboxNext = document.getElementById("lightboxNext");
+        const galleryItems = document.querySelectorAll(".gallery-item");
+
+        let currentImageIndex = 0;
+        const imageSources = Array.from(galleryItems).map((item) => item.getAttribute("data-src"));
+
+        // Open lightbox when gallery item clicked
+        galleryItems.forEach((item, index) => {
+          item.addEventListener("click", () => {
+            currentImageIndex = index;
+            lightboxImage.src = imageSources[index];
+            lightboxModal.style.display = "flex";
+            document.body.style.overflow = "hidden";
+          });
+        });
+
+        // Close lightbox
+        lightboxClose.addEventListener("click", () => {
+          lightboxModal.style.display = "none";
+          document.body.style.overflow = "";
+        });
+
+        // Close lightbox when clicking outside image
+        lightboxModal.addEventListener("click", (e) => {
+          if (e.target === lightboxModal) {
+            lightboxModal.style.display = "none";
+            document.body.style.overflow = "";
+          }
+        });
+
+        // Navigate images
+        lightboxPrev.addEventListener("click", (e) => {
+          e.stopPropagation();
+          currentImageIndex = (currentImageIndex - 1 + imageSources.length) % imageSources.length;
+          lightboxImage.src = imageSources[currentImageIndex];
+        });
+
+        lightboxNext.addEventListener("click", (e) => {
+          e.stopPropagation();
+          currentImageIndex = (currentImageIndex + 1) % imageSources.length;
+          lightboxImage.src = imageSources[currentImageIndex];
+        });
+
+        // Keyboard navigation
+        document.addEventListener("keydown", (e) => {
+          if (lightboxModal.style.display === "flex") {
+            if (e.key === "Escape") {
+              lightboxModal.style.display = "none";
+              document.body.style.overflow = "";
+            } else if (e.key === "ArrowLeft") {
+              currentImageIndex = (currentImageIndex - 1 + imageSources.length) % imageSources.length;
+              lightboxImage.src = imageSources[currentImageIndex];
+            } else if (e.key === "ArrowRight") {
+              currentImageIndex = (currentImageIndex + 1) % imageSources.length;
+              lightboxImage.src = imageSources[currentImageIndex];
+            }
+          }
+        });
+
+        // Preload images for better performance
+        function preloadImages(urls) {
+          urls.forEach((url) => {
+            const img = new Image();
+            img.src = url;
+          });
+        }
+
+        preloadImages(imageSources);
+      });
+    </script>
+  </body>
+</html>

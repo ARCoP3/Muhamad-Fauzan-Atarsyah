@@ -1,0 +1,1737 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Koleksi Cerpen Lengkap | Blog Pribadi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+    <style>
+      /* Reset dan Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Open Sans", sans-serif;
+        color: #333;
+        background-color: #f8f9fa;
+        line-height: 1.6;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* Container */
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Navigation Bar */
+      .split-navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: white;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+        z-index: 1000;
+        padding: 15px 0;
+        transition: all 0.3s ease;
+      }
+
+      .navbar-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .logo {
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      .logo a {
+        display: flex;
+        align-items: baseline;
+      }
+
+      .logo-main {
+        color: #222;
+      }
+
+      .logo-sub {
+        color: #4a6cf7;
+        margin-left: 2px;
+      }
+
+      .nav-divider {
+        width: 1px;
+        height: 30px;
+        background: #e0e0e0;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 25px;
+      }
+
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #666;
+        font-weight: 500;
+        padding: 8px 15px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+
+      .nav-link:hover {
+        color: #4a6cf7;
+        background: rgba(74, 108, 247, 0.05);
+      }
+
+      .nav-link.active {
+        color: #4a6cf7;
+        background: rgba(74, 108, 247, 0.1);
+      }
+
+      .nav-link i {
+        font-size: 16px;
+      }
+
+      .nav-actions .btn-nav-cta {
+        background: linear-gradient(45deg, #4a6cf7, #6a8cff);
+        color: white;
+        padding: 12px 25px;
+        border-radius: 30px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(74, 108, 247, 0.2);
+      }
+
+      .nav-actions .btn-nav-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(74, 108, 247, 0.3);
+      }
+
+      .nav-mobile-toggle {
+        display: none;
+        cursor: pointer;
+      }
+
+      .menu-icon {
+        width: 25px;
+        height: 18px;
+        position: relative;
+      }
+
+      .menu-icon span {
+        display: block;
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        background: #333;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+      }
+
+      .menu-icon span:nth-child(1) {
+        top: 0;
+      }
+
+      .menu-icon span:nth-child(2) {
+        top: 8px;
+      }
+
+      .menu-icon span:nth-child(3) {
+        top: 16px;
+      }
+
+      .menu-icon.active span:nth-child(1) {
+        transform: rotate(45deg);
+        top: 8px;
+      }
+
+      .menu-icon.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .menu-icon.active span:nth-child(3) {
+        transform: rotate(-45deg);
+        top: 8px;
+      }
+
+      /* Mobile Overlay */
+      .mobile-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 2000;
+        display: none;
+      }
+
+      .mobile-overlay.active {
+        display: block;
+      }
+
+      .mobile-menu {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 300px;
+        height: 100%;
+        background: white;
+        padding: 30px;
+        transform: translateX(100%);
+        animation: slideIn 0.3s ease forwards;
+      }
+
+      @keyframes slideIn {
+        to {
+          transform: translateX(0);
+        }
+      }
+
+      .mobile-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 40px;
+      }
+
+      .mobile-logo {
+        font-size: 22px;
+        font-weight: 700;
+        color: #222;
+      }
+
+      .mobile-close {
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: #666;
+        cursor: pointer;
+      }
+
+      .mobile-nav {
+        list-style: none;
+        margin-bottom: 40px;
+      }
+
+      .mobile-nav li {
+        margin-bottom: 15px;
+      }
+
+      .mobile-nav-link {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 12px 15px;
+        border-radius: 8px;
+        color: #666;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      .mobile-nav-link:hover,
+      .mobile-nav-link.active {
+        color: #4a6cf7;
+        background: rgba(74, 108, 247, 0.1);
+      }
+
+      .mobile-nav-link i {
+        width: 20px;
+        text-align: center;
+      }
+
+      .btn-mobile-cta {
+        display: block;
+        text-align: center;
+        background: linear-gradient(45deg, #4a6cf7, #6a8cff);
+        color: white;
+        padding: 15px;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .btn-mobile-cta:hover {
+        transform: translateY(-2px);
+      }
+
+      /* Main Content */
+      .all-cerpen-page {
+        padding: 120px 0 80px;
+        min-height: 100vh;
+      }
+
+      /* Header Section */
+      .all-cerpen-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .all-cerpen-header h1 {
+        font-size: 42px;
+        font-weight: 700;
+        color: #222;
+        margin-bottom: 15px;
+        background: linear-gradient(45deg, #4a6cf7, #6a8cff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .all-cerpen-header p {
+        color: #666;
+        font-size: 18px;
+        max-width: 700px;
+        margin: 0 auto 30px;
+        line-height: 1.6;
+      }
+
+      /* Stats Banner */
+      .stats-banner {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+        margin-top: 40px;
+      }
+
+      .stat-card {
+        text-align: center;
+        background: white;
+        padding: 20px 30px;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        min-width: 150px;
+      }
+
+      .stat-number {
+        font-size: 36px;
+        font-weight: 700;
+        color: #4a6cf7;
+        margin-bottom: 5px;
+      }
+
+      .stat-label {
+        color: #666;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      /* Filter Section */
+      .cerpen-filter-section {
+        margin-bottom: 40px;
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .filter-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+        font-size: 18px;
+        color: #222;
+        font-weight: 600;
+      }
+
+      .filter-title i {
+        color: #4a6cf7;
+      }
+
+      .filter-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .filter-option {
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 2px solid #e0e0e0;
+        background: white;
+        color: #666;
+      }
+
+      .filter-option:hover {
+        border-color: #4a6cf7;
+        color: #4a6cf7;
+        transform: translateY(-2px);
+      }
+
+      .filter-option.active {
+        background: #4a6cf7;
+        color: white;
+        border-color: #4a6cf7;
+      }
+
+      /* Search Bar */
+      .search-container {
+        position: relative;
+        max-width: 500px;
+        margin: 20px auto 30px;
+      }
+
+      .search-input {
+        width: 100%;
+        padding: 15px 50px 15px 20px;
+        border: 2px solid #e0e0e0;
+        border-radius: 30px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+      }
+
+      .search-input:focus {
+        outline: none;
+        border-color: #4a6cf7;
+        box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
+      }
+
+      .search-btn {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: #666;
+        font-size: 18px;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+
+      .search-btn:hover {
+        color: #4a6cf7;
+      }
+
+      /* Cerpen Grid */
+      .all-cerpen-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+        margin-bottom: 50px;
+      }
+
+      .all-cerpen-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: all 0.4s ease;
+        height: 100%;
+        position: relative;
+      }
+
+      .all-cerpen-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .all-cerpen-card:hover .all-cerpen-image img {
+        transform: scale(1.1);
+      }
+
+      .all-cerpen-image {
+        height: 200px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .all-cerpen-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3));
+        opacity: 0.1;
+        transition: opacity 0.3s ease;
+      }
+
+      .all-cerpen-card:hover .image-overlay {
+        opacity: 0.2;
+      }
+
+      .cerpen-badge {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: white;
+      }
+
+      .badge-fiksi {
+        background: #e74c3c;
+      }
+      .badge-romantis {
+        background: #e84393;
+      }
+      .badge-misteri {
+        background: #6c5ce7;
+      }
+      .badge-fantasi {
+        background: #00b894;
+      }
+      .badge-drama {
+        background: #f39c12;
+      }
+      .badge-komedi {
+        background: #fdcb6e;
+        color: #333;
+      }
+      .badge-horor {
+        background: #2d3436;
+      }
+      .badge-petualangan {
+        background: #3498db;
+      }
+      .badke-sejarah {
+        background: #9b59b6;
+      }
+
+      .all-cerpen-content {
+        padding: 25px;
+      }
+
+      .all-cerpen-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #222;
+        margin-bottom: 10px;
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .all-cerpen-excerpt {
+        color: #666;
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 15px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .all-cerpen-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 13px;
+        color: #888;
+        padding-top: 15px;
+        border-top: 1px solid #eee;
+      }
+
+      .all-cerpen-date {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .all-cerpen-stats {
+        display: flex;
+        gap: 10px;
+      }
+
+      .all-cerpen-stats span {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+      }
+
+      /* Reading Time */
+      .reading-time {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: #4a6cf7;
+        font-weight: 500;
+        font-size: 12px;
+        margin-bottom: 10px;
+      }
+
+      /* No Results Message */
+      .no-results {
+        text-align: center;
+        padding: 50px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        display: none;
+      }
+
+      .no-results i {
+        font-size: 50px;
+        color: #ddd;
+        margin-bottom: 20px;
+      }
+
+      .no-results h3 {
+        color: #666;
+        margin-bottom: 10px;
+      }
+
+      .no-results p {
+        color: #999;
+      }
+
+      /* Pagination */
+      .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 50px;
+      }
+
+      .page-btn {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        background: white;
+        color: #666;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .page-btn:hover {
+        border-color: #4a6cf7;
+        color: #4a6cf7;
+      }
+
+      .page-btn.active {
+        background: #4a6cf7;
+        color: white;
+        border-color: #4a6cf7;
+      }
+
+      .page-btn.dots {
+        border: none;
+        background: none;
+        cursor: default;
+      }
+
+      .page-btn.dots:hover {
+        color: #666;
+      }
+
+      /* Genre Legend */
+      .genre-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 30px;
+        padding: 20px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .legend-title {
+        width: 100%;
+        font-weight: 600;
+        color: #222;
+        margin-bottom: 10px;
+        font-size: 16px;
+      }
+
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .legend-color {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+      }
+
+      .legend-label {
+        font-size: 14px;
+        color: #666;
+      }
+
+      /* Back Button */
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: #4a6cf7;
+        font-weight: 600;
+        margin-bottom: 30px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 30px;
+        background: white;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .back-button:hover {
+        gap: 15px;
+        background: #f5f7ff;
+        transform: translateY(-2px);
+      }
+
+      /* Loading Animation */
+      .loading {
+        display: none;
+        text-align: center;
+        padding: 30px;
+      }
+
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid #f3f3f3;
+        border-top: 3px solid #4a6cf7;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 20px;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Footer */
+      .professional-footer {
+        background: #222;
+        color: #aaa;
+        padding: 40px 0 20px;
+        position: relative;
+      }
+
+      .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 20px;
+        border-top: 1px solid #444;
+      }
+
+      .copyright {
+        font-size: 14px;
+      }
+
+      .copyright p {
+        color: #aaa;
+      }
+
+      .footer-legal {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .legal-link {
+        color: #aaa;
+        font-size: 14px;
+        transition: color 0.3s ease;
+      }
+
+      .legal-link:hover {
+        color: white;
+      }
+
+      .separator {
+        color: #666;
+      }
+
+      .back-to-top {
+        position: absolute;
+        right: 30px;
+        bottom: 30px;
+        width: 50px;
+        height: 50px;
+        background: #4a6cf7;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        border: none;
+        font-size: 18px;
+      }
+
+      .back-to-top.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .back-to-top:hover {
+        background: #3a5ce5;
+        transform: translateY(-3px);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 992px) {
+        .all-cerpen-grid {
+          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+          gap: 25px;
+        }
+
+        .all-cerpen-header h1 {
+          font-size: 36px;
+        }
+
+        .stats-banner {
+          gap: 20px;
+        }
+
+        .stat-card {
+          min-width: 130px;
+          padding: 15px 20px;
+        }
+
+        .stat-number {
+          font-size: 30px;
+        }
+
+        .nav-menu {
+          gap: 15px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .all-cerpen-page {
+          padding: 100px 0 60px;
+        }
+
+        .all-cerpen-grid {
+          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+          gap: 20px;
+        }
+
+        .all-cerpen-header h1 {
+          font-size: 32px;
+        }
+
+        .all-cerpen-header p {
+          font-size: 16px;
+        }
+
+        .filter-options {
+          justify-content: center;
+        }
+
+        .cerpen-filter-section {
+          padding: 20px;
+        }
+
+        .stats-banner {
+          gap: 15px;
+        }
+
+        .stat-card {
+          min-width: 120px;
+          padding: 12px 15px;
+        }
+
+        .stat-number {
+          font-size: 26px;
+        }
+
+        .nav-menu {
+          display: none;
+        }
+
+        .nav-mobile-toggle {
+          display: block;
+        }
+
+        .nav-actions .btn-nav-cta {
+          display: none;
+        }
+
+        .footer-bottom {
+          flex-direction: column;
+          gap: 20px;
+          text-align: center;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .all-cerpen-grid {
+          grid-template-columns: 1fr;
+          max-width: 400px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .all-cerpen-header h1 {
+          font-size: 28px;
+        }
+
+        .all-cerpen-image {
+          height: 180px;
+        }
+
+        .stats-banner {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .stat-card {
+          width: 100%;
+          max-width: 250px;
+        }
+
+        .pagination {
+          flex-wrap: wrap;
+        }
+
+        .genre-legend {
+          justify-content: center;
+        }
+
+        .mobile-menu {
+          width: 250px;
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="split-navbar">
+      <div class="navbar-container">
+        <div class="nav-left">
+          <div class="logo">
+            <a href="index.html">
+              <span class="logo-main">Blog</span>
+              <span class="logo-sub">Atr</span>
+            </a>
+          </div>
+          <div class="nav-divider"></div>
+          <ul class="nav-menu">
+            <li>
+              <a href="index.html#home" class="nav-link"><i class="fas fa-home"></i><span>Beranda</span></a>
+            </li>
+            <li>
+              <a href="index.html#about" class="nav-link"><i class="fas fa-user-tie"></i><span>Profil</span></a>
+            </li>
+            <li>
+              <a href="halamanartikel.html" class="nav-link"><i class="fas fa-newspaper"></i><span>Artikel</span></a>
+            </li>
+            <li>
+              <a href="halamanpuisi.html" class="nav-link"><i class="fas fa-book-open"></i><span>Puisi</span></a>
+            </li>
+            <li>
+              <a href="halamancerpen.html" class="nav-link active"><i class="fas fa-book"></i><span>Cerpen</span></a>
+            </li>
+            <li>
+              <a href="index.html#portfolio" class="nav-link"><i class="fas fa-briefcase"></i><span>Portfolio</span></a>
+            </li>
+          </ul>
+        </div>
+        <div class="nav-actions">
+          <a href="index.html#contact" class="btn-nav-cta">Hubungi Saya</a>
+        </div>
+        <div class="nav-mobile-toggle" id="navMobileToggle">
+          <div class="menu-icon"><span></span><span></span><span></span></div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay">
+      <div class="mobile-menu">
+        <div class="mobile-header">
+          <div class="mobile-logo">Blog Atr</div>
+          <button class="mobile-close" id="mobileClose"><i class="fas fa-times"></i></button>
+        </div>
+        <ul class="mobile-nav">
+          <li>
+            <a href="index.html#home" class="mobile-nav-link"><i class="fas fa-home"></i><span>Beranda</span></a>
+          </li>
+          <li>
+            <a href="index.html#about" class="mobile-nav-link"><i class="fas fa-user-tie"></i><span>Profil</span></a>
+          </li>
+          <li>
+            <a href="index.html#blog" class="mobile-nav-link"><i class="fas fa-newspaper"></i><span>Artikel</span></a>
+          </li>
+          <li>
+            <a href="semua-puisi.html" class="mobile-nav-link"><i class="fas fa-book-open"></i><span>Puisi</span></a>
+          </li>
+          <li>
+            <a href="semua-cerpen.html" class="mobile-nav-link active"><i class="fas fa-book"></i><span>Cerpen</span></a>
+          </li>
+          <li>
+            <a href="index.html#portfolio" class="mobile-nav-link"><i class="fas fa-briefcase"></i><span>Portfolio</span></a>
+          </li>
+        </ul>
+        <div class="mobile-actions">
+          <a href="index.html#contact" class="btn-mobile-cta">Hubungi Saya</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <section class="all-cerpen-page">
+      <div class="container">
+        <!-- Back Button -->
+        <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</a>
+
+        <!-- Header -->
+        <div class="all-cerpen-header">
+          <h1>Koleksi Cerpen Lengkap</h1>
+          <p>Kumpulan semua karya cerpen yang telah saya tulis selama ini. Setiap cerita memiliki pesan moral dan nilai kehidupan yang dapat diambil sebagai pembelajaran.</p>
+
+          <!-- Stats Banner -->
+          <div class="stats-banner">
+            <div class="stat-card">
+              <div class="stat-number" id="totalCerpen">18</div>
+              <div class="stat-label">Total Cerpen</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">9</div>
+              <div class="stat-label">Genre Berbeda</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">2020</div>
+              <div class="stat-label">Tahun Mulai</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">120K+</div>
+              <div class="stat-label">Kata Tertulis</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+          <input type="text" class="search-input" id="searchInput" placeholder="Cari cerpen berdasarkan judul, isi, atau genre..." />
+          <button class="search-btn" id="searchBtn"><i class="fas fa-search"></i></button>
+        </div>
+
+        <!-- Filter Section -->
+        <div class="cerpen-filter-section">
+          <div class="filter-title"><i class="fas fa-filter"></i> Filter Berdasarkan Genre</div>
+          <div class="filter-options">
+            <div class="filter-option active" data-filter="all">Semua Genre</div>
+            <div class="filter-option" data-filter="fiksi">Fiksi</div>
+            <div class="filter-option" data-filter="romantis">Romantis</div>
+            <div class="filter-option" data-filter="misteri">Misteri</div>
+            <div class="filter-option" data-filter="fantasi">Fantasi</div>
+            <div class="filter-option" data-filter="drama">Drama</div>
+            <div class="filter-option" data-filter="komedi">Komedi</div>
+            <div class="filter-option" data-filter="horor">Horor</div>
+          </div>
+        </div>
+
+        <!-- Loading Animation -->
+        <div class="loading" id="loading">
+          <div class="loading-spinner"></div>
+          <p>Memuat cerpen...</p>
+        </div>
+
+        <!-- No Results Message -->
+        <div class="no-results" id="noResults">
+          <i class="fas fa-search"></i>
+          <h3>Tidak ada cerpen yang ditemukan</h3>
+          <p>Coba gunakan kata kunci lain atau reset filter</p>
+        </div>
+
+        <!-- Cerpen Grid -->
+        <div class="all-cerpen-grid" id="cerpenGrid">
+          <!-- Cerpen akan dimuat di sini oleh JavaScript -->
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination" id="pagination">
+          <!-- Pagination akan di-generate oleh JavaScript -->
+        </div>
+
+        <!-- Genre Legend -->
+        <div class="genre-legend">
+          <div class="legend-title"><i class="fas fa-tags"></i> Legenda Genre</div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: #e74c3c"></div>
+            <div class="legend-label">Fiksi</div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: #e84393"></div>
+            <div class="legend-label">Romantis</div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: #6c5ce7"></div>
+            <div class="legend-label">Misteri</div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: #00b894"></div>
+            <div class="legend-label">Fantasi</div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: #f39c12"></div>
+            <div class="legend-label">Drama</div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: #fdcb6e"></div>
+            <div class="legend-label">Komedi</div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: #2d3436"></div>
+            <div class="legend-label">Horor</div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: #3498db"></div>
+            <div class="legend-label">Petualangan</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="professional-footer">
+      <div class="footer-container">
+        <div class="footer-bottom">
+          <div class="copyright">
+            <p>&copy; <span id="currentYear">2024</span> Muhamad Fauzan Atarsyah. All rights reserved.</p>
+          </div>
+          <div class="footer-legal">
+            <a href="#" class="legal-link">Privacy Policy</a>
+            <span class="separator">•</span>
+            <a href="#" class="legal-link">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+      <button id="backToTop" class="back-to-top" aria-label="Scroll to top"><i class="fas fa-chevron-up"></i></button>
+    </footer>
+
+    <script>
+      // Data Cerpen
+      const allCerpenData = [
+        {
+          id: 1,
+          title: "Malam Tanpa Bintang",
+          genre: "misteri",
+          date: "5 Januari 2024",
+          excerpt: "Desa itu sunyi. Terlalu sunyi. Bahkan jangkrik pun tak berani bersuara di malam itu...",
+          image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+          likes: 45,
+          views: 320,
+          words: 1500,
+          readingTime: "8 min",
+          link: "cerpen1.html",
+        },
+        {
+          id: 2,
+          title: "Surat untuk Masa Depan",
+          genre: "romantis",
+          date: "12 Januari 2024",
+          excerpt: "Aku menulis surat ini untukmu yang akan membacanya sepuluh tahun dari sekarang...",
+          image: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+          likes: 67,
+          views: 489,
+          words: 1200,
+          readingTime: "6 min",
+          link: "cerpen2.html",
+        },
+        {
+          id: 3,
+          title: "Penjaga Hutan Tua",
+          genre: "fantasi",
+          date: "20 Januari 2024",
+          excerpt: "Sudah tujuh puluh tahun Pak Kromo menjaga hutan ini. Ia tahu semua rahasianya...",
+          image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+          likes: 89,
+          views: 612,
+          words: 2500,
+          readingTime: "12 min",
+          link: "cerpen3.html",
+        },
+        {
+          id: 4,
+          title: "Kesempatan Kedua",
+          genre: "drama",
+          date: "28 Januari 2024",
+          excerpt: "Tidak semua orang mendapat kesempatan kedua dalam hidup. Aku salah satu yang beruntung...",
+          image: "https://images.unsplash.com/photo-1501139083538-0139583c060f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+          likes: 56,
+          views: 432,
+          words: 1800,
+          readingTime: "9 min",
+          link: "cerpen4.html",
+        },
+        {
+          id: 5,
+          title: "Komedi Tak Terduga",
+          genre: "komedi",
+          date: "5 Februari 2024",
+          excerpt: "Hidupku berubah total setelah aku secara tidak sengaja menjadi viral di media sosial...",
+          image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+          likes: 123,
+          views: 845,
+          words: 1400,
+          readingTime: "7 min",
+          link: "cerpen5.html",
+        },
+        {
+          id: 6,
+          title: "Rumah di Ujung Jalan",
+          genre: "horor",
+          date: "14 Februari 2024",
+          excerpt: "Semua orang di kampung memperingatkanku untuk tidak mendekati rumah itu. Tapi aku penasaran...",
+          image: "https://images.unsplash.com/photo-1505852679233-d9fd70aff56d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+          likes: 78,
+          views: 567,
+          words: 2200,
+          readingTime: "11 min",
+          link: "cerpen6.html",
+        },
+        {
+          id: 7,
+          title: "Petualangan di Pulau Terpencil",
+          genre: "petualangan",
+          date: "22 Februari 2024",
+          excerpt: "Kapal kami karam. Sekarang kami terdampar di pulau yang tidak ada dalam peta mana pun...",
+          image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+          likes: 92,
+          views: 678,
+          words: 3000,
+          readingTime: "15 min",
+          link: "cerpen7.html",
+        },
+        {
+          id: 8,
+          title: "Cinta dalam Diam",
+          genre: "romantis",
+          date: "1 Maret 2024",
+          excerpt: "Tujuh tahun aku menyimpan perasaan ini. Tujuh tahun aku mengagumimu dari jauh...",
+          image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+          likes: 145,
+          views: 912,
+          words: 1600,
+          readingTime: "8 min",
+          link: "cerpen8.html",
+        },
+        {
+          id: 9,
+          title: "Rahasia Keluarga",
+          genre: "drama",
+          date: "10 Maret 2024",
+          excerpt: "Ayah meninggalkan sebuah kotak kayu dengan instruksi: 'Buka setelah aku tiada'...",
+          image: "https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+          likes: 67,
+          views: 489,
+          words: 2400,
+          readingTime: "12 min",
+          link: "cerpen9.html",
+        },
+        {
+          id: 10,
+          title: "Portal Waktu",
+          genre: "fantasi",
+          date: "18 Maret 2024",
+          excerpt: "Aku menemukannya secara tidak sengaja di loteng rumah nenek. Sebuah pintu ke masa lalu...",
+          image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=50",
+          likes: 112,
+          views: 756,
+          words: 2800,
+          readingTime: "14 min",
+          link: "cerpen10.html",
+        },
+        {
+          id: 11,
+          title: "Detektif Amatir",
+          genre: "misteri",
+          date: "25 Maret 2024",
+          excerpt: "Aku bukan detektif profesional, tapi aku tahu ada yang tidak beres dengan kasus ini...",
+          image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+          likes: 89,
+          views: 634,
+          words: 2000,
+          readingTime: "10 min",
+          link: "cerpen11.html",
+        },
+        {
+          id: 12,
+          title: "Stand-up Comedy Pertama",
+          genre: "komedi",
+          date: "2 April 2024",
+          excerpt: "Mimpi terbesarku adalah berdiri di panggung. Malam ini, mimpi itu akhirnya terwujud...",
+          image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=40",
+          likes: 156,
+          views: 1023,
+          words: 1300,
+          readingTime: "7 min",
+          link: "cerpen12.html",
+        },
+        {
+          id: 13,
+          title: "Hantu Sekolah Lama",
+          genre: "horor",
+          date: "10 April 2024",
+          excerpt: "Sekolah kami dikenal angker. Tapi hanya sedikit yang tahu kisah sebenarnya...",
+          image: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+          likes: 134,
+          views: 890,
+          words: 2300,
+          readingTime: "12 min",
+          link: "cerpen13.html",
+        },
+        {
+          id: 14,
+          title: "Ekspedisi ke Gunung Merapi",
+          genre: "petualangan",
+          date: "18 April 2024",
+          excerpt: "Kami berlima. Hanya tiga yang kembali. Inilah kisah ekspedisi yang mengubah hidup kami...",
+          image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=30",
+          likes: 102,
+          views: 745,
+          words: 3200,
+          readingTime: "16 min",
+          link: "cerpen14.html",
+        },
+        {
+          id: 15,
+          title: "Cinta Musim Semi",
+          genre: "romantis",
+          date: "25 April 2024",
+          excerpt: "Kami bertemu di musim semi, berpisah di musim gugur, dan bertemu kembali di musim semi berikutnya...",
+          image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=70",
+          likes: 178,
+          views: 1123,
+          words: 1900,
+          readingTime: "10 min",
+          link: "cerpen15.html",
+        },
+        {
+          id: 16,
+          title: "Dunia Paralel",
+          genre: "fantasi",
+          date: "3 Mei 2024",
+          excerpt: "Apa jadinya jika kita bisa mengunjungi versi diri kita di dunia paralel? Aku baru saja melakukannya...",
+          image: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=40",
+          likes: 145,
+          views: 967,
+          words: 2700,
+          readingTime: "14 min",
+          link: "cerpen16.html",
+        },
+        {
+          id: 17,
+          title: "Komedi Keluarga",
+          genre: "komedi",
+          date: "12 Mei 2024",
+          excerpt: "Keluarga kami mungkin tidak sempurna, tapi kami punya banyak cerita lucu untuk dibagikan...",
+          image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=20",
+          likes: 89,
+          views: 623,
+          words: 1500,
+          readingTime: "8 min",
+          link: "cerpen17.html",
+        },
+        {
+          id: 18,
+          title: "Misteri Kamar 404",
+          genre: "misteri",
+          date: "20 Mei 2024",
+          excerpt: "Hotel ini memiliki 403 kamar. Tapi kenapa ada nomor 404 di pintu kamar ini?",
+          image: "https://images.unsplash.com/photo-1505852679233-d9fd70aff56d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=50",
+          likes: 112,
+          views: 789,
+          words: 2100,
+          readingTime: "11 min",
+          link: "cerpen18.html",
+        },
+      ];
+
+      // Konfigurasi Pagination
+      const ITEMS_PER_PAGE = 9;
+      let currentPage = 1;
+      let filteredCerpen = [...allCerpenData];
+      let currentFilter = "all";
+      let currentSearch = "";
+
+      // Genre mapping untuk badge colors
+      const genreBadgeMap = {
+        fiksi: { class: "badge-fiksi", label: "Fiksi" },
+        romantis: { class: "badge-romantis", label: "Romantis" },
+        misteri: { class: "badge-misteri", label: "Misteri" },
+        fantasi: { class: "badge-fantasi", label: "Fantasi" },
+        drama: { class: "badge-drama", label: "Drama" },
+        komedi: { class: "badge-komedi", label: "Komedi" },
+        horor: { class: "badge-horor", label: "Horor" },
+        petualangan: { class: "badge-petualangan", label: "Petualangan" },
+      };
+
+      // Fungsi untuk render cerpen
+      function renderCerpen() {
+        const cerpenGrid = document.getElementById("cerpenGrid");
+        const noResults = document.getElementById("noResults");
+        const loading = document.getElementById("loading");
+
+        // Show loading
+        loading.style.display = "block";
+        cerpenGrid.innerHTML = "";
+
+        setTimeout(() => {
+          loading.style.display = "none";
+
+          if (filteredCerpen.length === 0) {
+            noResults.style.display = "block";
+            cerpenGrid.style.display = "none";
+            return;
+          }
+
+          noResults.style.display = "none";
+          cerpenGrid.style.display = "grid";
+
+          const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+          const endIndex = startIndex + ITEMS_PER_PAGE;
+          const currentItems = filteredCerpen.slice(startIndex, endIndex);
+
+          currentItems.forEach((cerpen) => {
+            const genreInfo = genreBadgeMap[cerpen.genre] || { class: "badge-fiksi", label: "Cerpen" };
+
+            const cerpenCard = document.createElement("article");
+            cerpenCard.className = "all-cerpen-card";
+            cerpenCard.setAttribute("data-genre", cerpen.genre);
+
+            cerpenCard.innerHTML = `
+                        <a href="${cerpen.link}" style="text-decoration: none; color: inherit; display: block;">
+                            <div class="all-cerpen-image">
+                                <img src="${cerpen.image}" alt="${cerpen.title}" loading="lazy">
+                                <div class="image-overlay"></div>
+                                <span class="cerpen-badge ${genreInfo.class}">${genreInfo.label}</span>
+                            </div>
+                            <div class="all-cerpen-content">
+                                <div class="reading-time">
+                                    <i class="far fa-clock"></i> ${cerpen.readingTime} membaca
+                                </div>
+                                <h3 class="all-cerpen-title">${cerpen.title}</h3>
+                                <p class="all-cerpen-excerpt">${cerpen.excerpt}</p>
+                                <div class="all-cerpen-meta">
+                                    <span class="all-cerpen-date"><i class="far fa-calendar"></i> ${cerpen.date}</span>
+                                    <div class="all-cerpen-stats">
+                                        <span><i class="far fa-heart"></i> ${cerpen.likes}</span>
+                                        <span><i class="far fa-eye"></i> ${cerpen.views}</span>
+                                        <span><i class="fas fa-file-word"></i> ${cerpen.words}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    `;
+
+            cerpenGrid.appendChild(cerpenCard);
+          });
+
+          renderPagination();
+          updateStats();
+        }, 300);
+      }
+
+      // Fungsi untuk render pagination
+      function renderPagination() {
+        const pagination = document.getElementById("pagination");
+        const totalPages = Math.ceil(filteredCerpen.length / ITEMS_PER_PAGE);
+
+        if (totalPages <= 1) {
+          pagination.style.display = "none";
+          return;
+        }
+
+        pagination.style.display = "flex";
+        pagination.innerHTML = "";
+
+        // Previous button
+        const prevBtn = document.createElement("button");
+        prevBtn.className = "page-btn";
+        prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+        prevBtn.disabled = currentPage === 1;
+        prevBtn.addEventListener("click", () => {
+          if (currentPage > 1) {
+            currentPage--;
+            renderCerpen();
+            window.scrollTo({ top: 600, behavior: "smooth" });
+          }
+        });
+        pagination.appendChild(prevBtn);
+
+        // Page numbers
+        const maxVisiblePages = 5;
+        let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+        let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+        if (endPage - startPage + 1 < maxVisiblePages) {
+          startPage = Math.max(1, endPage - maxVisiblePages + 1);
+        }
+
+        if (startPage > 1) {
+          const firstBtn = document.createElement("button");
+          firstBtn.className = "page-btn";
+          firstBtn.textContent = "1";
+          firstBtn.addEventListener("click", () => {
+            currentPage = 1;
+            renderCerpen();
+            window.scrollTo({ top: 600, behavior: "smooth" });
+          });
+          pagination.appendChild(firstBtn);
+
+          if (startPage > 2) {
+            const dots = document.createElement("button");
+            dots.className = "page-btn dots";
+            dots.textContent = "...";
+            dots.disabled = true;
+            pagination.appendChild(dots);
+          }
+        }
+
+        for (let i = startPage; i <= endPage; i++) {
+          const pageBtn = document.createElement("button");
+          pageBtn.className = `page-btn ${i === currentPage ? "active" : ""}`;
+          pageBtn.textContent = i;
+          pageBtn.addEventListener("click", () => {
+            currentPage = i;
+            renderCerpen();
+            window.scrollTo({ top: 600, behavior: "smooth" });
+          });
+          pagination.appendChild(pageBtn);
+        }
+
+        if (endPage < totalPages) {
+          if (endPage < totalPages - 1) {
+            const dots = document.createElement("button");
+            dots.className = "page-btn dots";
+            dots.textContent = "...";
+            dots.disabled = true;
+            pagination.appendChild(dots);
+          }
+
+          const lastBtn = document.createElement("button");
+          lastBtn.className = "page-btn";
+          lastBtn.textContent = totalPages;
+          lastBtn.addEventListener("click", () => {
+            currentPage = totalPages;
+            renderCerpen();
+            window.scrollTo({ top: 600, behavior: "smooth" });
+          });
+          pagination.appendChild(lastBtn);
+        }
+
+        // Next button
+        const nextBtn = document.createElement("button");
+        nextBtn.className = "page-btn";
+        nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+        nextBtn.disabled = currentPage === totalPages;
+        nextBtn.addEventListener("click", () => {
+          if (currentPage < totalPages) {
+            currentPage++;
+            renderCerpen();
+            window.scrollTo({ top: 600, behavior: "smooth" });
+          }
+        });
+        pagination.appendChild(nextBtn);
+      }
+
+      // Fungsi untuk filter cerpen
+      function filterCerpen(genre = "all", searchTerm = "") {
+        currentFilter = genre;
+        currentSearch = searchTerm.toLowerCase();
+
+        filteredCerpen = allCerpenData.filter((cerpen) => {
+          const matchesGenre = genre === "all" || cerpen.genre === genre;
+          const matchesSearch = currentSearch === "" || cerpen.title.toLowerCase().includes(currentSearch) || cerpen.excerpt.toLowerCase().includes(currentSearch) || cerpen.genre.includes(currentSearch);
+
+          return matchesGenre && matchesSearch;
+        });
+
+        currentPage = 1;
+        renderCerpen();
+      }
+
+      // Fungsi untuk update stats
+      function updateStats() {
+        const totalCerpen = document.getElementById("totalCerpen");
+        if (totalCerpen) {
+          totalCerpen.textContent = filteredCerpen.length;
+        }
+      }
+
+      // Event Listeners
+      document.addEventListener("DOMContentLoaded", function () {
+        // Set current year in footer
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+        // Render initial cerpen
+        renderCerpen();
+
+        // Filter buttons
+        document.querySelectorAll(".filter-option").forEach((button) => {
+          button.addEventListener("click", function () {
+            document.querySelectorAll(".filter-option").forEach((btn) => btn.classList.remove("active"));
+            this.classList.add("active");
+
+            const filterValue = this.getAttribute("data-filter");
+            filterCerpen(filterValue, currentSearch);
+          });
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById("searchInput");
+        const searchBtn = document.getElementById("searchBtn");
+
+        searchBtn.addEventListener("click", () => {
+          filterCerpen(currentFilter, searchInput.value);
+        });
+
+        searchInput.addEventListener("keyup", (e) => {
+          if (e.key === "Enter") {
+            filterCerpen(currentFilter, searchInput.value);
+          }
+        });
+
+        // Back to top button
+        const backToTopBtn = document.getElementById("backToTop");
+        if (backToTopBtn) {
+          window.addEventListener("scroll", function () {
+            if (window.scrollY > 300) {
+              backToTopBtn.classList.add("active");
+            } else {
+              backToTopBtn.classList.remove("active");
+            }
+          });
+
+          backToTopBtn.addEventListener("click", function () {
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
+          });
+        }
+
+        // Mobile Menu Toggle
+        const mobileToggle = document.getElementById("navMobileToggle");
+        const mobileOverlay = document.getElementById("mobileOverlay");
+        const mobileClose = document.getElementById("mobileClose");
+        const menuIcon = document.querySelector(".menu-icon");
+
+        if (mobileToggle && mobileOverlay) {
+          mobileToggle.addEventListener("click", function () {
+            mobileOverlay.classList.add("active");
+            menuIcon.classList.add("active");
+            document.body.style.overflow = "hidden";
+          });
+
+          mobileClose.addEventListener("click", function () {
+            mobileOverlay.classList.remove("active");
+            menuIcon.classList.remove("active");
+            document.body.style.overflow = "";
+          });
+
+          document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+            link.addEventListener("click", function () {
+              mobileOverlay.classList.remove("active");
+              menuIcon.classList.remove("active");
+              document.body.style.overflow = "";
+            });
+          });
+        }
+
+        // Navbar scroll effect
+        const navbar = document.querySelector(".split-navbar");
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+          } else {
+            navbar.classList.remove("scrolled");
+          }
+        });
+
+        // Update active nav link
+        const navLinks = document.querySelectorAll(".nav-link, .mobile-nav-link");
+        function updateActiveLink() {
+          const currentPage = window.location.pathname;
+          navLinks.forEach((link) => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === currentPage || (currentPage.includes("cerpen") && link.getAttribute("href") === "semua-cerpen.html")) {
+              link.classList.add("active");
+            }
+          });
+        }
+        updateActiveLink();
+      });
+    </script>
+  </body>
+</html>

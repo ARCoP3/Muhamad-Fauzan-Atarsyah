@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panduan Lengkap Kabel Jaringan UTP: Dari Dasar Hingga Implementasi Profesional | MyBlog</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✍️</text></svg>" />
+    <style>
+        :root {
+            --primary-color: #4a6cf7;
+            --primary-dark: #3a5ce5;
+            --secondary-color: #6c757d;
+            --accent-color: #00c9a7;
+            --dark-color: #1e2a4a;
+            --light-color: #f8f9ff;
+            --border-color: #eef2ff;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.12);
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background-color: #f9fafc;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--dark-color);
+        }
+
+        .article-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Article Header */
+        .article-header {
+            background: linear-gradient(135deg, var(--dark-color) 0%, #2c3e50 100%);
+            color: white;
+            padding: 100px 0 60px;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
+        }
+
+        .article-meta-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .article-category {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(74, 108, 247, 0.2);
+            color: var(--primary-color);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(74, 108, 247, 0.3);
+        }
+
+        .article-stats {
+            display: flex;
+            gap: 20px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+        }
+
+        .article-stats span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .article-title {
+            font-size: 3.2rem;
+            line-height: 1.2;
+            margin-bottom: 25px;
+            position: relative;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .article-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 35px;
+            max-width: 800px;
+            font-weight: 400;
+        }
+
+        .article-author-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 500px;
+        }
+
+        .author-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+            box-shadow: var(--shadow-md);
+        }
+
+        .author-info h4 {
+            color: white;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .author-title {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .author-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .author-social a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .author-social a:hover {
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Article Content */
+        .article-content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 50px;
+            margin-bottom: 80px;
+        }
+
+        /* Main Content */
+        .article-main {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 50px;
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+
+        .article-main::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+        }
+
+        .featured-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .article-intro {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid var(--border-color);
+            position: relative;
+        }
+
+        .article-intro::first-letter {
+            initial-letter: 2;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-right: 8px;
+            line-height: 1;
+        }
+
+        /* Content Sections */
+        .content-section {
+            margin: 50px 0;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary-color);
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .article-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8edff 100%);
+            border-left: 4px solid var(--primary-color);
+            padding: 30px;
+            margin: 40px 0;
+            border-radius: 0 12px 12px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(74,108,247,0.05)"/></svg>');
+            background-size: cover;
+        }
+
+        .highlight-box h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Comparison Table */
+        .comparison-table-container {
+            overflow-x: auto;
+            margin: 40px 0;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            min-width: 700px;
+        }
+
+        .comparison-table thead {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        }
+
+        .comparison-table th {
+            color: white;
+            padding: 18px 20px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-table th:last-child {
+            border-right: none;
+        }
+
+        .comparison-table td {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.95rem;
+        }
+
+        .comparison-table tbody tr {
+            transition: var(--transition);
+        }
+
+        .comparison-table tbody tr:hover {
+            background: #f8f9ff;
+            transform: translateX(5px);
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f9fafc;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: #1a1d28;
+            color: #e0e0e0;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 40px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            border: 1px solid #2d3440;
+            position: relative;
+        }
+
+        .code-block-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #2d3440;
+        }
+
+        .code-language {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .copy-code-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: #e0e0e0;
+            border: 1px solid #2d3440;
+            padding: 6px 15px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .copy-code-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .code-comment { color: #6a9955; }
+        .code-keyword { color: #569cd6; }
+        .code-string { color: #ce9178; }
+        .code-function { color: #dcdcaa; }
+        .code-number { color: #b5cea8; }
+
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .tool-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid var(--border-color);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .tool-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .tool-card h5 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        .tool-card p {
+            color: var(--secondary-color);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Sidebar */
+        .article-sidebar {
+            position: sticky;
+            top: 100px;
+            align-self: start;
+        }
+
+        .sidebar-widget {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+        }
+
+        .widget-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .widget-title i {
+            color: var(--primary-color);
+        }
+
+        .table-of-contents ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .table-of-contents li {
+            margin-bottom: 12px;
+        }
+
+        .table-of-contents a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .table-of-contents a:hover {
+            color: var(--primary-color);
+            padding-left: 10px;
+        }
+
+        .table-of-contents a i {
+            font-size: 0.8rem;
+            color: var(--primary-color);
+        }
+
+        .key-points ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .key-points li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .key-points li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
+        .share-widget .share-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .share-btn.facebook { background: #1877f2; }
+        .share-btn.twitter { background: #1da1f2; }
+        .share-btn.linkedin { background: #0a66c2; }
+        .share-btn.whatsapp { background: #25d366; }
+        .share-btn.telegram { background: #0088cc; }
+
+        .share-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Article Footer */
+        .article-footer {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .article-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .tag {
+            background: var(--light-color);
+            color: var(--primary-color);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .tag:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(74, 108, 247, 0.2);
+        }
+
+        .article-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+        }
+
+        .nav-card {
+            flex: 1;
+            max-width: 48%;
+            background: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            border: 2px solid var(--border-color);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .nav-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-card.prev {
+            text-align: left;
+        }
+
+        .nav-card.next {
+            text-align: right;
+            flex-direction: row-reverse;
+        }
+
+        .nav-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--light-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .nav-content h4 {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-content h3 {
+            font-size: 1.1rem;
+            color: var(--dark-color);
+            line-height: 1.4;
+        }
+
+        /* Related Articles */
+        .related-articles {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 50px;
+            margin: 80px 0;
+            box-shadow: var(--shadow-md);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+
+        .section-header p {
+            color: var(--secondary-color);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .article-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+
+        .article-card-image {
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .article-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .article-card:hover .article-card-image img {
+            transform: scale(1.05);
+        }
+
+        .article-card-content {
+            padding: 25px;
+        }
+
+        .article-card-category {
+            display: inline-block;
+            background: var(--light-color);
+            color: var(--primary-color);
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .article-card-title {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+            line-height: 1.4;
+        }
+
+        .article-card-excerpt {
+            color: var(--secondary-color);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .article-card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .article-content-wrapper {
+                grid-template-columns: 1fr;
+            }
+            
+            .article-sidebar {
+                position: static;
+            }
+            
+            .article-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .article-header {
+                padding: 80px 0 40px;
+            }
+            
+            .article-title {
+                font-size: 2rem;
+            }
+            
+            .article-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .article-main {
+                padding: 30px;
+            }
+            
+            .article-navigation {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-card {
+                max-width: 100%;
+            }
+            
+            .article-author-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .article-meta-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .related-articles {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .article-title {
+                font-size: 1.8rem;
+            }
+            
+            .article-main {
+                padding: 20px;
+            }
+            
+            .featured-image {
+                height: 250px;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .article-sidebar,
+            .related-articles,
+            .article-navigation,
+            .share-widget {
+                display: none;
+            }
+            
+            .article-main {
+                box-shadow: none;
+                padding: 0;
+            }
+            
+            body {
+                background: white;
+                font-size: 12pt;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html"><span class="logo-text">MyBlog</span><span class="logo-dot">.</span></a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html#home" class="nav-link">Beranda</a></li>
+                <li><a href="index.html#about" class="nav-link">Tentang</a></li>
+                <li><a href="index.html#blog" class="nav-link active">Artikel</a></li>
+                <li><a href="index.html#portfolio" class="nav-link">Portfolio</a></li>
+                <li><a href="index.html#contact" class="nav-link">Kontak</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="article-header fade-in">
+        <div class="article-container">
+            <div class="article-meta-bar">
+                <span class="article-category">
+                    <i class="fas fa-network-wired"></i> Networking
+                </span>
+                <div class="article-stats">
+                    <span><i class="far fa-calendar"></i> 7 Januari 2026</span>
+                    <span><i class="far fa-clock"></i> 8 min read</span>
+                    <span><i class="far fa-eye"></i> 2.5K views</span>
+                </div>
+            </div>
+            
+            <h1 class="article-title">Belajar Kabel Jaringan Internet UTP: Panduan Lengkap untuk Pemula</h1>
+            <p class="article-subtitle">Mastering the backbone of modern networks: A comprehensive guide to UTP cables from basics to professional implementation</p>
+            
+            <div class="article-author-card">
+                <img src="img/Muhamad Fauzan Atarsyah.png" alt="Muhamad Fauzan Atarsyah" class="author-avatar">
+                <div class="author-info">
+                    <h4>Muhamad Fauzan Atarsyah</h4>
+                    <p class="author-title">Senior Network Engineer & Full-Stack Developer</p>
+                    <div class="author-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-medium"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="article-container">
+        <div class="article-content-wrapper">
+            <!-- Article Main Content -->
+            <article class="article-main fade-in">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                     alt="Kabel Jaringan UTP" class="featured-image">
+                
+                <p class="article-intro">
+                    Dalam era digital yang berkembang pesat, pemahaman mendalam tentang infrastruktur jaringan menjadi keterampilan penting. Kabel Unshielded Twisted Pair (UTP) tetap menjadi tulang punggung jaringan lokal (LAN) di seluruh dunia. Panduan komprehensif ini akan membawa Anda dari konsep dasar hingga implementasi profesional, memberikan pengetahuan praktis yang dapat langsung diterapkan dalam proyek jaringan Anda.
+                </p>
+
+                <!-- Section 1 -->
+                <section class="content-section">
+                    <h2 class="section-title"><i class="fas fa-cube"></i> Memahami Kabel UTP</h2>
+                    <p class="article-text">
+                        Kabel UTP (Unshielded Twisted Pair) adalah jenis kabel tembaga yang terdiri dari 4 pasang kabel yang dipilin berpasangan. Teknik "twisted pair" ini dikembangkan untuk mengurangi interferensi elektromagnetik dan crosstalk antar kabel. Tidak seperti kabel STP (Shielded Twisted Pair), UTP tidak memiliki lapisan pelindung logam, membuatnya lebih fleksibel, ekonomis, dan mudah diinstalasi.
+                    </p>
+                    
+                    <div class="highlight-box">
+                        <h4><i class="fas fa-lightbulb"></i> Fakta Penting:</h4>
+                        <p>Setiap pilinan pada kabel UTP memiliki jumlah twist per inci yang berbeda-beda untuk meminimalkan interferensi antar pasangan. Pasangan yang membawa sinyal data biasanya memiliki twist yang lebih rapat dibanding pasangan yang tidak membawa data.</p>
+                    </div>
+                </section>
+
+                <!-- Section 2 -->
+                <section class="content-section">
+                    <h2 class="section-title"><i class="fas fa-layer-group"></i> Kategori Kabel UTP dan Spesifikasi</h2>
+                    
+                    <div class="comparison-table-container">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Kategori</th>
+                                    <th>Bandwidth</th>
+                                    <th>Kecepatan Maks</th>
+                                    <th>Jarak Maks</th>
+                                    <th>Aplikasi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Cat 5</strong></td>
+                                    <td>100 MHz</td>
+                                    <td>100 Mbps</td>
+                                    <td>100 meter</td>
+                                    <td>Fast Ethernet</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Cat 5e</strong></td>
+                                    <td>100 MHz</td>
+                                    <td>1 Gbps</td>
+                                    <td>100 meter</td>
+                                    <td>Gigabit Ethernet</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Cat 6</strong></td>
+                                    <td>250 MHz</td>
+                                    <td>10 Gbps</td>
+                                    <td>55 meter</td>
+                                    <td>Data Center</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Cat 6a</strong></td>
+                                    <td>500 MHz</td>
+                                    <td>10 Gbps</td>
+                                    <td>100 meter</td>
+                                    <td>Enterprise Network</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Cat 7</strong></td>
+                                    <td>600 MHz</td>
+                                    <td>10 Gbps</td>
+                                    <td>100 meter</td>
+                                    <td>High-Speed Backbone</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Cat 8</strong></td>
+                                    <td>2000 MHz</td>
+                                    <td>40 Gbps</td>
+                                    <td>30 meter</td>
+                                    <td>Data Center Modern</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <p class="article-text">
+                        Pemilihan kategori kabel harus disesuaikan dengan kebutuhan jaringan saat ini dan masa depan. Untuk instalasi baru, direkomendasikan minimal menggunakan Cat 6 untuk mendukung kecepatan 10 Gbps dan kompatibilitas ke depan.
+                    </p>
+                </section>
+
+                <!-- Section 3 -->
+                <section class="content-section">
+                    <h2 class="section-title"><i class="fas fa-code"></i> Standar Kabeling: T568A vs T568B</h2>
+                    
+                    <div class="code-block">
+                        <div class="code-block-header">
+                            <span class="code-language">Standar Kabeling</span>
+                            <button class="copy-code-btn"><i class="far fa-copy"></i> Copy</button>
+                        </div>
+                        <pre>
+<span class="code-comment">// STANDAR T568B (Paling Umum Digunakan)</span>
+<span class="code-keyword">Pin 1</span>: <span class="code-string">Orange/White</span>
+<span class="code-keyword">Pin 2</span>: <span class="code-string">Orange</span>
+<span class="code-keyword">Pin 3</span>: <span class="code-string">Green/White</span>
+<span class="code-keyword">Pin 4</span>: <span class="code-string">Blue</span>
+<span class="code-keyword">Pin 5</span>: <span class="code-string">Blue/White</span>
+<span class="code-keyword">Pin 6</span>: <span class="code-string">Green</span>
+<span class="code-keyword">Pin 7</span>: <span class="code-string">Brown/White</span>
+<span class="code-keyword">Pin 8</span>: <span class="code-string">Brown</span>
+
+<span class="code-comment">// STANDAR T568A (Alternatif)</span>
+<span class="code-keyword">Pin 1</span>: <span class="code-string">Green/White</span>
+<span class="code-keyword">Pin 2</span>: <span class="code-string">Green</span>
+<span class="code-keyword">Pin 3</span>: <span class="code-string">Orange/White</span>
+<span class="code-keyword">Pin 4</span>: <span class="code-string">Blue</span>
+<span class="code-keyword">Pin 5</span>: <span class="code-string">Blue/White</span>
+<span class="code-keyword">Pin 6</span>: <span class="code-string">Orange</span>
+<span class="code-keyword">Pin 7</span>: <span class="code-string">Brown/White</span>
+<span class="code-keyword">Pin 8</span>: <span class="code-string">Brown</span>
+                        </pre>
+                    </div>
+                    
+                    <p class="article-text">
+                        Konsistensi dalam pemilihan standar sangat penting dalam instalasi jaringan besar. T568B adalah standar industri yang paling umum digunakan dan direkomendasikan untuk semua instalasi baru.
+                    </p>
+                </section>
+
+                <!-- Section 4 -->
+                <section class="content-section">
+                    <h2 class="section-title"><i class="fas fa-tools"></i> Toolkit Profesional</h2>
+                    
+                    <div class="tools-grid">
+                        <div class="tool-card">
+                            <div class="tool-icon">
+                                <i class="fas fa-cut"></i>
+                            </div>
+                            <h5>Crimping Tool</h5>
+                            <p>Alat utama untuk memasang konektor RJ-45 pada kabel UTP. Pilih crimping tool dengan mata pisau berkualitas tinggi untuk hasil yang presisi.</p>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <div class="tool-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h5>Cable Tester</h5>
+                            <p>Essential untuk memverifikasi konektivitas dan mengidentifikasi masalah seperti open circuit, short circuit, atau miswiring.</p>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <div class="tool-icon">
+                                <i class="fas fa-strip"></i>
+                            </div>
+                            <h5>Stripper Tool</h5>
+                            <p>Untuk mengupas selubung luar kabel tanpa merusak kabel twisted pair di dalamnya. Model dengan depth adjustment memberikan hasil terbaik.</p>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <div class="tool-icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <h5>Punch Down Tool</h5>
+                            <p>Digunakan untuk memasang kabel ke patch panel, wall jack, atau termination block. Pilih model dengan adjustable impact force.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 5 -->
+                <section class="content-section">
+                    <h2 class="section-title"><i class="fas fa-list-check"></i> Best Practices Instalasi</h2>
+                    
+                    <div class="highlight-box">
+                        <h4><i class="fas fa-check-circle"></i> Panduan Instalasi Profesional:</h4>
+                        <ul style="color: #555; margin: 15px 0 0 20px; line-height: 1.8;">
+                            <li><strong>Radius bending minimal:</strong> 4x diameter kabel untuk menghindari kerusakan struktural</li>
+                            <li><strong>Tension limit:</strong> Maksimal 25 pon (11 kg) saat menarik kabel melalui conduit</li>
+                            <li><strong>Separation distance:</strong> Minimal 12 inci dari kabel listrik untuk mengurangi EMI</li>
+                            <li><strong>Cable management:</strong> Gunakan velcro ties untuk organisasi yang rapi dan fleksibel</li>
+                            <li><strong>Labeling system:</strong> Implementasi sistem pelabelan yang konsisten di kedua ujung kabel</li>
+                            <li><strong>Length limit:</strong> Maksimal 100 meter (328 feet) termasuk patch cables</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Article Footer -->
+                <div class="article-footer">
+                    <div class="article-tags">
+                        <span class="tag">Networking</span>
+                        <span class="tag">Infrastructure</span>
+                        <span class="tag">UTP Cable</span>
+                        <span class="tag">RJ-45</span>
+                        <span class="tag">Cabling</span>
+                        <span class="tag">IT Professional</span>
+                        <span class="tag">Network Engineer</span>
+                        <span class="tag">Troubleshooting</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Sidebar -->
+            <aside class="article-sidebar fade-in">
+                <!-- Table of Contents -->
+                <div class="sidebar-widget table-of-contents">
+                    <h3 class="widget-title"><i class="fas fa-list-ol"></i> Daftar Isi</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Memahami Kabel UTP</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Kategori & Spesifikasi</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Standar Kabeling</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Toolkit Profesional</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Best Practices</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Troubleshooting</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Future Trends</a></li>
+                    </ul>
+                </div>
+
+                <!-- Key Points -->
+                <div class="sidebar-widget key-points">
+                    <h3 class="widget-title"><i class="fas fa-key"></i> Poin Penting</h3>
+                    <ul>
+                        <li>Kabel UTP tetap relevan untuk jaringan modern</li>
+                        <li>Gunakan minimal Cat 6 untuk instalasi baru</li>
+                        <li>Konsistensi standar kabeling sangat penting</li>
+                        <li>Quality tools menghasilkan quality installation</li>
+                        <li>Proper documentation memudahkan maintenance</li>
+                        <li>Testing adalah kunci keberhasilan instalasi</li>
+                    </ul>
+                </div>
+
+                <!-- Share Widget -->
+                <div class="sidebar-widget share-widget">
+                    <h3 class="widget-title"><i class="fas fa-share-alt"></i> Bagikan Artikel</h3>
+                    <div class="share-buttons">
+                        <a href="#" class="share-btn facebook" title="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="share-btn twitter" title="Share on Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="share-btn linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="share-btn whatsapp" title="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="share-btn telegram" title="Share on Telegram"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+
+                <!-- Download PDF -->
+                <div class="sidebar-widget" style="background: linear-gradient(135deg, #4a6cf7, #6a8cff); color: white;">
+                    <h3 class="widget-title" style="color: white;"><i class="fas fa-file-pdf"></i> Download PDF</h3>
+                    <p style="margin-bottom: 20px; opacity: 0.9;">Simpan panduan lengkap ini untuk referensi offline</p>
+                    <button class="btn" style="background: white; color: #4a6cf7; width: 100%; padding: 12px; border-radius: 8px; border: none; font-weight: 600; cursor: pointer; transition: var(--transition);">
+                        <i class="fas fa-download"></i> Download Panduan Lengkap
+                    </button>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Article Navigation -->
+        <div class="article-navigation fade-in">
+            <a href="index.html#blog" class="nav-card prev">
+                <div class="nav-icon">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <div class="nav-content">
+                    <h4>Artikel Sebelumnya</h4>
+                    <h3>Kembali ke Daftar Artikel</h3>
+                </div>
+            </a>
+            
+            <a href="#" class="nav-card next">
+                <div class="nav-icon">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                <div class="nav-content">
+                    <h4>Artikel Selanjutnya</h4>
+                    <h3>Optimasi Jaringan Enterprise dengan SD-WAN</h3>
+                </div>
+            </a>
+        </div>
+
+        <!-- Related Articles -->
+        <section class="related-articles fade-in">
+            <div class="section-header">
+                <h2>Artikel Terkait</h2>
+                <p>Temukan lebih banyak konten tentang jaringan dan infrastruktur IT</p>
+            </div>
+            
+            <div class="articles-grid">
+                <article class="article-card">
+                    <div class="article-card-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Network Security">
+                    </div>
+                    <div class="article-card-content">
+                        <span class="article-card-category">Security</span>
+                        <h3 class="article-card-title">Implementasi Zero Trust Security Model di Jaringan Enterprise</h3>
+                        <p class="article-card-excerpt">Strategi komprehensif untuk mengamankan jaringan modern dengan pendekatan Zero Trust.</p>
+                        <div class="article-card-meta">
+                            <span><i class="far fa-clock"></i> 10 min read</span>
+                            <span><i class="far fa-calendar"></i> 15 Jan 2026</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="article-card">
+                    <div class="article-card-image">
+                        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Fiber Optic">
+                    </div>
+                    <div class="article-card-content">
+                        <span class="article-card-category">Infrastructure</span>
+                        <h3 class="article-card-title">Migrasi dari UTP ke Fiber Optic: Panduan Lengkap</h3>
+                        <p class="article-card-excerpt">Kapan dan bagaimana melakukan migrasi infrastruktur jaringan ke teknologi fiber optic.</p>
+                        <div class="article-card-meta">
+                            <span><i class="far fa-clock"></i> 12 min read</span>
+                            <span><i class="far fa-calendar"></i> 5 Jan 2026</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="article-card">
+                    <div class="article-card-image">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="WiFi 6">
+                    </div>
+                    <div class="article-card-content">
+                        <span class="article-card-category">Wireless</span>
+                        <h3 class="article-card-title">WiFi 6 vs WiFi 5: Analisis Performa dan Implementasi</h3>
+                        <p class="article-card-excerpt">Perbandingan mendalam teknologi wireless generasi terbaru dan manfaatnya untuk bisnis.</p>
+                        <div class="article-card-meta">
+                            <span><i class="far fa-clock"></i> 8 min read</span>
+                            <span><i class="far fa-calendar"></i> 28 Des 2025</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="professional-footer">
+        <div class="footer-container">
+            <div class="footer-bottom text-center">
+                <div class="copyright mb-2">
+                    <p class="mb-0">&copy; <span id="currentYear">2026</span> Muhamad Fauzan Atarsyah. All rights reserved.</p>
+                </div>
+                <div class="footer-legal">
+                    <a href="#" class="legal-link">Privacy Policy</a>
+                    <span class="separator mx-2">•</span>
+                    <a href="#" class="legal-link">Terms of Service</a>
+                    <span class="separator mx-2">•</span>
+                    <a href="#" class="legal-link">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Back to Top Button -->
+        <button id="backToTop" class="scroll-top" aria-label="Scroll to top">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+    </footer>
+
+    <script>
+        // Set current year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Mobile Navigation
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+        }
+        
+        // Back to Top
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('active');
+            } else {
+                backToTop.classList.remove('active');
+            }
+        });
+        
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Copy Code Button
+        const copyButtons = document.querySelectorAll('.copy-code-btn');
+        copyButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const codeBlock = this.closest('.code-block').querySelector('pre');
+                const textToCopy = codeBlock.textContent;
+                
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                    this.style.background = 'var(--success-color)';
+                    
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.style.background = '';
+                    }, 2000);
+                });
+            });
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Reading progress indicator
+        const createProgressBar = () => {
+            const progressBar = document.createElement('div');
+            progressBar.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 4px;
+                background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+                z-index: 9999;
+                width: 0%;
+                transition: width 0.1s ease;
+            `;
+            document.body.appendChild(progressBar);
+            
+            window.addEventListener('scroll', () => {
+                const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrolled = (window.scrollY / windowHeight) * 100;
+                progressBar.style.width = `${scrolled}%`;
+            });
+        };
+        
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            createProgressBar();
+            
+            // Add animation to elements when they come into view
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.content-section, .sidebar-widget').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Update reading time based on actual content
+            const articleText = document.querySelector('.article-main').textContent;
+            const wordCount = articleText.split(/\s+/).length;
+            const readingTime = Math.ceil(wordCount / 200); // 200 words per minute
+            
+            const readingTimeElement = document.querySelector('.article-stats span:nth-child(2)');
+            if (readingTimeElement) {
+                readingTimeElement.innerHTML = `<i class="far fa-clock"></i> ${readingTime} min read`;
+            }
+            
+            // Simulate view count increment
+            const viewCountElement = document.querySelector('.article-stats span:nth-child(3)');
+            if (viewCountElement) {
+                const currentViews = 2500;
+                const newViews = currentViews + Math.floor(Math.random() * 10) + 1;
+                viewCountElement.innerHTML = `<i class="far fa-eye"></i> ${newViews.toLocaleString()} views`;
+            }
+        });
+        
+        // Print functionality
+        const printButton = document.createElement('button');
+        printButton.innerHTML = '<i class="fas fa-print"></i>';
+        printButton.style.cssText = `
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            z-index: 1000;
+            transition: var(--transition);
+        `;
+        printButton.addEventListener('mouseenter', () => {
+            printButton.style.transform = 'translateY(-5px)';
+        });
+        printButton.addEventListener('mouseleave', () => {
+            printButton.style.transform = 'translateY(0)';
+        });
+        printButton.addEventListener('click', () => {
+            window.print();
+        });
+        document.body.appendChild(printButton);
+    </script>
+</body>
+</html>
