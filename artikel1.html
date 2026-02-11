@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Belajar Kabel Jaringan Internet UTP: Panduan Lengkap untuk Pemula | Blog Atr</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✍️</text></svg>" />
+    <style>
+      /* Additional styles for article page */
+      .article-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .article-header {
+        padding: 120px 0 50px;
+        background: white;
+      }
+
+      .article-meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 15px;
+        font-size: 14px;
+        color: #666;
+      }
+
+      .article-category {
+        background: #4a6cf7; /* Tetap biru tua untuk kontras */
+        color: white;
+        padding: 5px 12px;
+        border-radius: 4px;
+        font-weight: 600;
+        font-size: 13px;
+        text-transform: uppercase;
+      }
+
+      .article-date,
+      .article-read-time {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .article-title {
+        font-size: 36px;
+        line-height: 1.3;
+        color: #222;
+        margin-bottom: 20px;
+      }
+
+      .article-author {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 20px 0;
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        margin-bottom: 30px;
+      }
+
+      .author-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #4a6cf7;
+      }
+
+      .author-info h4 {
+        font-size: 18px;
+        margin-bottom: 5px;
+        color: #222;
+      }
+
+      .author-title {
+        color: #666;
+        font-size: 14px;
+      }
+
+      .article-image {
+        margin: 40px 0;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .article-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .article-image-caption {
+        text-align: center;
+        font-style: italic;
+        color: #666;
+        font-size: 14px;
+        padding: 10px;
+        background: #f9f9f9;
+        border-top: 1px solid #eee;
+      }
+
+      .article-content {
+        padding: 50px 0;
+        font-size: 18px;
+        line-height: 1.8;
+        color: #333;
+      }
+
+      .article-content h2 {
+        font-size: 28px;
+        margin: 40px 0 20px;
+        color: #222;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #f0f4ff;
+      }
+
+      .article-content h3 {
+        font-size: 22px;
+        margin: 30px 0 15px;
+        color: #333;
+      }
+
+      .article-content p {
+        margin-bottom: 25px;
+      }
+
+      .article-content ul,
+      .article-content ol {
+        margin-bottom: 25px;
+        padding-left: 30px;
+      }
+
+      .article-content li {
+        margin-bottom: 10px;
+      }
+
+      .highlight-box {
+        background: #f0f4ff;
+        border-left: 4px solid #4a6cf7;
+        padding: 25px;
+        margin: 30px 0;
+        border-radius: 0 8px 8px 0;
+      }
+
+      .highlight-box h4 {
+        color: #4a6cf7;
+        margin-bottom: 10px;
+        font-size: 18px;
+      }
+
+      .table-container {
+        overflow-x: auto;
+        margin: 30px 0;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 16px;
+      }
+
+      th {
+        background: #4a6cf7;
+        color: white;
+        padding: 15px;
+        text-align: left;
+        font-weight: 600;
+      }
+
+      td {
+        padding: 15px;
+        border-bottom: 1px solid #eee;
+      }
+
+      tr:nth-child(even) {
+        background: #f9f9f9;
+      }
+
+      .code-block {
+        background: #1a1a2e;
+        color: #f8f8f2;
+        padding: 25px;
+        border-radius: 8px;
+        margin: 30px 0;
+        font-family: monospace;
+        overflow-x: auto;
+        line-height: 1.5;
+      }
+
+      .code-block .comment {
+        color: #6a9955;
+      }
+
+      .code-block .keyword {
+        color: #569cd6;
+      }
+
+      .article-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 40px 0;
+        padding-top: 30px;
+        border-top: 1px solid #eee;
+      }
+
+      .article-tag {
+        background: #f0f4ff;
+        color: #4a6cf7;
+        padding: 8px 16px;
+        border-radius: 30px;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      .article-tag:hover {
+        background: #4a6cf7;
+        color: white;
+      }
+
+      .article-navigation {
+        display: flex;
+        justify-content: space-between;
+        padding: 40px 0;
+        border-top: 1px solid #eee;
+        margin-top: 50px;
+      }
+
+      .nav-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 24px;
+        border-radius: 30px;
+        font-weight: 600;
+        background: #f5f7ff;
+        color: #4a6cf7;
+        transition: all 0.3s ease;
+      }
+
+      .nav-btn:hover {
+        background: #4a6cf7;
+        color: white;
+        transform: translateY(-3px);
+      }
+
+      .nav-btn.prev i {
+        order: -1;
+      }
+
+      .related-articles {
+        padding: 60px 0;
+        background: #f8f9fa;
+      }
+
+      .related-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+      }
+
+      .related-card {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+
+      .related-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .related-image {
+        height: 180px;
+        overflow: hidden;
+      }
+
+      .related-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .related-card:hover .related-image img {
+        transform: scale(1.05);
+      }
+
+      .related-content {
+        padding: 20px;
+      }
+
+      .related-category {
+        display: inline-block;
+        padding: 4px 10px;
+        background: #f0f4ff;
+        color: #4a6cf7;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .related-title {
+        font-size: 18px;
+        color: #222;
+        margin-bottom: 10px;
+        line-height: 1.4;
+      }
+
+      .related-excerpt {
+        color: #666;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .share-widget {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 20px;
+        background: #f9f9f9;
+        border-radius: 10px;
+        margin: 40px 0;
+      }
+
+      .share-label {
+        font-weight: 600;
+        color: #333;
+      }
+
+      .share-icons {
+        display: flex;
+        gap: 10px;
+      }
+
+      .share-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 18px;
+        transition: all 0.3s ease;
+      }
+
+      .share-icon:hover {
+        transform: translateY(-3px);
+      }
+
+      .share-icon.facebook {
+        background: #3b5998;
+      }
+      .share-icon.twitter {
+        background: #1da1f2;
+      }
+      .share-icon.linkedin {
+        background: #0077b5;
+      }
+      .share-icon.whatsapp {
+        background: #25d366;
+      }
+
+      @media (max-width: 768px) {
+        .article-header {
+          padding: 100px 0 30px;
+        }
+
+        .article-title {
+          font-size: 28px;
+        }
+
+        .article-content {
+          font-size: 16px;
+          padding: 30px 0;
+        }
+
+        .article-content h2 {
+          font-size: 24px;
+        }
+
+        .article-content h3 {
+          font-size: 20px;
+        }
+
+        .article-navigation {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .nav-btn {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .share-widget {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .article-title {
+          font-size: 24px;
+        }
+
+        .article-author {
+          flex-direction: column;
+          text-align: center;
+          gap: 10px;
+        }
+
+        .related-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="split-navbar">
+      <div class="nav-left">
+        <div class="logo">
+          <a href="index.html">
+            <span class="logo-main">Blog</span>
+            <span class="logo-sub">Atr</span>
+          </a>
+        </div>
+
+        <div class="nav-divider"></div>
+
+        <ul class="nav-menu">
+          <li>
+            <a href="index.html#home" class="nav-link">
+              <i class="fas fa-home"></i>
+              <span>Beranda</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html#about" class="nav-link">
+              <i class="fas fa-user-tie"></i>
+              <span>Profil</span>
+            </a>
+          </li>
+          <li>
+            <a href="halamanartikel.html" class="nav-link active">
+              <i class="fas fa-newspaper"></i>
+              <span>Artikel</span>
+            </a>
+          </li>
+          <li>
+            <a href="halamanpuisi.html" class="nav-link">
+              <i class="fas fa-newspaper"></i>
+              <span>Puisi</span>
+            </a>
+          </li>
+          <li>
+            <a href="halamancerpen.html" class="nav-link">
+              <i class="fas fa-newspaper"></i>
+              <span>Cerpen</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html#portfolio" class="nav-link">
+              <i class="fas fa-briefcase"></i>
+              <span>Portfolio</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="nav-actions">
+        <a href="index.html#contact" class="btn-nav-cta">Hire Me</a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="nav-mobile-toggle" id="navMobileToggle">
+        <div class="menu-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay">
+      <div class="mobile-menu">
+        <div class="mobile-header">
+          <div class="mobile-logo">Blog Atr</div>
+          <button class="mobile-close" id="mobileClose">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <ul class="mobile-nav">
+          <li>
+            <a href="index.html#home" class="mobile-nav-link">
+              <i class="fas fa-home"></i>
+              <span>Beranda</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html#about" class="mobile-nav-link">
+              <i class="fas fa-user-tie"></i>
+              <span>Profil</span>
+            </a>
+          </li>
+          <li>
+            <a href="halamanartikel.html" class="mobile-nav-link active">
+              <i class="fas fa-newspaper"></i>
+              <span>Artikel</span>
+            </a>
+          </li>
+          <li>
+            <a href="halamanpuisi.html" class="mobile-nav-link">
+              <i class="fas fa-newspaper"></i>
+              <span>Puisi</span>
+            </a>
+          </li>
+          <li>
+            <a href="halamancerpen.html" class="mobile-nav-link">
+              <i class="fas fa-newspaper"></i>
+              <span>Cerpen</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html#portfolio" class="mobile-nav-link">
+              <i class="fas fa-briefcase"></i>
+              <span>Portfolio</span>
+            </a>
+          </li>
+        </ul>
+        <div class="mobile-actions">
+          <a href="index.html#contact" class="btn-mobile-cta">Hire Me</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article Header -->
+    <header class="article-header">
+      <div class="article-container">
+        <div class="article-meta">
+          <span class="article-category">Networking</span>
+          <span class="article-date"><i class="far fa-calendar"></i> 7 Januari 2026</span>
+          <span class="article-read-time"><i class="far fa-clock"></i> 5 min read</span>
+        </div>
+        <h1 class="article-title">Belajar Kabel Jaringan Internet UTP: Panduan Lengkap untuk Pemula</h1>
+
+        <div class="article-author">
+          <img src="img/Muhamad Fauzan Atarsyah.png" alt="Muhamad Fauzan Atarsyah" class="author-avatar" />
+          <div class="author-info">
+            <h4>Muhamad Fauzan Atarsyah</h4>
+            <p class="author-title">Network Engineer & IT Support</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Article Image -->
+    <div class="article-container">
+      <div class="article-image">
+        <img src="img/lan.jpg" alt="Kabel Jaringan UTP" />
+        <p class="article-image-caption">Kabel UTP dengan konektor RJ45 - Dasar dari jaringan komputer modern</p>
+      </div>
+    </div>
+
+    <!-- Article Content -->
+    <main class="article-content">
+      <div class="article-container">
+        <p>
+          Kabel UTP (Unshielded Twisted Pair) merupakan salah satu komponen paling penting dalam infrastruktur jaringan komputer. Sebagai seorang IT Support di Fakultas Psikologi UI, saya sering kali berhadapan dengan masalah jaringan yang
+          berawal dari pemahaman yang kurang tentang kabel UTP ini. Dalam artikel ini, saya akan membagikan pengetahuan dasar hingga tingkat menengah tentang kabel UTP yang saya pelajari melalui pengalaman langsung di lapangan.
+        </p>
+
+        <h2>Apa Itu Kabel UTP?</h2>
+        <p>
+          Kabel UTP atau Unshielded Twisted Pair adalah jenis kabel jaringan yang terdiri dari 4 pasang kabel tembaga yang saling terpilin. Setiap pasang kabel memiliki warna berbeda dan dipilin untuk mengurangi interferensi elektromagnetik
+          dari luar. Tidak seperti kabel STP (Shielded Twisted Pair), kabel UTP tidak memiliki pelindung tambahan di luar kabelnya.
+        </p>
+
+        <div class="highlight-box">
+          <h4>Fakta Menarik:</h4>
+          <p>Kabel UTP dapat mentransmisikan data hingga kecepatan 10 Gbps pada jarak maksimal 100 meter. Kabel ini menjadi standar industri karena harganya yang relatif murah dan kemudahan dalam pemasangan.</p>
+        </div>
+
+        <h2>Jenis-Jenis Kabel UTP Berdasarkan Kategori</h2>
+        <p>Kabel UTP dikategorikan berdasarkan kemampuan transmisi data. Semakin tinggi kategorinya, semakin tinggi pula kecepatan data yang bisa ditransmisikan.</p>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Kategori</th>
+                <th>Kecepatan Maksimum</th>
+                <th>Frekuensi</th>
+                <th>Penggunaan Umum</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Cat 5</td>
+                <td>100 Mbps</td>
+                <td>100 MHz</td>
+                <td>Jaringan Fast Ethernet</td>
+              </tr>
+              <tr>
+                <td>Cat 5e</td>
+                <td>1 Gbps</td>
+                <td>100 MHz</td>
+                <td>Jaringan Gigabit Ethernet</td>
+              </tr>
+              <tr>
+                <td>Cat 6</td>
+                <td>10 Gbps</td>
+                <td>250 MHz</td>
+                <td>Jaringan 10 Gigabit (jarak pendek)</td>
+              </tr>
+              <tr>
+                <td>Cat 6a</td>
+                <td>10 Gbps</td>
+                <td>500 MHz</td>
+                <td>Jaringan 10 Gigabit (jarak hingga 100m)</td>
+              </tr>
+              <tr>
+                <td>Cat 7</td>
+                <td>10 Gbps+</td>
+                <td>600 MHz</td>
+                <td>Jaringan data center</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Urutan Warna Kabel UTP</h2>
+        <p>Salah satu hal paling penting dalam crimping kabel UTP adalah memahami urutan warna yang benar. Ada dua standar yang umum digunakan: T568A dan T568B.</p>
+
+        <h3>Standar T568A (Urutan dari kiri ke kanan):</h3>
+        <ol>
+          <li>Hijau Putih (White/Green)</li>
+          <li>Hijau (Green)</li>
+          <li>Oranye Putih (White/Orange)</li>
+          <li>Biru (Blue)</li>
+          <li>Biru Putih (White/Blue)</li>
+          <li>Oranye (Orange)</li>
+          <li>Coklat Putih (White/Brown)</li>
+          <li>Coklat (Brown)</li>
+        </ol>
+
+        <h3>Standar T568B (Urutan dari kiri ke kanan):</h3>
+        <ol>
+          <li>Oranye Putih (White/Orange)</li>
+          <li>Oranye (Orange)</li>
+          <li>Hijau Putih (White/Green)</li>
+          <li>Biru (Blue)</li>
+          <li>Biru Putih (White/Blue)</li>
+          <li>Hijau (Green)</li>
+          <li>Coklat Putih (White/Brown)</li>
+          <li>Coklat (Brown)</li>
+        </ol>
+
+        <div class="highlight-box">
+          <h4>Tips Praktis:</h4>
+          <p>
+            Di Indonesia, standar T568B lebih umum digunakan. Pastikan Anda konsisten menggunakan satu standar pada kedua ujung kabel. Pencampuran standar akan menghasilkan kabel crossover yang digunakan untuk menghubungkan dua komputer
+            secara langsung tanpa switch.
+          </p>
+        </div>
+
+        <h2>Alat dan Bahan yang Dibutuhkan</h2>
+        <p>Sebelum mulai crimping, pastikan Anda memiliki alat-alat berikut:</p>
+        <ul>
+          <li><strong>Kabel UTP</strong> - Pilih kategori sesuai kebutuhan (Cat 5e atau Cat 6 untuk jaringan rumah/kantor)</li>
+          <li><strong>Konektor RJ45</strong> - Beli yang berkualitas untuk hasil crimping yang optimal</li>
+          <li><strong>Crimping Tool</strong> - Alat khusus untuk memasang konektor RJ45 ke kabel UTP</li>
+          <li><strong>Cable Tester</strong> - Untuk mengecek koneksi setelah crimping</li>
+          <li><strong>Wire Stripper/Cutter</strong> - Untuk mengupas jaket luar kabel</li>
+        </ul>
+
+        <h2>Langkah-Langkah Crimping Kabel UTP</h2>
+
+        <h3>Langkah 1: Kupas Jaket Luar Kabel</h3>
+        <p>Gunakan wire stripper untuk mengupas sekitar 2-3 cm jaket luar kabel. Berhati-hatilah agar tidak merusak kabel kecil di dalamnya.</p>
+
+        <h3>Langkah 2: Urutkan Kabel Sesuai Standar</h3>
+        <p>Lepaskan kabel-kabel kecil dan urutkan sesuai standar T568B seperti yang telah dijelaskan sebelumnya.</p>
+
+        <h3>Langkah 3: Ratakan Ujung Kabel</h3>
+        <p>Setelah kabel diurutkan, ratakan ujungnya menggunakan cutter. Pastikan panjang kabel yang tidak terbungkus jaket sekitar 1-1.5 cm.</p>
+
+        <h3>Langkah 4: Masukkan ke Konektor RJ45</h3>
+        <p>Masukkan kabel yang sudah dirapikan ke dalam konektor RJ45. Pastikan semua kabel sampai ke ujung konektor dan jaket kabel masuk sedikit ke dalam konektor untuk memberikan ketahanan mekanis.</p>
+
+        <h3>Langkah 5: Crimping</h3>
+        <p>Masukkan konektor ke dalam crimping tool dan tekan dengan kuat. Anda akan mendengar suara "klik" ketika crimping berhasil.</p>
+
+        <h3>Langkah 6: Testing</h3>
+        <p>Gunakan cable tester untuk memastikan semua koneksi berfungsi dengan baik. Lampu pada tester akan menyala berurutan jika crimping berhasil.</p>
+
+        <div class="highlight-box">
+          <h4>Pengalaman Pribadi:</h4>
+          <p>
+            Saat pertama kali melakukan crimping di Fakultas Psikologi UI, saya sering mengalami kegagalan karena kabel tidak masuk sampai ke ujung konektor. Setelah beberapa kali mencoba, saya menemukan trik dengan menarik kabel sedikit ke
+            belakang setelah dimasukkan ke konektor untuk memastikan kabel-kabel kecil benar-benar lurus.
+          </p>
+        </div>
+
+        <h2>Jenis Kabel Berdasarkan Penggunaan</h2>
+
+        <h3>1. Straight-Through Cable</h3>
+        <p>Kabel dengan standar yang sama di kedua ujungnya (biasanya T568B). Digunakan untuk menghubungkan perangkat yang berbeda jenis:</p>
+        <ul>
+          <li>Komputer ke Switch/Hub</li>
+          <li>Router ke Switch</li>
+          <li>Access Point ke Switch</li>
+        </ul>
+
+        <h3>2. Crossover Cable</h3>
+        <p>Satu ujung menggunakan T568A dan ujung lainnya T568B. Digunakan untuk menghubungkan perangkat yang sejenis:</p>
+        <ul>
+          <li>Komputer ke Komputer</li>
+          <li>Switch ke Switch</li>
+          <li>Router ke Router</li>
+        </ul>
+
+        <h3>3. Rollover Cable</h3>
+        <p>Urutan warna terbalik di kedua ujungnya. Biasanya digunakan untuk koneksi konsol ke perangkat Cisco.</p>
+
+        <h2>Masalah Umum dan Solusi</h2>
+
+        <h3>1. Koneksi Intermitten (Putus Nyambung)</h3>
+        <p>
+          <strong>Penyebab:</strong> Crimping tidak sempurna, kabel tertekuk, atau konektor longgar.<br />
+          <strong>Solusi:</strong> Periksa crimping menggunakan cable tester, ganti konektor jika perlu.
+        </p>
+
+        <h3>2. Kecepatan Jaringan Turun</h3>
+        <p>
+          <strong>Penyebab:</strong> Menggunakan kabel kategori rendah untuk kebutuhan tinggi.<br />
+          <strong>Solusi:</strong> Upgrade ke kabel Cat 5e minimal atau Cat 6 untuk jaringan Gigabit.
+        </p>
+
+        <h3>3. Tidak Ada Koneksi Sama Sekali</h3>
+        <p>
+          <strong>Penyebab:</strong> Urutan warna salah atau kabel putus.<br />
+          <strong>Solusi:</strong> Periksa urutan warna menggunakan cable tester, crimping ulang jika diperlukan.
+        </p>
+
+        <h2>Best Practices untuk Instalasi Kabel UTP</h2>
+        <ul>
+          <li>Jangan menekuk kabel dengan radius terlalu kecil (minimal 4x diameter kabel)</li>
+          <li>Hindari jalur kabel dekat sumber interferensi (kabel listrik, motor, dll)</li>
+          <li>Gunakan label pada kedua ujung kabel untuk memudahkan troubleshooting</li>
+          <li>Jangan menarik kabel terlalu kencang saat instalasi</li>
+          <li>Gunakan cable management yang baik untuk organisasi kabel</li>
+        </ul>
+
+        <div class="share-widget">
+          <span class="share-label">Bagikan artikel ini:</span>
+          <div class="share-icons">
+            <a href="#" class="share-icon facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="share-icon twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="share-icon linkedin"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="share-icon whatsapp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <div class="article-tags">
+          <a href="#" class="article-tag">Networking</a>
+          <a href="#" class="article-tag">UTP Cable</a>
+          <a href="#" class="article-tag">RJ45</a>
+          <a href="#" class="article-tag">Network Infrastructure</a>
+          <a href="#" class="article-tag">IT Support</a>
+          <a href="#" class="article-tag">Tutorial</a>
+        </div>
+
+        <div class="article-navigation">
+          <a href="halamanjurnal.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> Kembali ke Jurnal</a>
+          <a href="#" class="nav-btn next">Artikel Selanjutnya <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </main>
+
+    <!-- Related Articles -->
+    <section class="related-articles">
+      <div class="article-container">
+        <div class="section-header">
+          <h2 class="section-title">Artikel Terkait</h2>
+          <p class="section-subtitle">Tingkatkan pengetahuan jaringan Anda dengan artikel berikut</p>
+          <div class="underline"></div>
+        </div>
+
+        <div class="related-grid">
+          <article class="related-card">
+            <a href="#">
+              <div class="related-image">
+                <img src="img/warnalan.jpg" alt="Urutan Warna Kabel UTP" />
+              </div>
+              <div class="related-content">
+                <span class="related-category">Networking</span>
+                <h3 class="related-title">Memahami Urutan Warna dan Fungsi Kabel Jaringan UTP</h3>
+                <p class="related-excerpt">Pelajari urutan warna kabel UTP dan fungsinya dalam sistem jaringan komputer.</p>
+              </div>
+            </a>
+          </article>
+
+          <article class="related-card">
+            <a href="#">
+              <div class="related-image">
+                <img src="img/rj45.jpg" alt="Crimping Kabel UTP" />
+              </div>
+              <div class="related-content">
+                <span class="related-category">Networking</span>
+                <h3 class="related-title">Langkah-Langkah Crimping Kabel UTP Connector RJ45</h3>
+                <p class="related-excerpt">Langkah-langkah lengkap untuk melakukan crimping kabel UTP dengan connector RJ45.</p>
+              </div>
+            </a>
+          </article>
+
+          <article class="related-card">
+            <a href="#">
+              <div class="related-image">
+                <img src="img/cm.png" alt="Network Troubleshooting" />
+              </div>
+              <div class="related-content">
+                <span class="related-category">IT Support</span>
+                <h3 class="related-title">Troubleshooting Jaringan Dasar untuk Pemula</h3>
+                <p class="related-excerpt">Teknik dasar untuk mengidentifikasi dan memperbaiki masalah jaringan komputer.</p>
+              </div>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="professional-footer">
+      <div class="footer-container">
+        <div class="footer-bottom">
+          <div class="copyright">
+            <p>&copy; <span id="currentYear">2026</span> Muhamad Fauzan Atarsyah. All rights reserved.</p>
+          </div>
+
+          <div class="footer-legal">
+            <a href="#" class="legal-link">Privacy Policy</a>
+            <span class="separator">•</span>
+            <a href="#" class="legal-link">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Back to Top Button -->
+      <button id="backToTop" class="back-to-top" aria-label="Scroll to top">
+        <i class="fas fa-chevron-up"></i>
+      </button>
+
+      <!-- Mobile Floating Action Button -->
+      <div class="mobile-fab">
+        <a href="index.html#contact" class="btn btn-primary">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+      // Additional scripts for article page
+      document.addEventListener("DOMContentLoaded", function () {
+        // Update current year
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+        // Back to top button
+        const backToTopBtn = document.getElementById("backToTop");
+        if (backToTopBtn) {
+          window.addEventListener("scroll", function () {
+            if (window.scrollY > 300) {
+              backToTopBtn.classList.add("active");
+            } else {
+              backToTopBtn.classList.remove("active");
+            }
+          });
+
+          backToTopBtn.addEventListener("click", function () {
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
+          });
+        }
+
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById("navMobileToggle");
+        const mobileOverlay = document.getElementById("mobileOverlay");
+        const mobileClose = document.getElementById("mobileClose");
+        const menuIcon = document.querySelector(".menu-icon");
+
+        if (mobileToggle && mobileOverlay) {
+          mobileToggle.addEventListener("click", function () {
+            mobileOverlay.classList.add("active");
+            menuIcon.classList.add("active");
+            document.body.style.overflow = "hidden";
+          });
+
+          mobileClose.addEventListener("click", function () {
+            mobileOverlay.classList.remove("active");
+            menuIcon.classList.remove("active");
+            document.body.style.overflow = "";
+          });
+
+          // Close menu when clicking links
+          document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+            link.addEventListener("click", function () {
+              mobileOverlay.classList.remove("active");
+              menuIcon.classList.remove("active");
+              document.body.style.overflow = "";
+            });
+          });
+        }
+
+        // Highlight code blocks
+        document.querySelectorAll(".code-block").forEach((block) => {
+          const text = block.textContent;
+          // Simple syntax highlighting
+          let highlighted = text.replace(/\/\/.*$/gm, '<span class="comment">$&</span>').replace(/\b(function|var|let|const|if|else|for|while|return)\b/g, '<span class="keyword">$1</span>');
+          block.innerHTML = highlighted;
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            const href = this.getAttribute("href");
+            if (href === "#") return;
+
+            const target = document.querySelector(href);
+            if (target) {
+              e.preventDefault();
+              window.scrollTo({
+                top: target.offsetTop - 80,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

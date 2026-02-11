@@ -167,8 +167,9 @@ a {
 /* Hero Section */
 .hero {
   padding: 150px 0 100px;
-  background: linear-gradient(135deg, #f5f7ff 0%, #f0f2ff 100%);
+  background: #ffffff; /* Ganti dari gradient biru muda */
   overflow: hidden;
+  position: relative;
 }
 
 .hero .container {
@@ -177,6 +178,15 @@ a {
   justify-content: space-between;
 }
 
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(74, 108, 247, 0.3), transparent);
+}
 .hero-content {
   flex: 1;
   max-width: 600px;
