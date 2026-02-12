@@ -3,301 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Koleksi Cerpen Lengkap | Blog Pribadi</title>
+    <title>Semua Koleksi Cerpen | Blog Pribadi</title>
+    <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
     <style>
-      /* Reset dan Base Styles */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: "Open Sans", sans-serif;
-        color: #333;
-        background-color: #f8f9fa;
-        line-height: 1.6;
-      }
-
-      h1,
-      h2,
-      h3,
-      h4 {
-        font-family: "Poppins", sans-serif;
-        font-weight: 600;
-      }
-
-      a {
-        text-decoration: none;
-        color: inherit;
-      }
-
-      img {
-        max-width: 100%;
-        height: auto;
-      }
-
-      /* Container */
-      .container {
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-      }
-
-      /* Navigation Bar */
-      .split-navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background: white;
-        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
-        z-index: 1000;
-        padding: 15px 0;
-        transition: all 0.3s ease;
-      }
-
-      .navbar-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-      }
-
-      .nav-left {
-        display: flex;
-        align-items: center;
-        gap: 30px;
-      }
-
-      .logo {
-        font-size: 24px;
-        font-weight: 700;
-      }
-
-      .logo a {
-        display: flex;
-        align-items: baseline;
-      }
-
-      .logo-main {
-        color: #222;
-      }
-
-      .logo-sub {
-        color: #4a6cf7;
-        margin-left: 2px;
-      }
-
-      .nav-divider {
-        width: 1px;
-        height: 30px;
-        background: #e0e0e0;
-      }
-
-      .nav-menu {
-        display: flex;
-        list-style: none;
-        gap: 25px;
-      }
-
-      .nav-link {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        color: #666;
-        font-weight: 500;
-        padding: 8px 15px;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-      }
-
-      .nav-link:hover {
-        color: #4a6cf7;
-        background: rgba(74, 108, 247, 0.05);
-      }
-
-      .nav-link.active {
-        color: #4a6cf7;
-        background: rgba(74, 108, 247, 0.1);
-      }
-
-      .nav-link i {
-        font-size: 16px;
-      }
-
-      .nav-actions .btn-nav-cta {
-        background: linear-gradient(45deg, #4a6cf7, #6a8cff);
-        color: white;
-        padding: 12px 25px;
-        border-radius: 30px;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(74, 108, 247, 0.2);
-      }
-
-      .nav-actions .btn-nav-cta:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(74, 108, 247, 0.3);
-      }
-
-      .nav-mobile-toggle {
-        display: none;
-        cursor: pointer;
-      }
-
-      .menu-icon {
-        width: 25px;
-        height: 18px;
-        position: relative;
-      }
-
-      .menu-icon span {
-        display: block;
-        position: absolute;
-        height: 2px;
-        width: 100%;
-        background: #333;
-        border-radius: 2px;
-        transition: all 0.3s ease;
-      }
-
-      .menu-icon span:nth-child(1) {
-        top: 0;
-      }
-
-      .menu-icon span:nth-child(2) {
-        top: 8px;
-      }
-
-      .menu-icon span:nth-child(3) {
-        top: 16px;
-      }
-
-      .menu-icon.active span:nth-child(1) {
-        transform: rotate(45deg);
-        top: 8px;
-      }
-
-      .menu-icon.active span:nth-child(2) {
-        opacity: 0;
-      }
-
-      .menu-icon.active span:nth-child(3) {
-        transform: rotate(-45deg);
-        top: 8px;
-      }
-
-      /* Mobile Overlay */
-      .mobile-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.9);
-        z-index: 2000;
-        display: none;
-      }
-
-      .mobile-overlay.active {
-        display: block;
-      }
-
-      .mobile-menu {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 300px;
-        height: 100%;
-        background: white;
-        padding: 30px;
-        transform: translateX(100%);
-        animation: slideIn 0.3s ease forwards;
-      }
-
-      @keyframes slideIn {
-        to {
-          transform: translateX(0);
-        }
-      }
-
-      .mobile-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 40px;
-      }
-
-      .mobile-logo {
-        font-size: 22px;
-        font-weight: 700;
-        color: #222;
-      }
-
-      .mobile-close {
-        background: none;
-        border: none;
-        font-size: 24px;
-        color: #666;
-        cursor: pointer;
-      }
-
-      .mobile-nav {
-        list-style: none;
-        margin-bottom: 40px;
-      }
-
-      .mobile-nav li {
-        margin-bottom: 15px;
-      }
-
-      .mobile-nav-link {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        padding: 12px 15px;
-        border-radius: 8px;
-        color: #666;
-        font-weight: 500;
-        transition: all 0.3s ease;
-      }
-
-      .mobile-nav-link:hover,
-      .mobile-nav-link.active {
-        color: #4a6cf7;
-        background: rgba(74, 108, 247, 0.1);
-      }
-
-      .mobile-nav-link i {
-        width: 20px;
-        text-align: center;
-      }
-
-      .btn-mobile-cta {
-        display: block;
-        text-align: center;
-        background: linear-gradient(45deg, #4a6cf7, #6a8cff);
-        color: white;
-        padding: 15px;
-        border-radius: 8px;
-        font-weight: 600;
-        transition: all 0.3s ease;
-      }
-
-      .btn-mobile-cta:hover {
-        transform: translateY(-2px);
-      }
-
-      /* Main Content */
+      /* Additional styles for all-cerpen page */
       .all-cerpen-page {
         padding: 120px 0 80px;
+        background-color: #f8f9fa;
         min-height: 100vh;
+      }
+
+      .all-cerpen-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
       }
 
       /* Header Section */
@@ -325,7 +46,6 @@
         line-height: 1.6;
       }
 
-      /* Stats Banner */
       .stats-banner {
         display: flex;
         justify-content: center;
@@ -450,7 +170,7 @@
       /* Cerpen Grid */
       .all-cerpen-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
         gap: 30px;
         margin-bottom: 50px;
       }
@@ -463,6 +183,8 @@
         transition: all 0.4s ease;
         height: 100%;
         position: relative;
+        display: flex;
+        flex-direction: column;
       }
 
       .all-cerpen-card:hover {
@@ -493,7 +215,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3));
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4));
         opacity: 0.1;
         transition: opacity 0.3s ease;
       }
@@ -506,46 +228,69 @@
         position: absolute;
         top: 15px;
         left: 15px;
-        padding: 5px 12px;
+        padding: 6px 14px;
         border-radius: 20px;
         font-size: 12px;
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.5px;
         color: white;
+        z-index: 2;
       }
 
-      .badge-fiksi {
-        background: #e74c3c;
-      }
       .badge-romantis {
         background: #e84393;
+      }
+      .badge-drama {
+        background: #3498db;
       }
       .badge-misteri {
         background: #6c5ce7;
       }
-      .badge-fantasi {
-        background: #00b894;
-      }
-      .badge-drama {
+      .badge-inspiratif {
         background: #f39c12;
       }
-      .badge-komedi {
-        background: #fdcb6e;
-        color: #333;
+      .badge-fiksi {
+        background: #00b894;
       }
-      .badge-horor {
-        background: #2d3436;
+      .badge-keluarga {
+        background: #e67e22;
       }
-      .badge-petualangan {
-        background: #3498db;
+      .badge-persahabatan {
+        background: #1abc9c;
       }
-      .badke-sejarah {
+      .badge-remaja {
         background: #9b59b6;
+      }
+      .badge-dark {
+        background: #2c3e50;
+      }
+
+      .cerpen-read-time {
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        z-index: 2;
+      }
+
+      .cerpen-read-time i {
+        font-size: 11px;
       }
 
       .all-cerpen-content {
         padding: 25px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
       }
 
       .all-cerpen-title {
@@ -563,10 +308,27 @@
       .all-cerpen-excerpt {
         color: #666;
         font-size: 14px;
-        line-height: 1.5;
+        line-height: 1.6;
         margin-bottom: 15px;
         display: -webkit-box;
         -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        flex-grow: 1;
+      }
+
+      .cerpen-story-preview {
+        background: #faf9f8;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        font-style: italic;
+        color: #555;
+        font-size: 13px;
+        line-height: 1.6;
+        border-left: 3px solid #4a6cf7;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
       }
@@ -579,6 +341,7 @@
         color: #888;
         padding-top: 15px;
         border-top: 1px solid #eee;
+        margin-top: auto;
       }
 
       .all-cerpen-date {
@@ -589,24 +352,17 @@
 
       .all-cerpen-stats {
         display: flex;
-        gap: 10px;
+        gap: 12px;
       }
 
       .all-cerpen-stats span {
         display: flex;
         align-items: center;
-        gap: 3px;
+        gap: 4px;
       }
 
-      /* Reading Time */
-      .reading-time {
-        display: flex;
-        align-items: center;
-        gap: 5px;
+      .all-cerpen-stats i {
         color: #4a6cf7;
-        font-weight: 500;
-        font-size: 12px;
-        margin-bottom: 10px;
       }
 
       /* No Results Message */
@@ -698,6 +454,11 @@
         font-size: 16px;
       }
 
+      .legend-title i {
+        color: #4a6cf7;
+        margin-right: 8px;
+      }
+
       .legend-item {
         display: flex;
         align-items: center;
@@ -763,90 +524,28 @@
         }
       }
 
-      /* Footer */
-      .professional-footer {
-        background: #222;
-        color: #aaa;
-        padding: 40px 0 20px;
-        position: relative;
-      }
-
-      .footer-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-      }
-
-      .footer-bottom {
-        display: flex;
-        justify-content: space-between;
+      /* Featured Badge for Cerpen */
+      .featured-story {
+        background: linear-gradient(135deg, #eef2ff, #dfe7ff);
+        padding: 8px 15px;
+        border-radius: 20px;
+        display: inline-flex;
         align-items: center;
-        padding-top: 20px;
-        border-top: 1px solid #444;
+        gap: 8px;
+        margin-bottom: 15px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #4a6cf7;
       }
 
-      .copyright {
-        font-size: 14px;
-      }
-
-      .copyright p {
-        color: #aaa;
-      }
-
-      .footer-legal {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .legal-link {
-        color: #aaa;
-        font-size: 14px;
-        transition: color 0.3s ease;
-      }
-
-      .legal-link:hover {
-        color: white;
-      }
-
-      .separator {
-        color: #666;
-      }
-
-      .back-to-top {
-        position: absolute;
-        right: 30px;
-        bottom: 30px;
-        width: 50px;
-        height: 50px;
-        background: #4a6cf7;
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        border: none;
-        font-size: 18px;
-      }
-
-      .back-to-top.active {
-        opacity: 1;
-        visibility: visible;
-      }
-
-      .back-to-top:hover {
-        background: #3a5ce5;
-        transform: translateY(-3px);
+      .featured-story i {
+        color: #4a6cf7;
       }
 
       /* Responsive Design */
       @media (max-width: 992px) {
         .all-cerpen-grid {
-          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
           gap: 25px;
         }
 
@@ -866,10 +565,6 @@
         .stat-number {
           font-size: 30px;
         }
-
-        .nav-menu {
-          gap: 15px;
-        }
       }
 
       @media (max-width: 768px) {
@@ -878,7 +573,7 @@
         }
 
         .all-cerpen-grid {
-          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
           gap: 20px;
         }
 
@@ -909,24 +604,6 @@
 
         .stat-number {
           font-size: 26px;
-        }
-
-        .nav-menu {
-          display: none;
-        }
-
-        .nav-mobile-toggle {
-          display: block;
-        }
-
-        .nav-actions .btn-nav-cta {
-          display: none;
-        }
-
-        .footer-bottom {
-          flex-direction: column;
-          gap: 20px;
-          text-align: center;
         }
       }
 
@@ -963,53 +640,46 @@
         .genre-legend {
           justify-content: center;
         }
-
-        .mobile-menu {
-          width: 250px;
-          padding: 20px;
-        }
       }
     </style>
   </head>
   <body>
     <!-- Navigation Bar -->
     <nav class="split-navbar">
-      <div class="navbar-container">
-        <div class="nav-left">
-          <div class="logo">
-            <a href="index.html">
-              <span class="logo-main">Blog</span>
-              <span class="logo-sub">Atr</span>
-            </a>
-          </div>
-          <div class="nav-divider"></div>
-          <ul class="nav-menu">
-            <li>
-              <a href="index.html#home" class="nav-link"><i class="fas fa-home"></i><span>Beranda</span></a>
-            </li>
-            <li>
-              <a href="index.html#about" class="nav-link"><i class="fas fa-user-tie"></i><span>Profil</span></a>
-            </li>
-            <li>
-              <a href="halamanjurnal.html" class="nav-link"><i class="fas fa-newspaper"></i><span>Jurnal</span></a>
-            </li>
-            <li>
-              <a href="halamanpuisi.html" class="nav-link"><i class="fas fa-book-open"></i><span>Puisi</span></a>
-            </li>
-            <li>
-              <a href="halamancerpen.html" class="nav-link active"><i class="fas fa-book"></i><span>Cerpen</span></a>
-            </li>
-            <li>
-              <a href="index.html#portfolio" class="nav-link"><i class="fas fa-briefcase"></i><span>Portfolio</span></a>
-            </li>
-          </ul>
+      <div class="nav-left">
+        <div class="logo">
+          <a href="index.html">
+            <span class="logo-main">Blog</span>
+            <span class="logo-sub">Atr</span>
+          </a>
         </div>
-        <div class="nav-actions">
-          <a href="index.html#contact" class="btn-nav-cta">Hubungi Saya</a>
-        </div>
-        <div class="nav-mobile-toggle" id="navMobileToggle">
-          <div class="menu-icon"><span></span><span></span><span></span></div>
-        </div>
+        <div class="nav-divider"></div>
+        <ul class="nav-menu">
+          <li>
+            <a href="index.html" class="nav-link"><i class="fas fa-home"></i><span>Beranda</span></a>
+          </li>
+          <li>
+            <a href="index.html#about" class="nav-link"><i class="fas fa-user-tie"></i><span>Profil</span></a>
+          </li>
+          <li>
+            <a href="halamanartikel.html" class="nav-link"><i class="fas fa-newspaper"></i><span>Artikel</span></a>
+          </li>
+          <li>
+            <a href="halamanpuisi.html" class="nav-link"><i class="fas fa-book-open"></i><span>Puisi</span></a>
+          </li>
+          <li>
+            <a href="halamancerpen.html" class="nav-link active"><i class="fas fa-book-reader"></i><span>Cerpen</span></a>
+          </li>
+          <li>
+            <a href="index.html#portfolio" class="nav-link"><i class="fas fa-briefcase"></i><span>Portfolio</span></a>
+          </li>
+        </ul>
+      </div>
+      <div class="nav-actions">
+        <a href="index.html#contact" class="btn-nav-cta">Hire Me</a>
+      </div>
+      <div class="nav-mobile-toggle" id="navMobileToggle">
+        <div class="menu-icon"><span></span><span></span><span></span></div>
       </div>
     </nav>
 
@@ -1022,57 +692,57 @@
         </div>
         <ul class="mobile-nav">
           <li>
-            <a href="index.html#home" class="mobile-nav-link"><i class="fas fa-home"></i><span>Beranda</span></a>
+            <a href="index.html" class="mobile-nav-link"><i class="fas fa-home"></i><span>Beranda</span></a>
           </li>
           <li>
             <a href="index.html#about" class="mobile-nav-link"><i class="fas fa-user-tie"></i><span>Profil</span></a>
           </li>
           <li>
-            <a href="halamanjurnal.html" class="mobile-nav-link"><i class="fas fa-newspaper"></i><span>Jurnal</span></a>
+            <a href="halamanartikel.html" class="mobile-nav-link"><i class="fas fa-newspaper"></i><span>Artikel</span></a>
           </li>
           <li>
             <a href="halamanpuisi.html" class="mobile-nav-link"><i class="fas fa-book-open"></i><span>Puisi</span></a>
           </li>
           <li>
-            <a href="halamancerpen.html" class="mobile-nav-link active"><i class="fas fa-book"></i><span>Cerpen</span></a>
+            <a href="halamancerpen.html" class="mobile-nav-link active"><i class="fas fa-book-reader"></i><span>Cerpen</span></a>
           </li>
           <li>
             <a href="index.html#portfolio" class="mobile-nav-link"><i class="fas fa-briefcase"></i><span>Portfolio</span></a>
           </li>
         </ul>
         <div class="mobile-actions">
-          <a href="index.html#contact" class="btn-mobile-cta">Hubungi Saya</a>
+          <a href="index.html#contact" class="btn-mobile-cta">Hire Me</a>
         </div>
       </div>
     </div>
 
     <!-- Main Content -->
     <section class="all-cerpen-page">
-      <div class="container">
+      <div class="all-cerpen-container">
         <!-- Back Button -->
         <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</a>
 
         <!-- Header -->
         <div class="all-cerpen-header">
           <h1>Koleksi Cerpen Lengkap</h1>
-          <p>Kumpulan semua karya cerpen yang telah saya tulis selama ini. Setiap cerita memiliki pesan moral dan nilai kehidupan yang dapat diambil sebagai pembelajaran.</p>
+          <p>Kumpulan semua cerita pendek yang telah saya tulis. Setiap cerpen adalah jendela imajinasi, lahir dari pengalaman, pengamatan, dan refleksi tentang kehidupan sehari-hari.</p>
 
           <!-- Stats Banner -->
           <div class="stats-banner">
             <div class="stat-card">
-              <div class="stat-number" id="totalCerpen">18</div>
+              <div class="stat-number" id="totalCerpen">21</div>
               <div class="stat-label">Total Cerpen</div>
             </div>
             <div class="stat-card">
-              <div class="stat-number">9</div>
+              <div class="stat-number">8</div>
               <div class="stat-label">Genre Berbeda</div>
             </div>
             <div class="stat-card">
-              <div class="stat-number">2020</div>
+              <div class="stat-number">2024</div>
               <div class="stat-label">Tahun Mulai</div>
             </div>
             <div class="stat-card">
-              <div class="stat-number">120K+</div>
+              <div class="stat-number">0+</div>
               <div class="stat-label">Kata Tertulis</div>
             </div>
           </div>
@@ -1089,13 +759,15 @@
           <div class="filter-title"><i class="fas fa-filter"></i> Filter Berdasarkan Genre</div>
           <div class="filter-options">
             <div class="filter-option active" data-filter="all">Semua Genre</div>
-            <div class="filter-option" data-filter="fiksi">Fiksi</div>
             <div class="filter-option" data-filter="romantis">Romantis</div>
-            <div class="filter-option" data-filter="misteri">Misteri</div>
-            <div class="filter-option" data-filter="fantasi">Fantasi</div>
             <div class="filter-option" data-filter="drama">Drama</div>
-            <div class="filter-option" data-filter="komedi">Komedi</div>
-            <div class="filter-option" data-filter="horor">Horor</div>
+            <div class="filter-option" data-filter="misteri">Misteri</div>
+            <div class="filter-option" data-filter="inspiratif">Inspiratif</div>
+            <div class="filter-option" data-filter="fiksi">Fiksi</div>
+            <div class="filter-option" data-filter="keluarga">Keluarga</div>
+            <div class="filter-option" data-filter="persahabatan">Persahabatan</div>
+            <div class="filter-option" data-filter="remaja">Remaja</div>
+            <div class="filter-option" data-filter="dark">Dark</div>
           </div>
         </div>
 
@@ -1124,38 +796,42 @@
 
         <!-- Genre Legend -->
         <div class="genre-legend">
-          <div class="legend-title"><i class="fas fa-tags"></i> Legenda Genre</div>
-          <div class="legend-item">
-            <div class="legend-color" style="background-color: #e74c3c"></div>
-            <div class="legend-label">Fiksi</div>
-          </div>
+          <div class="legend-title"><i class="fas fa-tags"></i> Legenda Genre Cerpen</div>
           <div class="legend-item">
             <div class="legend-color" style="background-color: #e84393"></div>
             <div class="legend-label">Romantis</div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: #3498db"></div>
+            <div class="legend-label">Drama</div>
           </div>
           <div class="legend-item">
             <div class="legend-color" style="background-color: #6c5ce7"></div>
             <div class="legend-label">Misteri</div>
           </div>
           <div class="legend-item">
-            <div class="legend-color" style="background-color: #00b894"></div>
-            <div class="legend-label">Fantasi</div>
-          </div>
-          <div class="legend-item">
             <div class="legend-color" style="background-color: #f39c12"></div>
-            <div class="legend-label">Drama</div>
+            <div class="legend-label">Inspiratif</div>
           </div>
           <div class="legend-item">
-            <div class="legend-color" style="background-color: #fdcb6e"></div>
-            <div class="legend-label">Komedi</div>
+            <div class="legend-color" style="background-color: #00b894"></div>
+            <div class="legend-label">Fiksi</div>
           </div>
           <div class="legend-item">
-            <div class="legend-color" style="background-color: #2d3436"></div>
-            <div class="legend-label">Horor</div>
+            <div class="legend-color" style="background-color: #e67e22"></div>
+            <div class="legend-label">Keluarga</div>
           </div>
           <div class="legend-item">
-            <div class="legend-color" style="background-color: #3498db"></div>
-            <div class="legend-label">Petualangan</div>
+            <div class="legend-color" style="background-color: #1abc9c"></div>
+            <div class="legend-label">Persahabatan</div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: #9b59b6"></div>
+            <div class="legend-label">Remaja</div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: #2c3e50"></div>
+            <div class="legend-label">Dark</div>
           </div>
         </div>
       </div>
@@ -1166,7 +842,7 @@
       <div class="footer-container">
         <div class="footer-bottom">
           <div class="copyright">
-            <p>&copy; <span id="currentYear">2024</span> Muhamad Fauzan Atarsyah. All rights reserved.</p>
+            <p>&copy; <span id="currentYear">2026</span> Muhamad Fauzan Atarsyah. All rights reserved.</p>
           </div>
           <div class="footer-legal">
             <a href="#" class="legal-link">Privacy Policy</a>
@@ -1179,241 +855,343 @@
     </footer>
 
     <script>
-      // Data Cerpen
+      // Sample Data - Koleksi Cerpen
       const allCerpenData = [
         {
           id: 1,
-          title: "Malam Tanpa Bintang",
-          genre: "misteri",
-          date: "5 Januari 2024",
-          excerpt: "Desa itu sunyi. Terlalu sunyi. Bahkan jangkrik pun tak berani bersuara di malam itu...",
-          image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-          likes: 45,
-          views: 320,
-          words: 1500,
-          readingTime: "8 min",
+          title: "Mah, Pah, kenapa aku terlahir Miskin?",
+          genre: "Drama Sosial",
+          category: "Drama Sosial",
+          date: "12 Februari 2026",
+          excerpt: "Judul di ambil dari pertanyaan seorang anak kepada ibu nya di kota kediri.",
+          storyPreview: "Klik untuk lihat selengkapnya",
+          image: "img/cerpen1.jpg",
+          likes: 0,
+          views: 0,
+          readTime: 0,
+          comments: 0,
+          featured: true,
           link: "cerpen1.html",
         },
         {
           id: 2,
-          title: "Surat untuk Masa Depan",
-          genre: "romantis",
-          date: "12 Januari 2024",
-          excerpt: "Aku menulis surat ini untukmu yang akan membacanya sepuluh tahun dari sekarang...",
-          image: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+          title: "Cooming Soon",
+          genre: "Cooming Soon",
+          category: "Cooming Soon",
+          date: "Cooming Soon",
+          excerpt: "Cooming Soon",
+          storyPreview: "Cooming Soon",
+          image: "img/cm.png",
           likes: 67,
-          views: 489,
-          words: 1200,
-          readingTime: "6 min",
+          views: 423,
+          readTime: 20,
+          comments: 43,
+          featured: false,
           link: "cerpen2.html",
         },
         {
           id: 3,
-          title: "Penjaga Hutan Tua",
-          genre: "fantasi",
-          date: "20 Januari 2024",
-          excerpt: "Sudah tujuh puluh tahun Pak Kromo menjaga hutan ini. Ia tahu semua rahasianya...",
-          image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-          likes: 89,
-          views: 612,
-          words: 2500,
-          readingTime: "12 min",
-          link: "cerpen3.html",
+          title: "Cooming Soon",
+          genre: "Cooming Soon",
+          category: "Cooming Soon",
+          date: "Cooming Soon",
+          excerpt: "Cooming Soon",
+          storyPreview: "Cooming Soon",
+          image: "img/cm.png",
+          likes: 67,
+          views: 423,
+          readTime: 20,
+          comments: 43,
+          featured: false,
+          link: "cerpen2.html",
+        },
+        {
+          id: 3,
+          title: "Cooming Soon",
+          genre: "Cooming Soon",
+          category: "Cooming Soon",
+          date: "Cooming Soon",
+          excerpt: "Cooming Soon",
+          storyPreview: "Cooming Soon",
+          image: "img/cm.png",
+          likes: 67,
+          views: 423,
+          readTime: 20,
+          comments: 43,
+          featured: false,
+          link: "cerpen2.html",
         },
         {
           id: 4,
-          title: "Kesempatan Kedua",
-          genre: "drama",
-          date: "28 Januari 2024",
-          excerpt: "Tidak semua orang mendapat kesempatan kedua dalam hidup. Aku salah satu yang beruntung...",
-          image: "https://images.unsplash.com/photo-1501139083538-0139583c060f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-          likes: 56,
-          views: 432,
-          words: 1800,
-          readingTime: "9 min",
-          link: "cerpen4.html",
+          title: "Cooming Soon",
+          genre: "Cooming Soon",
+          category: "Cooming Soon",
+          date: "Cooming Soon",
+          excerpt: "Cooming Soon",
+          storyPreview: "Cooming Soon",
+          image: "img/cm.png",
+          likes: 67,
+          views: 423,
+          readTime: 20,
+          comments: 43,
+          featured: false,
+          link: "cerpen2.html",
         },
         {
           id: 5,
-          title: "Komedi Tak Terduga",
-          genre: "komedi",
-          date: "5 Februari 2024",
-          excerpt: "Hidupku berubah total setelah aku secara tidak sengaja menjadi viral di media sosial...",
-          image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-          likes: 123,
-          views: 845,
-          words: 1400,
-          readingTime: "7 min",
-          link: "cerpen5.html",
+          title: "Cooming Soon",
+          genre: "Cooming Soon",
+          category: "Cooming Soon",
+          date: "Cooming Soon",
+          excerpt: "Cooming Soon",
+          storyPreview: "Cooming Soon",
+          image: "img/cm.png",
+          likes: 67,
+          views: 423,
+          readTime: 20,
+          comments: 43,
+          featured: false,
+          link: "cerpen2.html",
         },
         {
           id: 6,
-          title: "Rumah di Ujung Jalan",
-          genre: "horor",
-          date: "14 Februari 2024",
-          excerpt: "Semua orang di kampung memperingatkanku untuk tidak mendekati rumah itu. Tapi aku penasaran...",
-          image: "https://images.unsplash.com/photo-1505852679233-d9fd70aff56d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-          likes: 78,
-          views: 567,
-          words: 2200,
-          readingTime: "11 min",
-          link: "cerpen6.html",
+          title: "Cooming Soon",
+          genre: "Cooming Soon",
+          category: "Cooming Soon",
+          date: "Cooming Soon",
+          excerpt: "Cooming Soon",
+          storyPreview: "Cooming Soon",
+          image: "img/cm.png",
+          likes: 67,
+          views: 423,
+          readTime: 20,
+          comments: 43,
+          featured: false,
+          link: "cerpen2.html",
         },
         {
           id: 7,
-          title: "Petualangan di Pulau Terpencil",
-          genre: "petualangan",
-          date: "22 Februari 2024",
-          excerpt: "Kapal kami karam. Sekarang kami terdampar di pulau yang tidak ada dalam peta mana pun...",
-          image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-          likes: 92,
-          views: 678,
-          words: 3000,
-          readingTime: "15 min",
-          link: "cerpen7.html",
+          title: "Cooming Soon",
+          genre: "Cooming Soon",
+          category: "Cooming Soon",
+          date: "Cooming Soon",
+          excerpt: "Cooming Soon",
+          storyPreview: "Cooming Soon",
+          image: "img/cm.png",
+          likes: 67,
+          views: 423,
+          readTime: 20,
+          comments: 43,
+          featured: false,
+          link: "cerpen2.html",
         },
         {
           id: 8,
-          title: "Cinta dalam Diam",
-          genre: "romantis",
-          date: "1 Maret 2024",
-          excerpt: "Tujuh tahun aku menyimpan perasaan ini. Tujuh tahun aku mengagumimu dari jauh...",
-          image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-          likes: 145,
-          views: 912,
-          words: 1600,
-          readingTime: "8 min",
-          link: "cerpen8.html",
+          title: "Cooming Soon",
+          genre: "Cooming Soon",
+          category: "Cooming Soon",
+          date: "Cooming Soon",
+          excerpt: "Cooming Soon",
+          storyPreview: "Cooming Soon",
+          image: "img/cm.png",
+          likes: 67,
+          views: 423,
+          readTime: 20,
+          comments: 43,
+          featured: false,
+          link: "cerpen2.html",
         },
         {
           id: 9,
-          title: "Rahasia Keluarga",
-          genre: "drama",
-          date: "10 Maret 2024",
-          excerpt: "Ayah meninggalkan sebuah kotak kayu dengan instruksi: 'Buka setelah aku tiada'...",
-          image: "https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+          title: "Cooming Soon",
+          genre: "Cooming Soon",
+          category: "Cooming Soon",
+          date: "Cooming Soon",
+          excerpt: "Cooming Soon",
+          storyPreview: "Cooming Soon",
+          image: "img/cm.png",
           likes: 67,
-          views: 489,
-          words: 2400,
-          readingTime: "12 min",
-          link: "cerpen9.html",
+          views: 423,
+          readTime: 20,
+          comments: 43,
+          featured: false,
+          link: "cerpen2.html",
         },
         {
           id: 10,
-          title: "Portal Waktu",
-          genre: "fantasi",
-          date: "18 Maret 2024",
-          excerpt: "Aku menemukannya secara tidak sengaja di loteng rumah nenek. Sebuah pintu ke masa lalu...",
-          image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=50",
-          likes: 112,
-          views: 756,
-          words: 2800,
-          readingTime: "14 min",
-          link: "cerpen10.html",
+          title: "Cooming Soon",
+          genre: "Cooming Soon",
+          category: "Cooming Soon",
+          date: "Cooming Soon",
+          excerpt: "Cooming Soon",
+          storyPreview: "Cooming Soon",
+          image: "img/cm.png",
+          likes: 67,
+          views: 423,
+          readTime: 20,
+          comments: 43,
+          featured: false,
+          link: "cerpen2.html",
         },
         {
           id: 11,
-          title: "Detektif Amatir",
-          genre: "misteri",
-          date: "25 Maret 2024",
-          excerpt: "Aku bukan detektif profesional, tapi aku tahu ada yang tidak beres dengan kasus ini...",
-          image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-          likes: 89,
-          views: 634,
-          words: 2000,
-          readingTime: "10 min",
-          link: "cerpen11.html",
+          title: "Cooming Soon",
+          genre: "Cooming Soon",
+          category: "Cooming Soon",
+          date: "Cooming Soon",
+          excerpt: "Cooming Soon",
+          storyPreview: "Cooming Soon",
+          image: "img/cm.png",
+          likes: 67,
+          views: 423,
+          readTime: 20,
+          comments: 43,
+          featured: false,
+          link: "cerpen2.html",
         },
         {
           id: 12,
-          title: "Stand-up Comedy Pertama",
-          genre: "komedi",
-          date: "2 April 2024",
-          excerpt: "Mimpi terbesarku adalah berdiri di panggung. Malam ini, mimpi itu akhirnya terwujud...",
-          image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=40",
-          likes: 156,
-          views: 1023,
-          words: 1300,
-          readingTime: "7 min",
-          link: "cerpen12.html",
+          title: "Cooming Soon",
+          genre: "Cooming Soon",
+          category: "Cooming Soon",
+          date: "Cooming Soon",
+          excerpt: "Cooming Soon",
+          storyPreview: "Cooming Soon",
+          image: "img/cm.png",
+          likes: 67,
+          views: 423,
+          readTime: 20,
+          comments: 43,
+          featured: false,
+          link: "cerpen2.html",
         },
         {
           id: 13,
-          title: "Hantu Sekolah Lama",
-          genre: "horor",
-          date: "10 April 2024",
-          excerpt: "Sekolah kami dikenal angker. Tapi hanya sedikit yang tahu kisah sebenarnya...",
-          image: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-          likes: 134,
-          views: 890,
-          words: 2300,
-          readingTime: "12 min",
-          link: "cerpen13.html",
+          title: "Cooming Soon",
+          genre: "Cooming Soon",
+          category: "Cooming Soon",
+          date: "Cooming Soon",
+          excerpt: "Cooming Soon",
+          storyPreview: "Cooming Soon",
+          image: "img/cm.png",
+          likes: 67,
+          views: 423,
+          readTime: 20,
+          comments: 43,
+          featured: false,
+          link: "cerpen2.html",
         },
         {
           id: 14,
-          title: "Ekspedisi ke Gunung Merapi",
-          genre: "petualangan",
-          date: "18 April 2024",
-          excerpt: "Kami berlima. Hanya tiga yang kembali. Inilah kisah ekspedisi yang mengubah hidup kami...",
-          image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=30",
-          likes: 102,
-          views: 745,
-          words: 3200,
-          readingTime: "16 min",
-          link: "cerpen14.html",
+          title: "Cooming Soon",
+          genre: "Cooming Soon",
+          category: "Cooming Soon",
+          date: "Cooming Soon",
+          excerpt: "Cooming Soon",
+          storyPreview: "Cooming Soon",
+          image: "img/cm.png",
+          likes: 67,
+          views: 423,
+          readTime: 20,
+          comments: 43,
+          featured: false,
+          link: "cerpen2.html",
         },
         {
           id: 15,
-          title: "Cinta Musim Semi",
-          genre: "romantis",
-          date: "25 April 2024",
-          excerpt: "Kami bertemu di musim semi, berpisah di musim gugur, dan bertemu kembali di musim semi berikutnya...",
-          image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=70",
-          likes: 178,
-          views: 1123,
-          words: 1900,
-          readingTime: "10 min",
-          link: "cerpen15.html",
+          title: "Cooming Soon",
+          genre: "Cooming Soon",
+          category: "Cooming Soon",
+          date: "Cooming Soon",
+          excerpt: "Cooming Soon",
+          storyPreview: "Cooming Soon",
+          image: "img/cm.png",
+          likes: 67,
+          views: 423,
+          readTime: 20,
+          comments: 43,
+          featured: false,
+          link: "cerpen2.html",
         },
         {
           id: 16,
-          title: "Dunia Paralel",
-          genre: "fantasi",
-          date: "3 Mei 2024",
-          excerpt: "Apa jadinya jika kita bisa mengunjungi versi diri kita di dunia paralel? Aku baru saja melakukannya...",
-          image: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=40",
-          likes: 145,
-          views: 967,
-          words: 2700,
-          readingTime: "14 min",
-          link: "cerpen16.html",
+          title: "Cooming Soon",
+          genre: "Cooming Soon",
+          category: "Cooming Soon",
+          date: "Cooming Soon",
+          excerpt: "Cooming Soon",
+          storyPreview: "Cooming Soon",
+          image: "img/cm.png",
+          likes: 67,
+          views: 423,
+          readTime: 20,
+          comments: 43,
+          featured: false,
+          link: "cerpen2.html",
         },
         {
           id: 17,
-          title: "Komedi Keluarga",
-          genre: "komedi",
-          date: "12 Mei 2024",
-          excerpt: "Keluarga kami mungkin tidak sempurna, tapi kami punya banyak cerita lucu untuk dibagikan...",
-          image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=20",
-          likes: 89,
-          views: 623,
-          words: 1500,
-          readingTime: "8 min",
-          link: "cerpen17.html",
+          title: "Cooming Soon",
+          genre: "Cooming Soon",
+          category: "Cooming Soon",
+          date: "Cooming Soon",
+          excerpt: "Cooming Soon",
+          storyPreview: "Cooming Soon",
+          image: "img/cm.png",
+          likes: 67,
+          views: 423,
+          readTime: 20,
+          comments: 43,
+          featured: false,
+          link: "cerpen2.html",
         },
         {
           id: 18,
-          title: "Misteri Kamar 404",
-          genre: "misteri",
-          date: "20 Mei 2024",
-          excerpt: "Hotel ini memiliki 403 kamar. Tapi kenapa ada nomor 404 di pintu kamar ini?",
-          image: "https://images.unsplash.com/photo-1505852679233-d9fd70aff56d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=50",
-          likes: 112,
-          views: 789,
-          words: 2100,
-          readingTime: "11 min",
-          link: "cerpen18.html",
+          title: "Cooming Soon",
+          genre: "Cooming Soon",
+          category: "Cooming Soon",
+          date: "Cooming Soon",
+          excerpt: "Cooming Soon",
+          storyPreview: "Cooming Soon",
+          image: "img/cm.png",
+          likes: 67,
+          views: 423,
+          readTime: 20,
+          comments: 43,
+          featured: false,
+          link: "cerpen2.html",
+        },
+        {
+          id: 19,
+          title: "Cooming Soon",
+          genre: "Cooming Soon",
+          category: "Cooming Soon",
+          date: "Cooming Soon",
+          excerpt: "Cooming Soon",
+          storyPreview: "Cooming Soon",
+          image: "img/cm.png",
+          likes: 67,
+          views: 423,
+          readTime: 20,
+          comments: 43,
+          featured: false,
+          link: "cerpen2.html",
+        },
+        {
+          id: 20,
+          title: "Cooming Soon",
+          genre: "Cooming Soon",
+          category: "Cooming Soon",
+          date: "Cooming Soon",
+          excerpt: "Cooming Soon",
+          storyPreview: "Cooming Soon",
+          image: "img/cm.png",
+          likes: 67,
+          views: 423,
+          readTime: 20,
+          comments: 43,
+          featured: false,
+          link: "cerpen2.html",
         },
       ];
 
@@ -1426,14 +1204,15 @@
 
       // Genre mapping untuk badge colors
       const genreBadgeMap = {
-        fiksi: { class: "badge-fiksi", label: "Fiksi" },
         romantis: { class: "badge-romantis", label: "Romantis" },
-        misteri: { class: "badge-misteri", label: "Misteri" },
-        fantasi: { class: "badge-fantasi", label: "Fantasi" },
         drama: { class: "badge-drama", label: "Drama" },
-        komedi: { class: "badge-komedi", label: "Komedi" },
-        horor: { class: "badge-horor", label: "Horor" },
-        petualangan: { class: "badge-petualangan", label: "Petualangan" },
+        misteri: { class: "badge-misteri", label: "Misteri" },
+        inspiratif: { class: "badge-inspiratif", label: "Inspiratif" },
+        fiksi: { class: "badge-fiksi", label: "Fiksi" },
+        keluarga: { class: "badge-keluarga", label: "Keluarga" },
+        persahabatan: { class: "badge-persahabatan", label: "Persahabatan" },
+        remaja: { class: "badge-remaja", label: "Remaja" },
+        dark: { class: "badge-dark", label: "Dark" },
       };
 
       // Fungsi untuk render cerpen
@@ -1463,36 +1242,41 @@
           const currentItems = filteredCerpen.slice(startIndex, endIndex);
 
           currentItems.forEach((cerpen) => {
-            const genreInfo = genreBadgeMap[cerpen.genre] || { class: "badge-fiksi", label: "Cerpen" };
+            const genreInfo = genreBadgeMap[cerpen.genre] || { class: "badge-fiksi", label: "Fiksi" };
 
             const cerpenCard = document.createElement("article");
             cerpenCard.className = "all-cerpen-card";
             cerpenCard.setAttribute("data-genre", cerpen.genre);
 
+            const featuredBadge = cerpen.featured ? `<div class="featured-story"><i class="fas fa-crown"></i> Cerpen Pilihan</div>` : "";
+
             cerpenCard.innerHTML = `
-                        <a href="${cerpen.link}" style="text-decoration: none; color: inherit; display: block;">
-                            <div class="all-cerpen-image">
-                                <img src="${cerpen.image}" alt="${cerpen.title}" loading="lazy">
-                                <div class="image-overlay"></div>
-                                <span class="cerpen-badge ${genreInfo.class}">${genreInfo.label}</span>
-                            </div>
-                            <div class="all-cerpen-content">
-                                <div class="reading-time">
-                                    <i class="far fa-clock"></i> ${cerpen.readingTime} membaca
-                                </div>
-                                <h3 class="all-cerpen-title">${cerpen.title}</h3>
-                                <p class="all-cerpen-excerpt">${cerpen.excerpt}</p>
-                                <div class="all-cerpen-meta">
-                                    <span class="all-cerpen-date"><i class="far fa-calendar"></i> ${cerpen.date}</span>
-                                    <div class="all-cerpen-stats">
-                                        <span><i class="far fa-heart"></i> ${cerpen.likes}</span>
-                                        <span><i class="far fa-eye"></i> ${cerpen.views}</span>
-                                        <span><i class="fas fa-file-word"></i> ${cerpen.words}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    `;
+              <a href="${cerpen.link}" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%;">
+                <div class="all-cerpen-image">
+                  <img src="${cerpen.image}" alt="${cerpen.title}" loading="lazy">
+                  <div class="image-overlay"></div>
+                  <span class="cerpen-badge ${genreInfo.class}">${genreInfo.label}</span>
+                  <span class="cerpen-read-time"><i class="far fa-clock"></i> ${cerpen.readTime} min read</span>
+                </div>
+                <div class="all-cerpen-content">
+                  ${featuredBadge}
+                  <h3 class="all-cerpen-title">${cerpen.title}</h3>
+                  <p class="all-cerpen-excerpt">${cerpen.excerpt}</p>
+                  <div class="cerpen-story-preview">
+                    <i class="fas fa-quote-left" style="color: #4a6cf7; opacity: 0.5; font-size: 10px;"></i>
+                    ${cerpen.storyPreview}
+                  </div>
+                  <div class="all-cerpen-meta">
+                    <span class="all-cerpen-date"><i class="far fa-calendar-alt"></i> ${cerpen.date}</span>
+                    <div class="all-cerpen-stats">
+                      <span><i class="far fa-heart"></i> ${cerpen.likes}</span>
+                      <span><i class="far fa-eye"></i> ${cerpen.views}</span>
+                      <span><i class="far fa-comment"></i> ${cerpen.comments}</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            `;
 
             cerpenGrid.appendChild(cerpenCard);
           });
@@ -1612,7 +1396,12 @@
 
         filteredCerpen = allCerpenData.filter((cerpen) => {
           const matchesGenre = genre === "all" || cerpen.genre === genre;
-          const matchesSearch = currentSearch === "" || cerpen.title.toLowerCase().includes(currentSearch) || cerpen.excerpt.toLowerCase().includes(currentSearch) || cerpen.genre.includes(currentSearch);
+          const matchesSearch =
+            currentSearch === "" ||
+            cerpen.title.toLowerCase().includes(currentSearch) ||
+            cerpen.excerpt.toLowerCase().includes(currentSearch) ||
+            cerpen.storyPreview.toLowerCase().includes(currentSearch) ||
+            cerpen.genre.includes(currentSearch);
 
           return matchesGenre && matchesSearch;
         });
@@ -1719,13 +1508,30 @@
           }
         });
 
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            const href = this.getAttribute("href");
+            if (href === "#") return;
+
+            const target = document.querySelector(href);
+            if (target) {
+              e.preventDefault();
+              window.scrollTo({
+                top: target.offsetTop - 80,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+
         // Update active nav link
         const navLinks = document.querySelectorAll(".nav-link, .mobile-nav-link");
         function updateActiveLink() {
           const currentPage = window.location.pathname;
           navLinks.forEach((link) => {
             link.classList.remove("active");
-            if (link.getAttribute("href") === currentPage || (currentPage.includes("cerpen") && link.getAttribute("href") === "semua-cerpen.html")) {
+            if (link.getAttribute("href") === currentPage || (currentPage.includes("cerpen") && link.getAttribute("href") === "halamancerpen.html")) {
               link.classList.add("active");
             }
           });

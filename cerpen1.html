@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Senja di Batas Kota | Cerpen by Muhamad Fauzan Atarsyah</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="animations.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&family=Merriweather:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📖</text></svg>" />
+    <style>
+      /* Additional styles for cerpen detail page */
+      .cerpen-detail-page {
+        background: #fefaf7;
+        font-family: "Merriweather", "Georgia", serif;
+        color: #2d2d2d;
+      }
+
+      .cerpen-header {
+        background: linear-gradient(135deg, #2c3e50 0%, #1e272e 100%);
+        padding: 140px 0 60px;
+        color: white;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cerpen-header::before {
+        content: "“";
+        position: absolute;
+        top: -50px;
+        left: 20px;
+        font-size: 300px;
+        font-family: "Georgia", serif;
+        color: rgba(255, 255, 255, 0.1);
+        line-height: 1;
+      }
+
+      .cerpen-header::after {
+        content: "”";
+        position: absolute;
+        bottom: -80px;
+        right: 20px;
+        font-size: 300px;
+        font-family: "Georgia", serif;
+        color: rgba(255, 255, 255, 0.1);
+        line-height: 1;
+      }
+
+      .cerpen-header .container {
+        position: relative;
+        z-index: 2;
+      }
+
+      .cerpen-category-badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(5px);
+        padding: 8px 20px;
+        border-radius: 30px;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        margin-bottom: 25px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        text-transform: uppercase;
+      }
+
+      .cerpen-header-title {
+        font-size: 48px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        line-height: 1.3;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        font-family: "Poppins", sans-serif;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .cerpen-header-meta {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-bottom: 30px;
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.9);
+        flex-wrap: wrap;
+      }
+
+      .cerpen-header-meta i {
+        margin-right: 8px;
+        color: #ffd700;
+      }
+
+      .cerpen-header-author {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .cerpen-header-author img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 3px solid white;
+        object-fit: cover;
+      }
+
+      .cerpen-header-author-info {
+        text-align: left;
+      }
+
+      .cerpen-header-author-name {
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+
+      .cerpen-header-author-date {
+        font-size: 14px;
+        opacity: 0.8;
+      }
+
+      /* Main Content */
+      .cerpen-main {
+        padding: 60px 0;
+        background: #fefaf7;
+      }
+
+      .cerpen-layout {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: 40px;
+      }
+
+      /* Cerpen Content */
+      .cerpen-content {
+        background: white;
+        padding: 50px;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.03);
+        border: 1px solid #f0e9e4;
+      }
+
+      .cerpen-opening {
+        font-size: 20px;
+        line-height: 1.8;
+        color: #4a4a4a;
+        margin-bottom: 40px;
+        font-weight: 500;
+        border-left: 4px solid #4a6cf7;
+        padding-left: 30px;
+        font-style: italic;
+        color: #5d5d5d;
+      }
+
+      .cerpen-text {
+        font-size: 18px;
+        line-height: 1.9;
+        color: #333;
+        font-family: "Merriweather", "Georgia", serif;
+      }
+
+      .cerpen-text p {
+        margin-bottom: 30px;
+        text-align: justify;
+      }
+
+      .cerpen-text h3 {
+        font-size: 24px;
+        font-family: "Poppins", sans-serif;
+        margin: 40px 0 20px;
+        color: #2c3e50;
+      }
+
+      .cerpen-quote {
+        background: #f8f4f0;
+        padding: 30px;
+        border-radius: 15px;
+        margin: 40px 0;
+        font-style: italic;
+        font-size: 20px;
+        color: #4a6cf7;
+        border-left: 5px solid #4a6cf7;
+        font-weight: 500;
+        position: relative;
+      }
+
+      .cerpen-quote::before {
+        content: "❝";
+        font-size: 60px;
+        position: absolute;
+        left: 20px;
+        top: -10px;
+        color: rgba(74, 108, 247, 0.2);
+        font-family: "Georgia", serif;
+      }
+
+      .cerpen-footer-note {
+        margin-top: 60px;
+        padding-top: 40px;
+        border-top: 2px dashed #e0d6d0;
+        text-align: center;
+        font-style: italic;
+        color: #777;
+        font-size: 16px;
+      }
+
+      /* Sidebar */
+      .cerpen-sidebar {
+        position: sticky;
+        top: 120px;
+        align-self: start;
+      }
+
+      .sidebar-widget {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+        border: 1px solid #f0e9e4;
+      }
+
+      .sidebar-widget h4 {
+        font-size: 18px;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid #f0e9e4;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #2c3e50;
+      }
+
+      .sidebar-widget h4 i {
+        color: #4a6cf7;
+      }
+
+      /* Author Card */
+      .author-card {
+        text-align: center;
+      }
+
+      .author-card img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid #f0e9e4;
+        margin-bottom: 15px;
+      }
+
+      .author-card h5 {
+        font-size: 18px;
+        margin-bottom: 5px;
+        color: #2c3e50;
+      }
+
+      .author-card p {
+        font-size: 14px;
+        color: #777;
+        margin-bottom: 20px;
+      }
+
+      .author-social {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .author-social a {
+        width: 40px;
+        height: 40px;
+        background: #f8f4f0;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #4a6cf7;
+        transition: all 0.3s ease;
+      }
+
+      .author-social a:hover {
+        background: #4a6cf7;
+        color: white;
+        transform: translateY(-3px);
+      }
+
+      /* Info Card */
+      .cerpen-info-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .cerpen-info-list li {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 0;
+        border-bottom: 1px solid #f0e9e4;
+        color: #666;
+      }
+
+      .cerpen-info-list li:last-child {
+        border-bottom: none;
+      }
+
+      .cerpen-info-list i {
+        width: 20px;
+        color: #4a6cf7;
+      }
+
+      /* Tags */
+      .cerpen-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .tag {
+        background: #f8f4f0;
+        padding: 8px 15px;
+        border-radius: 6px;
+        font-size: 13px;
+        color: #555;
+        transition: all 0.3s ease;
+      }
+
+      .tag:hover {
+        background: #4a6cf7;
+        color: white;
+      }
+
+      /* Table of Contents */
+      .toc-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .toc-list li {
+        margin-bottom: 12px;
+      }
+
+      .toc-list a {
+        display: block;
+        padding: 8px 12px;
+        background: #faf8f6;
+        border-radius: 6px;
+        color: #555;
+        transition: all 0.3s ease;
+        font-size: 14px;
+      }
+
+      .toc-list a:hover {
+        background: #4a6cf7;
+        color: white;
+        transform: translateX(5px);
+      }
+
+      /* Related Stories */
+      .related-stories {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .related-item {
+        display: flex;
+        gap: 12px;
+        padding: 10px;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+      }
+
+      .related-item:hover {
+        background: #faf8f6;
+      }
+
+      .related-item img {
+        width: 70px;
+        height: 70px;
+        border-radius: 8px;
+        object-fit: cover;
+      }
+
+      .related-info h5 {
+        font-size: 15px;
+        margin-bottom: 5px;
+        color: #2c3e50;
+      }
+
+      .related-info span {
+        font-size: 12px;
+        color: #777;
+      }
+
+      /* Actions */
+      .cerpen-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 50px;
+        padding-top: 30px;
+        border-top: 1px solid #f0e9e4;
+      }
+
+      .action-buttons {
+        display: flex;
+        gap: 15px;
+      }
+
+      .action-btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #f8f4f0;
+        border: none;
+        color: #4a6cf7;
+        font-size: 18px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .action-btn:hover {
+        background: #4a6cf7;
+        color: white;
+        transform: translateY(-3px);
+      }
+
+      .action-btn.liked i {
+        color: #ff6b6b;
+      }
+
+      .share-buttons {
+        display: flex;
+        gap: 10px;
+      }
+
+      .share-btn {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background: #f8f4f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #666;
+        transition: all 0.3s ease;
+      }
+
+      .share-btn:hover {
+        background: #4a6cf7;
+        color: white;
+        transform: translateY(-3px);
+      }
+
+      /* Cerita Lainnya Section - NEW */
+      .cerita-lainnya-section {
+        margin-top: 60px;
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        border: 1px solid #f0e9e4;
+      }
+
+      .cerita-lainnya-title {
+        font-size: 24px;
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #2c3e50;
+      }
+
+      .cerita-lainnya-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+      }
+
+      .cerita-card {
+        background: #faf8f6;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        border: 1px solid #f0e9e4;
+      }
+
+      .cerita-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+        border-color: #4a6cf7;
+      }
+
+      .cerita-card-img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        background: linear-gradient(135deg, #4a6cf7, #8e54e9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 40px;
+      }
+
+      .cerita-card-content {
+        padding: 20px;
+      }
+
+      .cerita-card-category {
+        font-size: 12px;
+        text-transform: uppercase;
+        color: #4a6cf7;
+        font-weight: 600;
+        margin-bottom: 8px;
+        letter-spacing: 1px;
+      }
+
+      .cerita-card-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: #2c3e50;
+        line-height: 1.4;
+      }
+
+      .cerita-card-meta {
+        display: flex;
+        gap: 15px;
+        font-size: 12px;
+        color: #777;
+        margin-bottom: 15px;
+      }
+
+      .cerita-card-meta i {
+        margin-right: 5px;
+        color: #4a6cf7;
+      }
+
+      .cerita-card-link {
+        display: inline-block;
+        color: #4a6cf7;
+        font-weight: 600;
+        font-size: 14px;
+        transition: all 0.3s ease;
+      }
+
+      .cerita-card-link:hover {
+        transform: translateX(5px);
+      }
+
+      .cerita-card-link i {
+        font-size: 12px;
+        margin-left: 5px;
+      }
+
+      .btn-primary {
+        background: #4a6cf7;
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        background: #3a5bd9;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(74, 108, 247, 0.3);
+      }
+
+      /* Responsive */
+      @media screen and (max-width: 992px) {
+        .cerpen-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .cerpen-sidebar {
+          position: static;
+          order: 2;
+        }
+
+        .cerpen-header-title {
+          font-size: 36px;
+        }
+
+        .cerpen-content {
+          padding: 30px;
+        }
+
+        .cerita-lainnya-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        .cerpen-header {
+          padding: 120px 0 40px;
+        }
+
+        .cerpen-header-title {
+          font-size: 28px;
+        }
+
+        .cerpen-header-meta {
+          gap: 20px;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .cerpen-content {
+          padding: 25px;
+        }
+
+        .cerpen-text {
+          font-size: 16px;
+        }
+
+        .cerpen-text p {
+          margin-bottom: 20px;
+        }
+
+        .cerpen-quote {
+          font-size: 18px;
+          padding: 25px;
+        }
+
+        .cerpen-actions {
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .cerita-lainnya-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .cerita-lainnya-section {
+          padding: 25px;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .cerpen-header-title {
+          font-size: 24px;
+        }
+
+        .cerpen-content {
+          padding: 20px;
+        }
+
+        .cerpen-text {
+          font-size: 15px;
+        }
+
+        .cerpen-quote {
+          font-size: 16px;
+          padding: 20px;
+        }
+
+        .cerita-lainnya-section {
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body class="cerpen-detail-page">
+    <!-- Navbar -->
+    <nav class="split-navbar">
+      <div class="nav-left">
+        <div class="logo">
+          <a href="#">
+            <span class="logo-main">Blog</span>
+            <span class="logo-sub">Atr</span>
+          </a>
+        </div>
+
+        <div class="nav-divider"></div>
+
+        <ul class="nav-menu">
+          <li>
+            <a href="#home" class="nav-link active">
+              <i class="fas fa-home"></i>
+              <span>Beranda</span>
+            </a>
+          </li>
+          <li>
+            <a href="#about" class="nav-link">
+              <i class="fas fa-user-tie"></i>
+              <span>Profil</span>
+            </a>
+          </li>
+          <li>
+            <a href="halamanartikel.html" class="nav-link">
+              <i class="fas fa-newspaper"></i>
+              <span>Artikel</span>
+            </a>
+          </li>
+          <li>
+            <a href="halamanpuisi.html" class="nav-link">
+              <i class="fas fa-newspaper"></i>
+              <span>Puisi</span>
+            </a>
+          </li>
+          <li>
+            <a href="halamancerpen.html" class="nav-link">
+              <i class="fas fa-newspaper"></i>
+              <span>Cerpen</span>
+            </a>
+          </li>
+          <a href="#portfolio" class="nav-link">
+              <i class="fas fa-newspaper"></i>
+              <span>Portfolio</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+        <div class="nav-divider"></div>
+
+        <div class="nav-actions">
+          <a href="#contact" class="btn-nav-cta">Hire Me</a>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="nav-mobile-toggle" id="navMobileToggle">
+        <div class="menu-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay">
+      <div class="mobile-menu">
+        <div class="mobile-header">
+          <div class="mobile-logo">Blog Atr</div>
+          <button class="mobile-close" id="mobileClose">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <ul class="mobile-nav">
+          <li>
+            <a href="#home" class="mobile-nav-link active">
+              <i class="fas fa-home"></i>
+              <span>Beranda</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html#about" class="mobile-nav-link">
+              <i class="fas fa-user-tie"></i>
+              <span>Profil</span>
+            </a>
+          </li>
+          <li>
+            <a href="halamanartikel.html" class="mobile-nav-link">
+              <i class="fas fa-newspaper"></i>
+              <span>Artikel</span>
+            </a>
+          </li>
+          <li>
+            <a href="halamanpuisi.html" class="mobile-nav-link">
+              <i class="fas fa-newspaper"></i>
+              <span>Puisi</span>
+            </a>
+          </li>
+          <li>
+            <a href="halamancerpen.html" class="mobile-nav-link">
+              <i class="fas fa-newspaper"></i>
+              <span>Cerpen</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html#portfolio" class="mobile-nav-link">
+              <i class="fas fa-briefcase"></i>
+              <span>Portfolio</span>
+            </a>
+          </li>
+        </ul>
+        <div class="mobile-actions">
+          <a href="#contact" class="btn-mobile-cta">Hire Me</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cerpen Header -->
+    <header class="cerpen-header">
+      <div class="container">
+        <span class="cerpen-category-badge"> <i class="fas fa-theater-masks" style="margin-right: 8px"></i> Drama Sosial</span>
+        <h1 class="cerpen-header-title">Mah, Pah, kenapa aku terlahir Miskin?</h1>
+        <div class="cerpen-header-meta">
+          <span><i class="far fa-clock"></i> 10 Menit Membaca</span>
+          <span><i class="far fa-calendar-alt"></i> 15 Februari 2026</span>
+        </div>
+        <div class="cerpen-header-author">
+          <img src="img/Muhamad%20Fauzan%20Atarsyah.png" alt="Muhamad Fauzan Atarsyah" onerror="this.src='https://ui-avatars.com/api/?name=Muhamad+Fauzan+Atarsyah&background=4a6cf7&color=fff&size=100'" />
+          <div class="cerpen-header-author-info">
+            <div class="cerpen-header-author-name">Muhamad Fauzan Atarsyah</div>
+            <div class="cerpen-header-author-date">Penulis</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="cerpen-main">
+      <div class="container">
+        <div class="cerpen-layout">
+          <!-- Left Column - Cerpen Content -->
+          <div class="cerpen-content">
+
+            <div class="cerpen-text">
+              <h3># Satu, dan terakhir</h3>
+              <p>“Pah, aku gak punya buku tulis, kapan papah membelikan untukku?”</p>
+
+              <p>
+                “Tanya mamah mu sana! Papah mau pergi” jawab papah dengan nada kesal, tanpa menengok ke arahku. Aku hanya bisa menunduk, menahan air mata yang hampir tumpah.
+              </p>
+
+              <p>“Mah, aku gak punya buku tulis, kapan mamah membelikan untukku?”</p>
+
+              <p>“Nanti ya nak… Tunggu mamah punya uang dulu"</p>
+
+              <p>Di sekolah aku selalu melihat teman sebaya ku punya banyak sekali buku tulis, mereka punya satu buku tulis pelajaran matematika, bahasa indonesia, bahasa inggris, dan pkn, sedangkan aku hanya punya satu buku tulis bekas yang ku dapat dari pemberian tetangga, semua pelajaran ku tulis hanya di satu buku saja.</p>
+
+              <p>
+                Terkadang aku sangat ingin sekali merasakan kehidupan enak mereka, membayangkan enak nya makan bersama di mall sambil bercerita keluh kesah ku di sekolah, enak nya dingin ac dan aroma mobil keluarga, dan punya rumah besar bagus tanpa atap yang bocor.
+              </p>
+
+              <p>Saat sebelum aku menutupkan mata untuk mempersiapkan hari esok, aku selalu berdoa ketika bangun dan membuka mata, aku terbangun di kasur empuk dan dingin ac 24 derajat, lalu aku pergi ke tempat makan dan Mamah mempersiapkan sarapan pagi dengan roti dan selai kacang, Papah yang sudah siap pergi meeting dengan jas, dasi merah, dan arloji nya, dan aku mandi dengan shower dan sabun wangi lavender, berangkat sekolah di antar supir menggunakan mobil, pulang sekolah mampir ke mall makan-makanan mahal dan beli barang yang ku mau tanpa perlu lihat harga</p>
+
+              <p>Tapi saat terbangun dari tidur, kehidupan ku tetap sama saja, kasur penuh jamur dan lantai basah karna bocor, sarapan nasi dan tempe kadang ikan asin dengan sambal. Papah yang terbangun dengan badan yang sedikit celeng karna sisa pesta mabuk semalam dengan teman sebaya. Ketika aku, Mamah dan Papah sedang berkumpul, aku selalu ingin bertanya “Mah, Pah, kenapa aku terlahir Miskin?” tapi aku harus memendam pertanyaan itu agar tidak menyakiti perasaan mereka.</p>
+            </div>
+
+            <div class="cerpen-footer-note">
+              <i class="fas fa-feather-alt" style="color: #4a6cf7; margin-right: 10px"></i>
+              Ditulis dengan tinta kehidupan, 2026
+            </div>
+
+            <!-- Actions -->
+            <div class="cerpen-actions">
+              <div class="action-buttons">
+                <button class="action-btn" id="likeBtn">
+                  <i class="far fa-heart"></i>
+                </button>
+                <button class="action-btn" id="bookmarkBtn">
+                  <i class="far fa-bookmark"></i>
+                </button>
+              </div>
+              <div class="share-buttons">
+                <a href="#" class="share-btn"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="share-btn"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="share-btn"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="share-btn"><i class="fas fa-link"></i></a>
+              </div>
+            </div>
+
+            <!-- CERITA LAINNYA SECTION - REPLACEMENT FOR COMMENTS -->
+            <div class="cerita-lainnya-section">
+              <h4 class="cerita-lainnya-title">
+                <i class="fas fa-book-reader" style="color: #4a6cf7"></i>
+                Cerita Lainnya dari Penulis
+              </h4>
+
+              <div class="cerita-lainnya-grid">
+                <div class="cerita-card">
+                  <div class="cerita-card-img" style="background: linear-gradient(135deg, #ff9a9e, #fad0c4)">
+                    <i class="fas fa-cloud-rain"></i>
+                  </div>
+                  <div class="cerita-card-content">
+                    <div class="cerita-card-category">COOMING SOON</div>
+                    <h5 class="cerita-card-title">Cooming Soon</h5>
+                    <div class="cerita-card-meta">
+                      <span><i class="far fa-clock"></i> Cooming Soon</span>
+                      <span><i class="far fa-heart"></i> Cooming Soon</span>
+                    </div>
+                    <p style="font-size: 13px; color: #777; margin-bottom: 15px">Cooming Soon</p>
+                    <a href="#" class="cerita-card-link">Baca Cerpen <i class="fas fa-arrow-right"></i></a>
+                  </div>
+                </div>
+
+                <div class="cerita-card">
+                  <div class="cerita-card-img" style="background: linear-gradient(135deg, #a8edea, #fed6e3)">
+                    <i class="fas fa-mug-hot"></i>
+                  </div>
+                  <div class="cerita-card-content">
+                    <div class="cerita-card-category">Cooming Soon</div>
+                    <h5 class="cerita-card-title">Cooming Soon</h5>
+                    <div class="cerita-card-meta">
+                      <span><i class="far fa-clock"></i> Cooming Soon</span>
+                      <span><i class="far fa-heart"></i> Cooming Soon</span>
+                    </div>
+                    <p style="font-size: 13px; color: #777; margin-bottom: 15px">Cooming Soon</p>
+                    <a href="#" class="cerita-card-link">Baca Cerpen <i class="fas fa-arrow-right"></i></a>
+                  </div>
+                </div>
+
+                <div class="cerita-card">
+                  <div class="cerita-card-img" style="background: linear-gradient(135deg, #d4fc79, #96e6a1)">
+                    <i class="fas fa-train"></i>
+                  </div>
+                  <div class="cerita-card-content">
+                    <div class="cerita-card-category">COOMING SOON</div>
+                    <h5 class="cerita-card-title">Cooming Soon</h5>
+                    <div class="cerita-card-meta">
+                      <span><i class="far fa-clock"></i> Cooming Soon</span>
+                      <span><i class="far fa-heart"></i> Cooming Soon</span>
+                    </div>
+                    <p style="font-size: 13px; color: #777; margin-bottom: 15px">Cooming Soon</p>
+                    <a href="#" class="cerita-card-link">Baca Cerpen <i class="fas fa-arrow-right"></i></a>
+                  </div>
+                </div>
+              </div>
+
+              <div style="text-align: center; margin-top: 30px">
+                <a href="halamancerpen.html" class="btn-primary" style="display: inline-block; text-decoration: none">Lihat Semua Cerpen <i class="fas fa-arrow-right" style="margin-left: 8px"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column - Sidebar -->
+          <div class="cerpen-sidebar">
+            <!-- Author Card -->
+            <div class="sidebar-widget author-card">
+              <img src="img/Muhamad%20Fauzan%20Atarsyah.png" alt="Muhamad Fauzan Atarsyah" onerror="this.src='https://ui-avatars.com/api/?name=Muhamad+Fauzan+Atarsyah&background=4a6cf7&color=fff&size=200'" />
+              <h5>Muhamad Fauzan Atarsyah</h5>
+              <p>IT Support & Penulis</p>
+              <p style="font-size: 13px; margin-bottom: 15px">"Menulis bukan sekadar merangkai kata, tapi merekam denyut nadi kehidupan."</p>
+              <div class="author-social">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+            </div>
+
+            <!-- Cerpen Info -->
+            <div class="sidebar-widget">
+              <h4><i class="fas fa-info-circle"></i> Informasi Cerpen</h4>
+              <ul class="cerpen-info-list">
+                <li><i class="fas fa-tag"></i> Kategori: Dark Romance</li>
+                <li><i class="fas fa-calendar"></i> Terbit: 15 Februari 2026</li>
+                <li><i class="fas fa-edit"></i> Revisi: 20 Februari 2026</li>
+                <li><i class="fas fa-file-word"></i> Jumlah Kata: 0</li>s
+              </ul>
+            </div>
+
+            <!-- Daftar Isi -->
+            <div class="sidebar-widget">
+              <h4><i class="fas fa-list-ul"></i> Daftar Isi</h4>
+              <ul class="toc-list">
+                <li><a href="#"># Satu, dan terakhir</a></li>
+              </ul>
+            </div>
+
+            <!-- Tags -->
+            <div class="sidebar-widget">
+              <h4><i class="fas fa-hashtag"></i> Tags</h4>
+              <div class="cerpen-tags">
+                <span class="tag">#DarkRomance</span>
+                <span class="tag">#Senja</span>
+                <span class="tag">#Stasiun</span>
+                <span class="tag">#Cinta</span>
+                <span class="tag">#Kehilangan</span>
+                <span class="tag">#Jakarta</span>
+                <span class="tag">#ITSup</span>
+                <span class="tag">#MahasiswaSeni</span>
+                <span class="tag">#PameranLukis</span>
+                <span class="tag">#CerpenIndonesia</span>
+              </div>
+            </div>
+
+            <!-- Cerpen Terkait -->
+            <div class="sidebar-widget">
+              <h4><i class="fas fa-book-open"></i> Cerpen Terkait</h4>
+              <div class="related-stories">
+                <a href="#" class="related-item">
+                  <img src="img/cm.png" alt="Hujan di Bulan Juni" onerror="this.src='https://via.placeholder.com/70x70/4a6cf7/ffffff?text=Hujan'" />
+                  <div class="related-info">
+                    <h5>Cooming Soon</h5>
+                    <span>Cooming Soon</span>
+                  </div>
+                </a>
+                <a href="#" class="related-item">
+                  <img src="img/cm.png" alt="Kopi Pahit di Kafe Tua" onerror="this.src='https://via.placeholder.com/70x70/8e44ad/ffffff?text=Kopi'" />
+                  <div class="related-info">
+                    <h5>Cooming Soon</h5>
+                    <span>Cooming Soon</span>
+                  </div>
+                </a>
+                <a href="#" class="related-item">
+                  <img src="img/cm.png" alt="Kereta Terakhir" onerror="this.src='https://via.placeholder.com/70x70/e67e22/ffffff?text=Kereta'" />
+                  <div class="related-info">
+                    <h5>Cooming Soon</h5>
+                    <span>Cooming Soon</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="professional-footer">
+      <div class="footer-container">
+        <div class="footer-bottom">
+          <div class="copyright">
+            <p>&copy; <span id="currentYear">2026</span> Muhamad Fauzan Atarsyah. All rights reserved.</p>
+          </div>
+          <div class="footer-legal">
+            <a href="#" class="legal-link">Privacy Policy</a>
+            <span class="separator">•</span>
+            <a href="#" class="legal-link">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+      <button id="backToTop" class="back-to-top" aria-label="Scroll to top">
+        <i class="fas fa-chevron-up"></i>
+      </button>
+      <div class="mobile-fab">
+        <a href="index.html#contact" class="btn btn-primary">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Mobile Menu
+        const mobileToggle = document.getElementById("navMobileToggle");
+        const mobileOverlay = document.getElementById("mobileOverlay");
+        const mobileClose = document.getElementById("mobileClose");
+        const menuIcon = document.querySelector(".menu-icon");
+
+        if (mobileToggle && mobileOverlay) {
+          mobileToggle.addEventListener("click", function () {
+            mobileOverlay.classList.add("active");
+            menuIcon.classList.add("active");
+            document.body.style.overflow = "hidden";
+          });
+
+          mobileClose.addEventListener("click", function () {
+            mobileOverlay.classList.remove("active");
+            menuIcon.classList.remove("active");
+            document.body.style.overflow = "";
+          });
+
+          document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+            link.addEventListener("click", function () {
+              mobileOverlay.classList.remove("active");
+              menuIcon.classList.remove("active");
+              document.body.style.overflow = "";
+            });
+          });
+        }
+
+        // Back to Top
+        const backToTopBtn = document.getElementById("backToTop");
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 300) {
+            backToTopBtn.classList.add("active");
+          } else {
+            backToTopBtn.classList.remove("active");
+          }
+        });
+
+        backToTopBtn.addEventListener("click", function () {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        // Like Button
+        const likeBtn = document.getElementById("likeBtn");
+        let isLiked = false;
+        likeBtn.addEventListener("click", function () {
+          const icon = this.querySelector("i");
+          if (isLiked) {
+            icon.classList.remove("fas");
+            icon.classList.add("far");
+            icon.style.color = "";
+          } else {
+            icon.classList.remove("far");
+            icon.classList.add("fas");
+            icon.style.color = "#ff6b6b";
+          }
+          isLiked = !isLiked;
+        });
+
+        // Bookmark Button
+        const bookmarkBtn = document.getElementById("bookmarkBtn");
+        let isBookmarked = false;
+        bookmarkBtn.addEventListener("click", function () {
+          const icon = this.querySelector("i");
+          if (isBookmarked) {
+            icon.classList.remove("fas");
+            icon.classList.add("far");
+          } else {
+            icon.classList.remove("far");
+            icon.classList.add("fas");
+          }
+          isBookmarked = !isBookmarked;
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.querySelector(".split-navbar");
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+          } else {
+            navbar.classList.remove("scrolled");
+          }
+        });
+
+        // Current Year
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+        // Smooth scroll for table of contents
+        document.querySelectorAll(".toc-list a").forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetText = this.textContent.trim().replace("#", "").toLowerCase();
+            const heading = Array.from(document.querySelectorAll(".cerpen-text h3")).find((h) => h.textContent.toLowerCase().includes(targetText));
+            if (heading) {
+              window.scrollTo({
+                top: heading.offsetTop - 100,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+
+        // Newsletter subscription mock
+        const subscribeBtn = document.querySelector(".sidebar-widget .btn-primary");
+        if (subscribeBtn) {
+          subscribeBtn.addEventListener("click", function () {
+            const emailInput = document.querySelector('.sidebar-widget input[type="email"]');
+            if (emailInput && emailInput.value.trim() !== "") {
+              alert(`Terima kasih! ${emailInput.value} telah berlangganan.`);
+              emailInput.value = "";
+            } else {
+              alert("Silakan masukkan email Anda.");
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
