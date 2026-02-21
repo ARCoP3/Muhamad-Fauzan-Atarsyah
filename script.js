@@ -638,6 +638,8 @@ if (timelineItems.length > 0) {
       this.style.transform = "translateX(0)";
     });
 
+    // HAPUS ATAU KOMENTARI BAGIAN INI:
+    /*
     if (viewDetailBtn) {
       viewDetailBtn.addEventListener("click", function (e) {
         e.preventDefault();
@@ -645,5 +647,8 @@ if (timelineItems.length > 0) {
         // Bisa diganti dengan modal atau redirect ke halaman detail
       });
     }
+    */
   });
 }
+
+

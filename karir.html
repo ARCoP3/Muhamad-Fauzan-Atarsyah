@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detail Pengalaman | Muhamad Fauzan Atarsyah</title>
+    <!-- External CSS & Fonts (Sama seperti halaman utama) -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="animations.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+    <style>
+      /* CSS Khusus untuk halaman detail karir */
+      .career-detail-page {
+        padding-top: 140px; /* Memberi ruang untuk navbar fixed */
+        padding-bottom: 60px;
+        background-color: #f9fafc;
+        min-height: 100vh;
+      }
+
+      .career-detail-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: #ffffff;
+        border-radius: 24px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        overflow: hidden;
+      }
+
+      /* Header dengan background gradient */
+      .career-detail-header {
+        background: linear-gradient(135deg, #4a6cf7 0%, #2a3f9e 100%);
+        padding: 40px;
+        color: white;
+        position: relative;
+      }
+
+      .career-header-content {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+
+      .career-header-left {
+        flex-shrink: 0;
+      }
+
+      .company-logo-large {
+        width: 120px;
+        height: 120px;
+        background: white;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .company-logo-large img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .career-header-right {
+        flex-grow: 1;
+      }
+
+      .career-header-right h1 {
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: white;
+      }
+
+      .career-header-right .company-name {
+        font-size: 20px;
+        opacity: 0.9;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .career-meta-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .career-meta-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.15);
+        padding: 8px 18px;
+        border-radius: 40px;
+        font-size: 15px;
+        backdrop-filter: blur(5px);
+      }
+
+      .career-meta-item i {
+        font-size: 14px;
+      }
+
+      /* Badge status magang */
+      .intern-badge {
+        background: #ffd700;
+        color: #333;
+        padding: 6px 20px;
+        border-radius: 40px;
+        font-weight: 700;
+        font-size: 16px;
+        letter-spacing: 1px;
+        display: inline-block;
+        margin-top: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Body content */
+      .career-detail-body {
+        padding: 50px;
+      }
+
+      /* Section styling */
+      .career-section {
+        margin-bottom: 45px;
+      }
+
+      .career-section-title {
+        font-size: 22px;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 3px solid #4a6cf7;
+        display: inline-block;
+      }
+
+      .career-section-title i {
+        color: #4a6cf7;
+        margin-right: 10px;
+      }
+
+      /* Overview text */
+      .overview-text {
+        font-size: 16px;
+        line-height: 1.8;
+        color: #475569;
+        background: #f8fafc;
+        padding: 25px;
+        border-radius: 16px;
+        border-left: 5px solid #4a6cf7;
+        margin-bottom: 30px;
+      }
+
+      /* Grid untuk achievements & responsibilities */
+      .achievements-grid,
+      .responsibilities-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+      }
+
+      .achievement-card,
+      .responsibility-card {
+        background: #f8fafc;
+        padding: 25px;
+        border-radius: 16px;
+        transition: all 0.3s ease;
+        border: 1px solid #e2e8f0;
+      }
+
+      .achievement-card:hover,
+      .responsibility-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(74, 108, 247, 0.1);
+        border-color: #4a6cf7;
+      }
+
+      .achievement-icon,
+      .responsibility-icon {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #4a6cf7, #6a8cff);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 22px;
+        margin-bottom: 15px;
+      }
+
+      .achievement-card h4,
+      .responsibility-card h4 {
+        font-size: 18px;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 10px;
+      }
+
+      .achievement-card p,
+      .responsibility-card p {
+        color: #64748b;
+        line-height: 1.6;
+        font-size: 15px;
+      }
+
+      /* Skills yang dipelajari */
+      .skills-learned {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 15px;
+      }
+
+      .skill-learned-item {
+        background: #eef2ff;
+        color: #4a6cf7;
+        padding: 10px 20px;
+        border-radius: 40px;
+        font-weight: 600;
+        font-size: 14px;
+        border: 1px solid #d9e2ff;
+        transition: all 0.3s ease;
+      }
+
+      .skill-learned-item:hover {
+        background: #4a6cf7;
+        color: white;
+        transform: scale(1.05);
+      }
+
+      /* Testimoni / Review */
+      .testimonial-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 16px;
+        margin-top: 30px;
+      }
+
+      .testimonial-text {
+        font-size: 18px;
+        line-height: 1.7;
+        font-style: italic;
+        margin-bottom: 20px;
+      }
+
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .author-avatar {
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        font-weight: 700;
+      }
+
+      .author-info h5 {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 5px;
+      }
+
+      .author-info p {
+        font-size: 14px;
+        opacity: 0.9;
+      }
+
+      /* Tombol navigasi */
+      .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+        padding-top: 30px;
+        border-top: 1px solid #e2e8f0;
+      }
+
+      .nav-btn {
+        padding: 12px 28px;
+        border-radius: 40px;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      .nav-btn-primary {
+        background: linear-gradient(45deg, #4a6cf7, #6a8cff);
+        color: white;
+      }
+
+      .nav-btn-primary:hover {
+        transform: translateX(5px);
+        box-shadow: 0 10px 25px rgba(74, 108, 247, 0.3);
+      }
+
+      .nav-btn-secondary {
+        background: #f1f5f9;
+        color: #475569;
+      }
+
+      .nav-btn-secondary:hover {
+        background: #e2e8f0;
+        transform: translateX(-5px);
+      }
+
+      /* Responsive */
+      @media screen and (max-width: 768px) {
+        .career-detail-page {
+          padding-top: 100px;
+          padding-left: 15px;
+          padding-right: 15px;
+        }
+
+        .career-detail-header {
+          padding: 30px 20px;
+        }
+
+        .career-header-content {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .career-header-right h1 {
+          font-size: 28px;
+        }
+
+        .career-meta-info {
+          justify-content: center;
+        }
+
+        .career-detail-body {
+          padding: 30px 20px;
+        }
+
+        .achievements-grid,
+        .responsibilities-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .navigation-buttons {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .nav-btn {
+          justify-content: center;
+        }
+        /* Tambahkan ini di bagian CSS khusus untuk halaman detail karir */
+        @media screen and (max-width: 768px) {
+          .career-detail-page {
+            padding-top: 80px !important;
+            padding-left: 12px !important;
+            padding-right: 12px !important;
+          }
+
+          .career-detail-container {
+            border-radius: 16px !important;
+          }
+
+          .career-detail-header {
+            padding: 25px 20px !important;
+          }
+
+          .career-header-content {
+            flex-direction: column !important;
+            text-align: center !important;
+            gap: 15px !important;
+          }
+
+          .company-logo-large {
+            width: 100px !important;
+            height: 100px !important;
+            margin: 0 auto !important;
+            padding: 15px !important;
+          }
+
+          .career-header-right h1 {
+            font-size: 24px !important;
+            margin-bottom: 8px !important;
+          }
+
+          .career-header-right .company-name {
+            font-size: 16px !important;
+            justify-content: center !important;
+            margin-bottom: 12px !important;
+          }
+
+          .career-meta-info {
+            flex-direction: column !important;
+            gap: 8px !important;
+            align-items: center !important;
+          }
+
+          .career-meta-item {
+            width: fit-content !important;
+            padding: 6px 16px !important;
+            font-size: 13px !important;
+          }
+
+          .career-detail-body {
+            padding: 25px 18px !important;
+          }
+
+          .career-section {
+            margin-bottom: 30px !important;
+          }
+
+          .career-section-title {
+            font-size: 18px !important;
+            margin-bottom: 15px !important;
+            padding-bottom: 6px !important;
+            border-bottom-width: 2px !important;
+          }
+
+          .overview-text {
+            padding: 18px !important;
+            font-size: 14px !important;
+            line-height: 1.7 !important;
+            margin-bottom: 20px !important;
+          }
+
+          .achievements-grid,
+          .responsibilities-grid {
+            grid-template-columns: 1fr !important;
+            gap: 12px !important;
+          }
+
+          .achievement-card,
+          .responsibility-card {
+            padding: 18px !important;
+          }
+
+          .achievement-icon,
+          .responsibility-icon {
+            width: 40px !important;
+            height: 40px !important;
+            font-size: 18px !important;
+            margin-bottom: 12px !important;
+          }
+
+          .achievement-card h4,
+          .responsibility-card h4 {
+            font-size: 16px !important;
+            margin-bottom: 6px !important;
+          }
+
+          .achievement-card p,
+          .responsibility-card p {
+            font-size: 13px !important;
+            line-height: 1.5 !important;
+          }
+
+          .skills-learned {
+            gap: 8px !important;
+            margin-top: 12px !important;
+          }
+
+          .skill-learned-item {
+            padding: 6px 14px !important;
+            font-size: 12px !important;
+          }
+
+          .testimonial-card {
+            padding: 20px !important;
+            margin-top: 20px !important;
+          }
+
+          .testimonial-text {
+            font-size: 14px !important;
+            line-height: 1.6 !important;
+            margin-bottom: 15px !important;
+          }
+
+          .author-avatar {
+            width: 40px !important;
+            height: 40px !important;
+            font-size: 16px !important;
+          }
+
+          .author-info h5 {
+            font-size: 14px !important;
+          }
+
+          .author-info p {
+            font-size: 12px !important;
+          }
+
+          div[style*="margin-top: 30px; background: #fff;"] {
+            margin-top: 20px !important;
+            padding: 15px !important;
+          }
+
+          div[style*="margin-top: 30px; background: #fff;"] p {
+            font-size: 13px !important;
+          }
+
+          .navigation-buttons {
+            flex-direction: column !important;
+            gap: 10px !important;
+            margin-top: 30px !important;
+            padding-top: 20px !important;
+          }
+
+          .nav-btn {
+            width: 100% !important;
+            justify-content: center !important;
+            padding: 10px 20px !important;
+            font-size: 14px !important;
+          }
+
+          /* Perbaikan untuk spacing antar elemen */
+          .career-section:last-child {
+            margin-bottom: 0 !important;
+          }
+
+          /* Perbaikan untuk icon di skill items */
+          .skill-learned-item i {
+            margin-right: 4px !important;
+            font-size: 11px !important;
+          }
+
+          /* Perbaikan untuk border dan shadow */
+          .achievement-card:hover,
+          .responsibility-card:hover {
+            transform: translateY(-3px) !important;
+          }
+
+          /* Perbaikan untuk quote icon */
+          .testimonial-text i.fa-quote-left {
+            font-size: 14px !important;
+          }
+        }
+
+        /* Perbaikan tambahan untuk layar sangat kecil (320px - 375px) */
+        @media screen and (max-width: 375px) {
+          .career-detail-page {
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+          }
+
+          .career-detail-header {
+            padding: 20px 15px !important;
+          }
+
+          .career-header-right h1 {
+            font-size: 22px !important;
+          }
+
+          .company-logo-large {
+            width: 80px !important;
+            height: 80px !important;
+            padding: 12px !important;
+          }
+
+          .career-detail-body {
+            padding: 20px 12px !important;
+          }
+
+          .achievement-card,
+          .responsibility-card {
+            padding: 15px !important;
+          }
+
+          .skill-learned-item {
+            padding: 5px 12px !important;
+            font-size: 11px !important;
+          }
+
+          .testimonial-card {
+            padding: 15px !important;
+          }
+
+          .nav-btn {
+            padding: 8px 16px !important;
+            font-size: 13px !important;
+          }
+        }
+
+        /* Perbaikan untuk landscape mode */
+        @media screen and (max-width: 768px) and (orientation: landscape) {
+          .career-detail-page {
+            padding-top: 90px !important;
+          }
+
+          .career-header-content {
+            flex-direction: row !important;
+            text-align: left !important;
+          }
+
+          .company-logo-large {
+            margin: 0 !important;
+          }
+
+          .career-header-right .company-name {
+            justify-content: flex-start !important;
+          }
+
+          .career-meta-info {
+            flex-direction: row !important;
+            justify-content: flex-start !important;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar (sama persis dengan halaman utama) -->
+    <nav class="split-navbar">
+      <div class="nav-left">
+        <div class="logo">
+          <a href="index.html">
+            <span class="logo-main">Blog</span>
+            <span class="logo-sub">Atr</span>
+          </a>
+        </div>
+        <div class="nav-divider"></div>
+        <ul class="nav-menu">
+          <li>
+            <a href="index.html#home" class="nav-link"><i class="fas fa-home"></i><span>Beranda</span></a>
+          </li>
+          <li>
+            <a href="index.html#about" class="nav-link"><i class="fas fa-user-tie"></i><span>Profil</span></a>
+          </li>
+          <li>
+            <a href="halamanartikel.html" class="nav-link"><i class="fas fa-newspaper"></i><span>Artikel</span></a>
+          </li>
+          <li>
+            <a href="halamanpuisi.html" class="nav-link"><i class="fas fa-feather"></i><span>Puisi</span></a>
+          </li>
+          <li>
+            <a href="halamancerpen.html" class="nav-link"><i class="fas fa-book-open"></i><span>Cerpen</span></a>
+          </li>
+          <li>
+            <a href="index.html#portfolio" class="nav-link"><i class="fas fa-briefcase"></i><span>Portfolio</span></a>
+          </li>
+        </ul>
+      </div>
+      <div class="nav-actions">
+        <a href="index.html#contact" class="btn-nav-cta">Hire Me</a>
+      </div>
+      <div class="nav-mobile-toggle" id="navMobileToggle">
+        <div class="menu-icon"><span></span><span></span><span></span></div>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay">
+      <div class="mobile-menu">
+        <div class="mobile-header">
+          <div class="mobile-logo">Blog Atr</div>
+          <button class="mobile-close" id="mobileClose"><i class="fas fa-times"></i></button>
+        </div>
+        <ul class="mobile-nav">
+          <li>
+            <a href="index.html#home" class="mobile-nav-link"><i class="fas fa-home"></i><span>Beranda</span></a>
+          </li>
+          <li>
+            <a href="index.html#about" class="mobile-nav-link"><i class="fas fa-user-tie"></i><span>Profil</span></a>
+          </li>
+          <li>
+            <a href="halamanartikel.html" class="mobile-nav-link"><i class="fas fa-newspaper"></i><span>Artikel</span></a>
+          </li>
+          <li>
+            <a href="halamanpuisi.html" class="mobile-nav-link"><i class="fas fa-feather"></i><span>Puisi</span></a>
+          </li>
+          <li>
+            <a href="halamancerpen.html" class="mobile-nav-link"><i class="fas fa-book-open"></i><span>Cerpen</span></a>
+          </li>
+          <li>
+            <a href="index.html#portfolio" class="mobile-nav-link"><i class="fas fa-briefcase"></i><span>Portfolio</span></a>
+          </li>
+        </ul>
+        <div class="mobile-actions">
+          <a href="index.html#contact" class="btn-mobile-cta">Hire Me</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Halaman Detail Karir -->
+    <main class="career-detail-page">
+      <div class="career-detail-container">
+        <!-- Header dengan company info -->
+        <div class="career-detail-header">
+          <div class="career-header-content">
+            <div class="career-header-left">
+              <div class="company-logo-large">
+                <img src="img/ui.png" alt="Logo Universitas Indonesia" />
+              </div>
+            </div>
+            <div class="career-header-right">
+              <h1>IT Support Internship</h1>
+              <div class="company-name">
+                <i class="fas fa-building"></i>
+                <span>Fakultas Psikologi - Universitas Indonesia</span>
+              </div>
+              <div class="career-meta-info">
+                <span class="career-meta-item"><i class="far fa-calendar-alt"></i> Okt 2025 - Mrt 2026</span>
+                <span class="career-meta-item"><i class="far fa-clock"></i> 6 Bulan (Full-time)</span>
+                <span class="career-meta-item"><i class="fas fa-map-marker-alt"></i> Depok, Jawa Barat</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Body Content -->
+        <div class="career-detail-body">
+          <!-- Ringkasan Singkat -->
+          <div class="career-section">
+            <h2 class="career-section-title"><i class="fas fa-bullseye"></i> Ringkasan Pengalaman</h2>
+            <div class="overview-text">
+              <p>
+                Selama 6 bulan menjalani magang di Fakultas Psikologi UI, saya bertanggung jawab dalam memastikan seluruh infrastruktur teknologi berjalan lancar untuk mendukung aktivitas akademik dan administratif. Pengalaman ini
+                mengajarkan saya bagaimana menjadi <strong>problem solver</strong> yang sigap, berkomunikasi dengan berbagai kalangan (dosen, staf, mahasiswa), dan membangun fondasi IT yang stabil untuk lingkungan kampus.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pencapaian Utama (Bikin magang 6 bulan terlihat impactful) -->
+          <div class="career-section">
+            <h2 class="career-section-title"><i class="fas fa-trophy"></i> Pencapaian Utama</h2>
+            <div class="achievements-grid">
+              <div class="achievement-card">
+                <div class="achievement-icon"><i class="fas fa-clock"></i></div>
+                <h4>Respon Cepat</h4>
+                <p>Berhasil menangani rata-rata 20+ tiket support per minggu dengan tingkat resolusi 95% dalam waktu 24 jam, memastikan kegiatan belajar-mengajar tidak terganggu.</p>
+              </div>
+              <div class="achievement-card">
+                <div class="achievement-icon"><i class="fas fa-server"></i></div>
+                <h4>Optimalisasi Lab Komputer</h4>
+                <p>Melakukan upgrade dan perawatan 50 unit komputer di laboratorium, meningkatkan kinerja hingga 30% dan mengurangi keluhan teknis dari mahasiswa.</p>
+              </div>
+              <div class="achievement-card">
+                <div class="achievement-icon"><i class="fas fa-network-wired"></i></div>
+                <h4>Instalasi Jaringan</h4>
+                <p>Membantu tim dalam instalasi ulang dan konfigurasi jaringan di 3 ruangan baru, termasuk pengaturan switch dan access point untuk koneksi yang stabil.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tanggung Jawab Pekerjaan -->
+          <div class="career-section">
+            <h2 class="career-section-title"><i class="fas fa-tasks"></i> Tanggung Jawab</h2>
+            <div class="responsibilities-grid">
+              <div class="responsibility-card">
+                <div class="responsibility-icon"><i class="fas fa-desktop"></i></div>
+                <h4>Troubleshooting Hardware & Software</h4>
+                <p>Mendiagnosis dan memperbaiki masalah pada PC, laptop, printer, dan perangkat lain di lingkungan fakultas.</p>
+              </div>
+              <div class="responsibility-card">
+                <div class="responsibility-icon"><i class="fas fa-headset"></i></div>
+                <h4>Dukungan Teknis Langsung</h4>
+                <p>Memberikan bantuan teknis kepada dosen dan staf, baik secara onsite maupun remote, untuk memastikan kelancaran presentasi dan rapat online.</p>
+              </div>
+              <div class="responsibility-card">
+                <div class="responsibility-icon"><i class="fas fa-arrows-spin"></i></div>
+                <h4>Instalasi Ulang Sistem</h4>
+                <p>Melakukan install ulang OS Windows dan aplikasi pendukung perkantoran, serta memastikan lisensi dan aktivasi berjalan dengan benar.</p>
+              </div>
+              <div class="responsibility-card">
+                <div class="responsibility-icon"><i class="fas fa-clipboard-list"></i></div>
+                <h4>Inventarisasi Aset IT</h4>
+                <p>Membantu pembaruan data inventaris perangkat keras dan lunak untuk keperluan audit dan perencanaan pengadaan.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Keterampilan yang Dipelajari / Ditingkatkan -->
+          <div class="career-section">
+            <h2 class="career-section-title"><i class="fas fa-microchip"></i> Keterampilan yang Dikembangkan</h2>
+            <div class="skills-learned">
+              <span class="skill-learned-item"><i class="fas fa-check-circle"></i> Troubleshooting Hardware</span>
+              <span class="skill-learned-item"><i class="fas fa-check-circle"></i> Instalasi OS (Windows)</span>
+              <span class="skill-learned-item"><i class="fas fa-check-circle"></i> Jaringan Dasar (LAN, TCP/IP)</span>
+              <span class="skill-learned-item"><i class="fas fa-check-circle"></i> Customer Service</span>
+              <span class="skill-learned-item"><i class="fas fa-check-circle"></i> Manajemen Tiket (Helpdesk)</span>
+              <span class="skill-learned-item"><i class="fas fa-check-circle"></i> Microsoft Office 365</span>
+              <span class="skill-learned-item"><i class="fas fa-check-circle"></i> Antivirus & Keamanan Dasar</span>
+              <span class="skill-learned-item"><i class="fas fa-check-circle"></i> Dokumentasi Teknis</span>
+            </div>
+          </div>
+
+          <!-- Testimoni / Review (ini bisa disesuaikan) -->
+          <div class="career-section">
+            <h2 class="career-section-title"><i class="fas fa-comment-dots"></i> Kesan & Pesan</h2>
+            <div class="testimonial-card">
+              <div class="testimonial-text">
+                <i class="fas fa-quote-left" style="opacity: 0.5; margin-right: 8px"></i>
+                Selama magang, Mas Fauzan menunjukkan dedikasi dan kemampuan analisis yang baik. Ia cepat beradaptasi dengan lingkungan baru dan selalu sigap membantu staf serta dosen. Kami menghargai kontribusinya dalam menjaga
+                infrastruktur IT fakultas tetap optimal.
+              </div>
+              <div class="testimonial-author">
+                <div class="author-avatar">SP</div>
+                <div class="author-info">
+                  <h5>Supriyanto, S.Kom</h5>
+                  <p>Koordinator IT, Fakultas Psikologi UI</p>
+                </div>
+              </div>
+            </div>
+            <!-- Refleksi pribadi -->
+            <div style="margin-top: 30px; background: #fff; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0">
+              <p style="font-style: italic; color: #475569">
+                <i class="fas fa-lightbulb" style="color: #4a6cf7; margin-right: 8px"></i> "Magang di UI mengajarkan saya bahwa IT Support bukan hanya tentang memperbaiki komputer, tapi tentang memastikan orang lain bisa bekerja tanpa
+                hambatan. Pengalaman ini menjadi fondasi karir saya di dunia IT."
+              </p>
+              <p style="text-align: right; font-weight: 600; color: #1e293b">— Muhamad Fauzan Atarsyah</p>
+            </div>
+          </div>
+
+          <!-- Tombol Navigasi -->
+          <div class="navigation-buttons">
+            <a href="index.html#about" class="nav-btn nav-btn-secondary"> <i class="fas fa-arrow-left"></i> Kembali ke Profil </a>
+            <a href="index.html#contact" class="nav-btn nav-btn-primary"> Diskusikan Proyek Serupa <i class="fas fa-arrow-right"></i> </a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer (salin dari index.html) -->
+    <footer class="professional-footer">
+      <div class="footer-container">
+        <div class="footer-bottom">
+          <div class="copyright">
+            <p>&copy; <span id="currentYear">2025</span> Muhamad Fauzan Atarsyah. All rights reserved.</p>
+          </div>
+          <div class="footer-legal">
+            <a href="#" class="legal-link">Privacy Policy</a>
+            <span class="separator">•</span>
+            <a href="#" class="legal-link">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+      <button id="backToTop" class="back-to-top" aria-label="Scroll to top">
+        <i class="fas fa-chevron-up"></i>
+      </button>
+      <div class="mobile-fab">
+        <a href="#contact" class="btn btn-primary">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+    </footer>
+
+    <!-- Sertakan script.js yang sama -->
+    <script src="script.js"></script>
+    <script>
+      // JavaScript untuk Blog Pribadi - Versi Stabil
+
+      // DOM Ready
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("Website blog pribadi dimuat!");
+
+        // ========== MOBILE NAVIGATION ==========
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector(".nav-menu");
+
+        if (hamburger && navMenu) {
+          hamburger.addEventListener("click", function () {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
+          });
+
+          // Tutup menu mobile saat klik link
+          document.querySelectorAll(".nav-link").forEach((link) => {
+            link.addEventListener("click", function () {
+              hamburger.classList.remove("active");
+              navMenu.classList.remove("active");
+            });
+          });
+        }
+
+        // ========== NAVBAR SCROLL EFFECT ==========
+        const navbar = document.querySelector(".navbar");
+
+        function handleScroll() {
+          // Efek navbar saat scroll
+          if (navbar && window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+          } else if (navbar) {
+            navbar.classList.remove("scrolled");
+          }
+
+          // Back to top button
+          const backToTopBtn = document.getElementById("backToTop");
+          if (backToTopBtn) {
+            if (window.scrollY > 300) {
+              backToTopBtn.classList.add("active");
+            } else {
+              backToTopBtn.classList.remove("active");
+            }
+          }
+
+          // Update active nav link
+          updateActiveNavLink();
+        }
+
+        window.addEventListener("scroll", handleScroll);
+
+        // ========== BACK TO TOP BUTTON ==========
+        const backToTopBtn = document.getElementById("backToTop");
+        if (backToTopBtn) {
+          backToTopBtn.addEventListener("click", function () {
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
+          });
+        }
+
+        // ========== CONTACT FORM ==========
+        const contactForm = document.getElementById("contactForm");
+        if (contactForm) {
+          contactForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // Ambil nilai form
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+
+            if (name && email) {
+              // Tampilkan pesan sukses sederhana
+              alert(`Terima kasih ${name}! Pesan Anda berhasil dikirim.`);
+              contactForm.reset();
+            } else {
+              alert("Harap isi nama dan email!");
+            }
+          });
+        }
+
+        // ========== ANIMATED COUNTER ==========
+        function animateCounter(element, target, duration = 2000) {
+          let current = 0;
+          const increment = target / (duration / 16);
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              element.textContent = target + "+";
+              clearInterval(timer);
+            } else {
+              element.textContent = Math.floor(current) + "+";
+            }
+          }, 16);
+        }
+
+        // ========== ANIMASI SAAT SCROLL ==========
+        function isInViewport(element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top >= 0 && rect.left >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && rect.right <= (window.innerWidth || document.documentElement.clientWidth);
+        }
+
+        function handleScrollAnimations() {
+          // Animate stats
+          const statNumbers = document.querySelectorAll(".stat-number");
+          statNumbers.forEach((stat) => {
+            if (isInViewport(stat) && !stat.classList.contains("animated")) {
+              stat.classList.add("animated");
+              const target = parseInt(stat.getAttribute("data-count") || 0);
+              animateCounter(stat, target);
+            }
+          });
+
+          // Animate cards
+          const cards = document.querySelectorAll(".blog-card, .portfolio-item");
+          cards.forEach((card, index) => {
+            if (isInViewport(card) && !card.classList.contains("animated")) {
+              card.classList.add("animated");
+              card.style.animationDelay = `${index * 0.1}s`;
+            }
+          });
+        }
+
+        // Panggil saat scroll
+        window.addEventListener("scroll", handleScrollAnimations);
+
+        // Panggil sekali saat load
+        setTimeout(handleScrollAnimations, 500);
+
+        // ========== SMOOTH SCROLL ==========
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            const href = this.getAttribute("href");
+
+            // Skip jika href adalah "#" saja
+            if (href === "#" || href === "#!") return;
+
+            const targetElement = document.querySelector(href);
+            if (targetElement) {
+              e.preventDefault();
+              window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+
+        // ========== UPDATE ACTIVE NAV LINK ==========
+        function updateActiveNavLink() {
+          const sections = document.querySelectorAll("section[id]");
+          const navLinks = document.querySelectorAll(".nav-link");
+
+          let current = "";
+          const scrollPos = window.scrollY + 100;
+
+          sections.forEach((section) => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+
+            if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+              current = section.getAttribute("id");
+            }
+          });
+
+          navLinks.forEach((link) => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === `#${current}`) {
+              link.classList.add("active");
+            }
+          });
+        }
+
+        // ========== IMAGE LOADING ==========
+        // Tambahkan efek loading untuk gambar
+        const images = document.querySelectorAll("img");
+        images.forEach((img) => {
+          // Set opacity 0 dulu, lalu fade in saat load
+          img.style.opacity = "0";
+          img.style.transition = "opacity 0.5s ease";
+
+          // Jika gambar sudah loaded (cache)
+          if (img.complete) {
+            img.style.opacity = "1";
+          } else {
+            img.addEventListener("load", function () {
+              this.style.opacity = "1";
+            });
+
+            // Fallback jika error
+            img.addEventListener("error", function () {
+              console.log("Gagal memuat gambar:", this.src);
+              this.style.opacity = "1";
+            });
+          }
+        });
+
+        // ========== CARD HOVER EFFECT ==========
+        const cards = document.querySelectorAll(".blog-card, .portfolio-item");
+        cards.forEach((card) => {
+          card.addEventListener("mouseenter", function () {
+            this.style.transform = "translateY(-10px)";
+          });
+
+          card.addEventListener("mouseleave", function () {
+            this.style.transform = "translateY(0)";
+          });
+        });
+
+        // ========== BUTTON HOVER EFFECT ==========
+        const buttons = document.querySelectorAll(".btn");
+        buttons.forEach((button) => {
+          button.addEventListener("mouseenter", function () {
+            this.style.transform = "translateY(-3px)";
+          });
+
+          button.addEventListener("mouseleave", function () {
+            this.style.transform = "translateY(0)";
+          });
+        });
+
+        // ========== HERO TITLE TYPING EFFECT - FIXED VERSION ==========
+        document.addEventListener("DOMContentLoaded", function () {
+          const heroTitle = document.querySelector(".hero-title");
+          const authorName = document.getElementById("authorName");
+
+          // Hanya jalankan jika elemen ditemukan dan belum di-typed
+          if (heroTitle && authorName) {
+            // Cek apakah sudah ada kelas 'typed' untuk mencegah duplikasi
+            if (!heroTitle.classList.contains("typed")) {
+              // Simpan teks asli
+              const originalText = heroTitle.textContent.trim();
+              const quoteText = originalText.replace(/["']/g, ""); // Hapus tanda kutip jika ada
+
+              // Clear text untuk typing effect
+              heroTitle.textContent = "";
+              heroTitle.classList.add("typing-text");
+              heroTitle.style.borderRight = "2px solid #4a6cf7";
+
+              let i = 0;
+              const typingSpeed = 50; // ms per karakter
+
+              // Tambahkan tanda kutip di awal
+              heroTitle.textContent = '"';
+
+              function typeCharacter() {
+                if (i < quoteText.length) {
+                  heroTitle.textContent += quoteText.charAt(i);
+                  i++;
+                  setTimeout(typeCharacter, typingSpeed);
+                } else {
+                  // Selesai typing, tambahkan tanda kutip penutup
+                  setTimeout(() => {
+                    heroTitle.textContent += '"';
+                    heroTitle.classList.remove("typing-text");
+                    heroTitle.classList.add("typed");
+                    heroTitle.style.borderRight = "none";
+
+                    // Tampilkan nama penulis setelah delay
+                    setTimeout(() => {
+                      authorName.style.display = "block";
+                      authorName.style.opacity = "0";
+                      authorName.style.transition = "opacity 1s ease";
+
+                      // Trigger reflow untuk memastikan transisi berjalan
+                      authorName.offsetHeight;
+
+                      authorName.style.opacity = "1";
+                    }, 500);
+                  }, 300); // Delay sebelum menutup tanda kutip
+                }
+              }
+
+              // Mulai typing effect dengan delay kecil
+              setTimeout(() => {
+                typeCharacter();
+              }, 500);
+            } else {
+              // Jika sudah typed, langsung tampilkan author
+              authorName.style.display = "block";
+              authorName.style.opacity = "1";
+            }
+          }
+        });
+
+        // ========== INITIALIZE ==========
+        handleScroll(); // Panggil sekali saat load
+        console.log("JavaScript berhasil diinisialisasi!");
+      });
+
+      // ========== HELPER FUNCTIONS ==========
+      // Fungsi debounce untuk optimasi scroll event
+      function debounce(func, wait = 10, immediate = true) {
+        let timeout;
+        return function () {
+          const context = this,
+            args = arguments;
+          const later = function () {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+          };
+          const callNow = immediate && !timeout;
+          clearTimeout(timeout);
+          timeout = setTimeout(later, wait);
+          if (callNow) func.apply(context, args);
+        };
+      }
+
+      // ========== NEWS INTERACTIONS ==========
+      // Efek hover pada kartu berita
+      const newsCards = document.querySelectorAll(".news-card");
+      newsCards.forEach((card) => {
+        card.addEventListener("mouseenter", function () {
+          this.style.transform = "translateY(-5px)";
+          this.style.boxShadow = "0 15px 30px rgba(0, 0, 0, 0.1)";
+        });
+
+        card.addEventListener("mouseleave", function () {
+          this.style.transform = "translateY(0)";
+          this.style.boxShadow = "0 5px 15px rgba(0, 0, 0, 0.05)";
+        });
+      });
+
+      // Simulasi klik pada berita trending
+      const breakingItems = document.querySelectorAll(".breaking-item");
+      breakingItems.forEach((item) => {
+        item.addEventListener("click", function () {
+          alert("Anda mengklik berita trending: " + this.textContent.replace("•", "").trim());
+        });
+      });
+
+      // Animasi untuk badge kategori
+      const newsBadges = document.querySelectorAll(".news-badge");
+      newsBadges.forEach((badge) => {
+        badge.addEventListener("mouseenter", function () {
+          this.style.transform = "scale(1.1)";
+        });
+
+        badge.addEventListener("mouseleave", function () {
+          this.style.transform = "scale(1)";
+        });
+      });
+
+      // ========== PORTFOLIO FILTER FUNCTIONALITY ==========
+      const filterButtons = document.querySelectorAll(".filter-btn");
+      const portfolioItems = document.querySelectorAll(".portfolio-news-card");
+
+      if (filterButtons.length > 0 && portfolioItems.length > 0) {
+        filterButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            // Remove active class from all buttons
+            filterButtons.forEach((btn) => btn.classList.remove("active"));
+
+            // Add active class to clicked button
+            this.classList.add("active");
+
+            const filterValue = this.getAttribute("data-filter");
+
+            // Filter portfolio items
+            portfolioItems.forEach((item) => {
+              if (filterValue === "all" || item.getAttribute("data-category") === filterValue) {
+                item.style.display = "flex";
+                item.style.animation = "fadeIn 0.5s ease forwards";
+              } else {
+                item.style.display = "none";
+              }
+            });
+          });
+        });
+      }
+
+      // ========== PORTFOLIO HOVER EFFECTS ==========
+      portfolioItems.forEach((item) => {
+        item.addEventListener("mouseenter", function () {
+          const image = this.querySelector(".portfolio-news-image img");
+          if (image) {
+            image.style.transform = "scale(1.1)";
+          }
+
+          // Add glow effect to featured cards
+          if (this.classList.contains("featured")) {
+            this.style.boxShadow = "0 25px 50px rgba(74, 108, 247, 0.2)";
+          }
+        });
+
+        item.addEventListener("mouseleave", function () {
+          const image = this.querySelector(".portfolio-news-image img");
+          if (image) {
+            image.style.transform = "scale(1)";
+          }
+
+          if (this.classList.contains("featured")) {
+            this.style.boxShadow = "0 20px 40px rgba(0, 0, 0, 0.12)";
+          }
+        });
+      });
+
+      // ========== PORTFOLIO STATS ANIMATION ==========
+      function animatePortfolioStats() {
+        const statNumbers = document.querySelectorAll(".highlight-content h4");
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const element = entry.target;
+                const target = parseInt(element.textContent);
+                let current = 0;
+                const increment = target / 50;
+                const timer = setInterval(() => {
+                  current += increment;
+                  if (current >= target) {
+                    element.textContent = target + "+";
+                    clearInterval(timer);
+                  } else {
+                    element.textContent = Math.floor(current) + "+";
+                  }
+                }, 50);
+                observer.unobserve(element);
+              }
+            });
+          },
+          { threshold: 0.5 }
+        );
+
+        statNumbers.forEach((stat) => observer.observe(stat));
+      }
+
+      // Panggil setelah halaman dimuat
+      setTimeout(animatePortfolioStats, 1000);
+
+      // ========== ADD CSS ANIMATION FOR FILTER ==========
+      const style = document.createElement("style");
+      style.textContent = `
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+`;
+      document.head.appendChild(style);
+
+      // ========== HERO TITLE TYPING EFFECT ==========
+      const heroTitle = document.querySelector(".hero-title");
+      const authorName = document.getElementById("authorName");
+
+      if (heroTitle && !heroTitle.classList.contains("typed") && authorName) {
+        const originalText = heroTitle.textContent;
+        const letters = originalText.split("");
+
+        heroTitle.textContent = "";
+        heroTitle.classList.add("typing-text");
+
+        let i = 0;
+        const typingInterval = setInterval(() => {
+          if (i < letters.length) {
+            heroTitle.textContent += letters[i];
+            i++;
+          } else {
+            clearInterval(typingInterval);
+            heroTitle.classList.remove("typing-text");
+            heroTitle.classList.add("typed");
+            heroTitle.style.borderRight = "none";
+
+            // Tampilkan nama penulis setelah typing selesai
+            setTimeout(() => {
+              authorName.style.display = "block";
+              authorName.classList.add("fade-in");
+            }, 300); // Delay 300ms setelah typing selesai
+          }
+        }, 50); // Kecepatan typing: 50ms per huruf
+      }
+
+      // Tambahkan ini ke script.js
+      document.addEventListener("DOMContentLoaded", function () {
+        // Mobile Menu Toggle
+        const mobileToggle = document.getElementById("navMobileToggle");
+        const mobileOverlay = document.getElementById("mobileOverlay");
+        const mobileClose = document.getElementById("mobileClose");
+        const menuIcon = document.querySelector(".menu-icon");
+
+        if (mobileToggle && mobileOverlay) {
+          mobileToggle.addEventListener("click", function () {
+            mobileOverlay.classList.add("active");
+            menuIcon.classList.add("active");
+            document.body.style.overflow = "hidden";
+          });
+
+          mobileClose.addEventListener("click", function () {
+            mobileOverlay.classList.remove("active");
+            menuIcon.classList.remove("active");
+            document.body.style.overflow = "";
+          });
+
+          // Close menu when clicking links
+          document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+            link.addEventListener("click", function () {
+              mobileOverlay.classList.remove("active");
+              menuIcon.classList.remove("active");
+              document.body.style.overflow = "";
+            });
+          });
+        }
+
+        // Theme Toggle
+        const themeToggle = document.getElementById("themeToggle");
+        if (themeToggle) {
+          themeToggle.addEventListener("click", function () {
+            document.body.classList.toggle("dark-theme");
+            const icon = this.querySelector("i");
+            if (document.body.classList.contains("dark-theme")) {
+              icon.classList.remove("fa-moon");
+              icon.classList.add("fa-sun");
+            } else {
+              icon.classList.remove("fa-sun");
+              icon.classList.add("fa-moon");
+            }
+          });
+        }
+
+        // Navbar Scroll Effect
+        const navbar = document.querySelector(".split-navbar");
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+          } else {
+            navbar.classList.remove("scrolled");
+          }
+        });
+
+        // Active nav link on scroll
+        const navLinks = document.querySelectorAll(".nav-link, .mobile-nav-link");
+
+        function updateActiveLink() {
+          const scrollPos = window.scrollY + 100;
+
+          document.querySelectorAll("section[id]").forEach((section) => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            const sectionId = section.getAttribute("id");
+
+            if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+              navLinks.forEach((link) => {
+                link.classList.remove("active");
+                if (link.getAttribute("href") === `#${sectionId}`) {
+                  link.classList.add("active");
+                }
+              });
+            }
+          });
+        }
+
+        window.addEventListener("scroll", updateActiveLink);
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            const href = this.getAttribute("href");
+            if (href === "#") return;
+
+            const target = document.querySelector(href);
+            if (target) {
+              e.preventDefault();
+              window.scrollTo({
+                top: target.offsetTop - 80,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+      });
+
+      // Tambahkan juga di bagian atas script.js untuk theme
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark") {
+        document.body.classList.add("dark-theme");
+      }
+
+      // ========== CERPEN FILTER FUNCTIONALITY ==========
+      document.addEventListener("DOMContentLoaded", function () {
+        const cerpenFilterButtons = document.querySelectorAll(".cerpen-filter .filter-btn");
+        const cerpenItems = document.querySelectorAll(".cerpen-item");
+
+        if (cerpenFilterButtons.length > 0 && cerpenItems.length > 0) {
+          cerpenFilterButtons.forEach((button) => {
+            button.addEventListener("click", function () {
+              // Remove active class from all buttons
+              cerpenFilterButtons.forEach((btn) => btn.classList.remove("active"));
+
+              // Add active class to clicked button
+              this.classList.add("active");
+
+              const filterValue = this.getAttribute("data-filter");
+
+              // Filter cerpen items
+              cerpenItems.forEach((item) => {
+                if (filterValue === "all" || item.getAttribute("data-category") === filterValue) {
+                  item.style.display = "block";
+                  item.style.animation = "fadeIn 0.5s ease forwards";
+                } else {
+                  item.style.display = "none";
+                }
+              });
+            });
+          });
+        }
+
+        // Cerpen hover effects
+        cerpenItems.forEach((item) => {
+          item.addEventListener("mouseenter", function () {
+            const image = this.querySelector(".cerpen-image img");
+            if (image) {
+              image.style.transform = "scale(1.05)";
+            }
+          });
+
+          item.addEventListener("mouseleave", function () {
+            const image = this.querySelector(".cerpen-image img");
+            if (image) {
+              image.style.transform = "scale(1)";
+            }
+          });
+        });
+      });
+
+      // ========== TIMELINE INTERACTIONS ==========
+      const timelineItems = document.querySelectorAll(".timeline-item");
+      if (timelineItems.length > 0) {
+        timelineItems.forEach((item) => {
+          const viewDetailBtn = item.querySelector(".btn-view-detail");
+
+          item.addEventListener("mouseenter", function () {
+            this.style.transform = "translateX(10px)";
+            this.style.transition = "transform 0.3s ease";
+          });
+
+          item.addEventListener("mouseleave", function () {
+            this.style.transform = "translateX(0)";
+          });
+
+          // HAPUS ATAU KOMENTARI BAGIAN INI:
+          /*
+    if (viewDetailBtn) {
+      viewDetailBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        alert("Anda akan melihat detail pengalaman kerja ini.");
+        // Bisa diganti dengan modal atau redirect ke halaman detail
+      });
+    }
+    */
+        });
+      }
+    </script>
+  </body>
+</html>

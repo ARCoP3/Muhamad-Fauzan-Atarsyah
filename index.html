@@ -1,827 +1,761 @@
 <!DOCTYPE html>
-<html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog Pribadi | Profesional</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="animations.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✍️</text></svg>" />
-  </head>
-  <body>
-    <!-- Navbar -->
-    <nav class="split-navbar">
-      <div class="nav-left">
-        <div class="logo">
-          <a href="#">
-            <span class="logo-main">Blog</span>
-            <span class="logo-sub">Atr</span>
-          </a>
-        </div>
-
-        <div class="nav-divider"></div>
-
-        <ul class="nav-menu">
-          <li>
-            <a href="#home" class="nav-link active">
-              <i class="fas fa-home"></i>
-              <span>Beranda</span>
-            </a>
-          </li>
-          <li>
-            <a href="#about" class="nav-link">
-              <i class="fas fa-user-tie"></i>
-              <span>Profil</span>
-            </a>
-          </li>
-          <li>
-            <a href="halamanartikel.html" class="nav-link">
-              <i class="fas fa-newspaper"></i>
-              <span>Artikel</span>
-            </a>
-          </li>
-          <li>
-            <a href="halamanpuisi.html" class="nav-link">
-              <i class="fas fa-newspaper"></i>
-              <span>Puisi</span>
-            </a>
-          </li>
-          <li>
-            <a href="halamancerpen.html" class="nav-link">
-              <i class="fas fa-newspaper"></i>
-              <span>Cerpen</span>
-            </a>
-          </li>
-          <a href="#portfolio" class="nav-link">
-              <i class="fas fa-newspaper"></i>
-              <span>Portfolio</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-        <div class="nav-divider"></div>
-
-        <div class="nav-actions">
-          <a href="#contact" class="btn-nav-cta">Hire Me</a>
-        </div>
-      </div>
-
-      <!-- Mobile Menu Button -->
-      <div class="nav-mobile-toggle" id="navMobileToggle">
-        <div class="menu-icon">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-    </nav>
-
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-overlay" id="mobileOverlay">
-      <div class="mobile-menu">
-        <div class="mobile-header">
-          <div class="mobile-logo">Blog Atr</div>
-          <button class="mobile-close" id="mobileClose">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-        <ul class="mobile-nav">
-          <li>
-            <a href="#home" class="mobile-nav-link active">
-              <i class="fas fa-home"></i>
-              <span>Beranda</span>
-            </a>
-          </li>
-          <li>
-            <a href="index.html#about" class="mobile-nav-link">
-              <i class="fas fa-user-tie"></i>
-              <span>Profil</span>
-            </a>
-          </li>
-          <li>
-            <a href="halamanartikel.html" class="mobile-nav-link">
-              <i class="fas fa-newspaper"></i>
-              <span>Artikel</span>
-            </a>
-          </li>
-          <li>
-            <a href="halamanpuisi.html" class="mobile-nav-link">
-              <i class="fas fa-newspaper"></i>
-              <span>Puisi</span>
-            </a>
-          </li>
-          <li>
-            <a href="halamancerpen.html" class="mobile-nav-link">
-              <i class="fas fa-newspaper"></i>
-              <span>Cerpen</span>
-            </a>
-          </li>
-          <li>
-            <a href="index.html#portfolio" class="mobile-nav-link">
-              <i class="fas fa-briefcase"></i>
-              <span>Portfolio</span>
-            </a>
-          </li>
-        </ul>
-        <div class="mobile-actions">
-          <a href="#contact" class="btn-mobile-cta">Hire Me</a>
-        </div>
-      </div>
-    </div>
-
-   <!-- Hero Section - Fixed Image Position -->
-<section id="home" class="hero">
-  <div class="container hero-container">
-    <!-- Mobile: Image first, Content second -->
-    <div class="hero-mobile-image">
-      <div class="image-wrapper">
-        <img src="img/ojan.jpg" alt="Profile" class="profile-img" />
-        <div class="floating-element el-1"></div>
-        <div class="floating-element el-2"></div>
-        <div class="floating-element el-3"></div>
-      </div>
-    </div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Blog</title>
+   <link rel="shortcut icon" type="image/png" href="img/Muhamad Fauzan Atarsyah.png">
     
-    <div class="hero-content">
-      <h1 class="hero-title fade-in-up">"Dari terbentur, terbentur, terbentur, kemudian terbentuk"</h1>
-      <p class="hero-author" id="authorName" style="display: none; font-style: italic; color: #666; margin-top: -10px; margin-bottom: 20px">- Tan Malaka</p>
-      <p class="hero-subtitle fade-in-up delay-1">Tempat berbagi pemikiran, pengalaman, dan inspirasi tentang teknologi, dan kehidupan.</p>
-      <div class="hero-buttons fade-in-up delay-2">
-        <a href="#blog" class="btn btn-primary">Baca Artikel</a>
-        <a href="#portfolio" class="btn btn-secondary"> Lihat Portofolio</a>
-      </div>
-    </div>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
-    <!-- Desktop: Image di kiri -->
-    <div class="hero-desktop-image">
-      <div class="image-wrapper">
-        <img src="img/ojan.jpg" alt="Profile" class="profile-img" />
-        <div class="floating-element el-1"></div>
-        <div class="floating-element el-2"></div>
-        <div class="floating-element el-3"></div>
-      </div>
-    </div>
-  </div>
-</section>
+    <!-- Google Fonts - Pilihan font yang lebih elegan -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <!-- About Section - Profesional Version -->
-    <section id="about" class="about">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Profil</h2>
-          <p class="section-subtitle">Mengenal lebih dalam tentang keahlian dan pengalaman</p>
-          <div class="underline"></div>
+        /* Optimasi viewport */
+        html {
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #0c0c0c;
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        /* Custom Cursor - simplified */
+        .cursor {
+            width: 8px;
+            height: 8px;
+            background: #64ffda;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 20px #64ffda;
+            transition: opacity 0.2s;
+        }
+
+        .cursor-follower {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: 0.2s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            min-height: 100dvh;
+            background: #0c0c0c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Video Background */
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .video-background video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            object-fit: cover;
+            filter: brightness(0.4) contrast(1.2);
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.5) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Geometric shapes - static */
+        .geo-shape {
+            position: absolute;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            z-index: 2;
+        }
+
+        .geo1 {
+            width: min(600px, 80vw);
+            height: min(600px, 80vw);
+            border: 2px solid rgba(100, 255, 218, 0.1);
+            top: -200px;
+            right: -200px;
+            transform: rotate(45deg);
+            box-shadow: 0 0 50px rgba(100, 255, 218, 0.1);
+        }
+
+        .geo2 {
+            width: min(400px, 60vw);
+            height: min(400px, 60vw);
+            border: 2px solid rgba(255, 100, 100, 0.1);
+            bottom: -150px;
+            left: -150px;
+            transform: rotate(30deg);
+            box-shadow: 0 0 50px rgba(255, 100, 100, 0.1);
+        }
+
+        .geo3 {
+            width: min(300px, 50vw);
+            height: min(300px, 50vw);
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            top: 40%;
+            left: 20%;
+            transform: rotate(15deg);
+            border-radius: 50%;
+        }
+
+        /* Diagonal lines - static */
+        .diagonal-line {
+            position: absolute;
+            width: 200%;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(100, 255, 218, 0.3), 
+                rgba(100, 255, 218, 0.5),
+                rgba(100, 255, 218, 0.3), 
+                transparent
+            );
+            top: 30%;
+            left: -50%;
+            transform: rotate(-30deg);
+            z-index: 2;
+        }
+
+        .diagonal-line-2 {
+            position: absolute;
+            width: 200%;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 100, 100, 0.2), 
+                rgba(255, 100, 100, 0.4),
+                rgba(255, 100, 100, 0.2), 
+                transparent
+            );
+            bottom: 30%;
+            right: -50%;
+            transform: rotate(-30deg);
+            z-index: 2;
+        }
+
+        /* Dot pattern - static */
+        .dot-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 30% 40%, rgba(100, 255, 218, 0.1) 2px, transparent 2px);
+            background-size: min(70px, 10vw) min(70px, 10vw);
+            z-index: 2;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        /* Floating particles - static */
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #64ffda;
+            border-radius: 50%;
+            z-index: 3;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        /* Content Container - dengan animasi */
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            max-width: min(1200px, 90%);
+            padding: clamp(1rem, 5vh, 2rem);
+            margin: 0 auto;
+            animation: contentAppear 1.5s ease-out;
+        }
+
+        @keyframes contentAppear {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Badge - dengan animasi */
+        .badge {
+            display: inline-block;
+            padding: clamp(0.5rem, 2vw, 0.8rem) clamp(1rem, 3vw, 1.8rem);
+            background: rgba(100, 255, 218, 0.03);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            font-size: clamp(0.7rem, 2.5vw, 0.8rem);
+            letter-spacing: clamp(1px, 0.3vw, 2.5px);
+            margin-bottom: clamp(1.5rem, 5vh, 3rem);
+            color: #a0a0a0;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.2), transparent);
+            animation: badgeShine 3s ease-in-out infinite;
+        }
+
+        @keyframes badgeShine {
+            0% { left: -100%; }
+            20% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        .badge img {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            object-fit: cover;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+
+        /* Title - dengan animasi */
+        .hero-title {
+            font-size: clamp(2.5rem, 10vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: clamp(1rem, 3vh, 2rem);
+            letter-spacing: -0.02em;
+            animation: titleReveal 1s ease-out;
+            word-break: break-word;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .hero-title span {
+            display: block;
+            color: #ffffff;
+            font-weight: 900;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            background: linear-gradient(135deg, #ffffff 0%, #64ffda 70%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-top: 0.2rem;
+            letter-spacing: -0.01em;
+            position: relative;
+            display: inline-block;
+            padding: 0 10px;
+        }
+
+        /* Efek garis bawah statis */
+        .hero-title span::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #64ffda, #ffffff, #64ffda, transparent);
+            border-radius: 3px;
+        }
+
+        @keyframes titleReveal {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Description - dengan animasi */
+        .hero-description {
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            max-width: min(550px, 90%);
+            margin: 2rem auto clamp(2rem, 6vh, 3.5rem);
+            line-height: 1.7;
+            color: #9e9e9e;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+            padding: 0 0.5rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* CTA Buttons - dengan animasi */
+        .cta-group {
+            display: flex;
+            gap: clamp(0.8rem, 2vw, 1.5rem);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: clamp(3rem, 10vh, 7rem);
+        }
+
+        .btn {
+            padding: clamp(0.8rem, 2.5vw, 1.4rem) clamp(1.5rem, 5vw, 4.2rem);
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+            min-width: min(200px, 80%);
+            min-height: 48px;
+            -webkit-tap-highlight-color: transparent;
+            border-radius: 4px;
+        }
+
+        .btn-primary {
+            background: #64ffda;
+            color: #0c0c0c;
+            border: 1px solid #64ffda;
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: #64ffda;
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(100, 255, 218, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #ffffff;
+            border: 1px solid #2a2a2a;
+        }
+
+        .btn-outline:hover {
+            border-color: #64ffda;
+            color: #64ffda;
+            transform: scale(1.05);
+        }
+
+        .btn i {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Stats - dengan animasi */
+        .stats {
+            display: flex;
+            gap: clamp(1.5rem, 5vw, 3.5rem);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 0 0.5rem;
+            flex: 0 1 auto;
+            min-width: clamp(100px, 20vw, 120px);
+            animation: fadeInUp 0.8s ease-out 0.5s both;
+            transition: transform 0.3s ease;
+            cursor: default;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: clamp(1.8rem, 6vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            color: #64ffda;
+            font-family: 'Inter', monospace;
+            letter-spacing: 2px;
+            animation: countUp 2s ease-out;
+            line-height: 1.2;
+        }
+
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stat-label {
+            font-size: clamp(0.7rem, 2vw, 0.8rem);
+            color: #5a5a5a;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Scroll indicator - dengan animasi */
+        .scroll-indicator {
+            position: absolute;
+            bottom: clamp(15px, 3vh, 30px);
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            color: #2a2a2a;
+            font-size: clamp(0.6rem, 2vw, 0.7rem);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            writing-mode: vertical-rl;
+            animation: scrollBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollBounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        /* Loading bar */
+        .loading-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #64ffda, #ff6464, #6464ff, #64ffda);
+            background-size: 300% 100%;
+            animation: loadingProgress 2s ease-out;
+            z-index: 10000;
+            pointer-events: none;
+        }
+
+        @keyframes loadingProgress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        /* Mobile styles */
+        @media (max-width: 768px) {
+            .cursor, .cursor-follower {
+                display: none;
+            }
+            
+            .particle {
+                display: none;
+            }
+            
+            .geo1, .geo2, .geo3 {
+                opacity: 0.2;
+            }
+            
+            .diagonal-line, .diagonal-line-2 {
+                opacity: 0.2;
+            }
+            
+            .badge {
+                white-space: normal;
+            }
+            
+            .stat-label {
+                white-space: normal;
+                word-break: break-word;
+            }
+
+            .hero-title span::after {
+                width: 60px;
+            }
+
+            .video-background video {
+                filter: brightness(0.3) contrast(1.2);
+            }
+        }
+
+        /* Landscape mode */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .hero {
+                min-height: 600px;
+            }
+            
+            .hero-content {
+                padding: 1rem;
+            }
+            
+            .stats {
+                margin-top: 0.5rem;
+                gap: 1rem;
+            }
+            
+            .scroll-indicator {
+                display: none;
+            }
+        }
+
+        /* Tablet */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .hero-title {
+                font-size: 4rem;
+            }
+            
+            .btn {
+                min-width: 180px;
+            }
+        }
+
+        /* Reduce motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .hero {
+                background: white;
+                color: black;
+                min-height: auto;
+            }
+            
+            .video-background, .geo-shape, .diagonal-line, .dot-pattern, .particle, .cursor, .cursor-follower {
+                display: none;
+            }
+            
+            .hero-title span {
+                color: black;
+                -webkit-text-fill-color: black;
+            }
+            
+            .btn {
+                border: 1px solid black;
+                color: black;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Animation -->
+    <div class="loading-bar"></div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <!-- Video Background -->
+        <div class="video-background">
+            <video autoplay muted loop playsinline poster="https://via.placeholder.com/1920x1080/0c0c0c/64ffda?text=Loading+Video...">
+                <source src="video/ojan.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-overlay"></div>
         </div>
+        
+        <!-- Geometric shapes -->
+        <div class="geo-shape geo1"></div>
+        <div class="geo-shape geo2"></div>
+        <div class="geo-shape geo3"></div>
+        
+        <!-- Diagonal lines -->
+        <div class="diagonal-line"></div>
+        <div class="diagonal-line-2"></div>
+        
+        <!-- Dot pattern -->
+        <div class="dot-pattern"></div>
 
-        <div class="about-content professional-layout">
-          <!-- Profile Image & Quick Info -->
-          <div class="profile-sidebar">
-            <div class="profile-card">
-              <div class="profile-quick-info">
-                <h3 class="profile-name">Muhamad Fauzan Atarsyah</h3>
-                <p class="profile-title">IT Support & Freelace</p>
-                <div class="profile-contact">
-                  <p><i class="fas fa-map-marker-alt"></i> Jakarta, Indonesia</p>
-                  <p><i class="fas fa-envelope"></i> fauzanatarsyah79@gmail.com</p>
-                  <p><i class="fas fa-phone"></i> +62 858 9111 1702</p>
+        <!-- Floating particles -->
+        <div id="particles"></div>
+
+        <!-- Content -->
+        <div class="hero-content">
+            <div class="badge">
+                <img src="img/Muhamad Fauzan Atarsyah.png" alt="logo-profil">
+                Welcome to my website
+            </div>
+            
+            <h1 class="hero-title">
+                <span>Fauzan Atarsyah</span>
+            </h1>
+            
+            <p class="hero-description">
+                Dengan latar belakang di bidang IT, Saya menggabungkan logika teknologi dengan imajinasi sastra. 
+            </p>
+            
+            <div class="cta-group">
+                <a href="home.html" class="btn btn-primary">Lihat Profil <i class="fas fa-arrow-right"></i></a>
+                <a href="blog.html" class="btn btn-outline">Lihat Blog <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">6+</div>
+                    <div class="stat-label">Months Experience</div>
                 </div>
-              </div>
+                <div class="stat-item">
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">Projects Done</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">Happy Clients</div>
+                </div>
             </div>
-
-            <div class="expertise-highlights">
-              <h4><i class="fas fa-medal"></i> Spesialisasi Utama</h4>
-              <div class="expertise-tags">
-                <span class="expertise-tag primary">Web Development</span>
-                <span class="expertise-tag primary">Network Engineer</span>
-                <span class="expertise-tag secondary">Hardware Maintenance</span>
-                <span class="expertise-tag secondary">Software Troubleshooting</span>
-                <span class="expertise-tag secondary">Writing</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Main Content -->
-          <div class="profile-main">
-            <!-- Professional Summary -->
-            <div class="summary-section">
-              <h3 class="section-subheader">Ringkasan Profil</h3>
-              <p class="professional-summary">
-                Selama 6 bulan pengalaman, fokus saya adalah di bidang IT Support. Peran saya adalah memastikan infrastruktur dan sistem berjalan optimal, aman, dan bebas gangguan, sehingga menjadi pondasi yang memungkinkan tim lain berinovasi dan bisnis beroperasi dengan efisien.
-              </p>
-              <p class="professional-summary">
-                Passion saya ada di IT Support. Bagi saya, support itu nggak cuma "nge-fix" yang rusak, tapi bikin pondasi teknologi yang kuat. Kalau infrastrukturnya solid, aman, dan lancar, baru deh tim bisa berinovasi dengan tenang. Jadi peran saya tuh kayak silent guardian—nggak selalu keliatan, tapi bikin semua makin produktif. Di luar itu, saya juga aktif menulis—mulai dari artikel teknis sampai puisi dan cerpen.
-              </p>
-              <p class="professional-summary">
-                Dengan latar belakang di bidang IT, Saya menggabungkan logika teknologi dengan imajinasi sastra. Karya tulis saya banyak terinspirasi dari pengalaman pribadi, observasi kehidupan sehari-hari, dan refleksi tentang hubungan manusia.
-              </p>
-            </div>
-
-            <!-- Experience Timeline -->
-<div class="experience-section">
-  <h3 class="section-subheader">Jalur Karir</h3>
-  <div class="timeline">
-    <div class="timeline-item">
-      <div class="timeline-date">2025 - Sekarang</div>
-      <div class="timeline-content">
-        <div class="company-header">
-          <div class="company-logo">
-            <img src="img/ui.png" alt="UI Logo">
-          </div>
-          <div class="company-info">
-            <h4>IT Support - Internship</h4>
-            <p class="timeline-company">Fakultas Psikologi UI</p>
-          </div>
         </div>
-        <p class="timeline-description">Bertanggung jawab dalam pemeliharaan infrastruktur IT, troubleshooting hardware dan software, serta memberikan dukungan teknis kepada staf dan dosen untuk memastikan kelancaran operasional.</p>
-        <div class="timeline-footer">
-          <a href="#portfolio" class="btn-view-detail">
-            <i class="fas fa-eye"></i> Lihat Detail
-          </a>
-          <span class="timeline-duration"><i class="fas fa-clock"></i> 6 Bulan</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">SCROLL</div>
     </section>
 
-    <!-- Blog Section - UI Website Berita -->
-    <section id="blog" class="blog news-style">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Jurnal</h2>
-          <p class="section-subtitle">Update informasi terkini seputar teknologi, desain, dan pengembangan web</p>
-          <div class="underline"></div>
-        </div>
+    <script>
+        (function() {
+            'use strict';
 
-        <div class="news-container">
-          <!-- Artikel Utama (Featured) -->
-          <div class="featured-article">
-            <article class="news-card featured">
-              <div class="news-card-image">
-                <img src="img/lan.jpg" alt="Coding" />
-                <div class="news-badge featured-badge">UTAMA</div>
-              </div>
-              <div class="news-card-content">
-                <div class="news-meta">
-                  <span class="news-category tech-category">Networking</span>
-                  <span class="news-date"><i class="far fa-clock"></i> 7 Januari 2026</span>
-                  <span class="news-read-time"><i class="far fa-eye"></i> 5 min read</span>
-                </div>
-                <h3 class="news-card-title">Belajar Kabel Jaringan Internet UTP: Panduan Lengkap untuk Pemula</h3>
-                <p class="news-card-excerpt">Panduan komprehensif untuk memahami kabel jaringan UTP, dari dasar hingga implementasi. Cocok untuk kamu yang ingin mendalami bidang networking dan infrastruktur IT.</p>
-                <div class="news-author">
-                  <img src="img/Muhamad Fauzan Atarsyah.png" alt="Author" class="author-img" />
-                  <div class="author-info">
-                    <span class="author-name">Muhamad Fauzan Atarsyah</span>
-                    <span class="author-title">Network Engineer</span>
-                  </div>
-                </div>
-                <a href="artikel1.html" class="news-card-link">Baca Laporan Lengkap <i class="fas fa-arrow-right"></i></a>
-              </div>
-            </article>
-          </div>
+            // Deteksi mobile
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
 
-          <!-- Grid Artikel Berita -->
-          <div class="news-grid">
-            <!-- Artikel 2 -->
-            <article class="news-card">
-              <div class="news-card-image">
-                <img src="img/warnalan.jpg" alt="Design" />
-                <div class="news-badge design-badge">Cooming Soon</div>
-              </div>
-              <div class="news-card-content">
-                <div class="news-meta">
-                  <span class="news-category design-category">Networking</span>
-                  <span class="news-date">7 Februari 2026</span>
-                </div>
-                <h3 class="news-card-title">Memahami urutan warna dan fungsi kabel jaringan UTP</h3>
-                <p class="news-card-excerpt">Pelajari urutan warna kabel UTP dan fungsinya dalam sistem jaringan komputer.</p>
-                <div class="news-stats">
-                  <span><i class="far fa-comment"></i> 24</span>
-                  <span><i class="far fa-heart"></i> 156</span>
-                </div>
-              </div>
-            </article>
+            // Create floating particles (hanya di non-mobile)
+            if (!isMobile) {
+                function createParticles() {
+                    const particlesContainer = document.getElementById('particles');
+                    if (!particlesContainer) return;
+                    
+                    const particleCount = 20;
+                    
+                    for (let i = 0; i < particleCount; i++) {
+                        const particle = document.createElement('div');
+                        particle.className = 'particle';
+                        
+                        particle.style.left = Math.random() * 100 + '%';
+                        particle.style.top = Math.random() * 100 + '%';
+                        
+                        particlesContainer.appendChild(particle);
+                    }
+                }
+                
+                createParticles();
+            }
 
-            <!-- Artikel 3 -->
-            <article class="news-card">
-              <div class="news-card-image">
-                <img src="img/rj45.jpg" alt="Productivity" />
-                <div class="news-badge productivity-badge">Cooming Soon</div>
-              </div>
-              <div class="news-card-content">
-                <div class="news-meta">
-                  <span class="news-category productivity-category">Networking</span>
-                  <span class="news-date">7 Februari 2026</span>
-                </div>
-                <h3 class="news-card-title">Langkah-Langkah Crimping Kabel UTP Connector RJ45</h3>
-                <p class="news-card-excerpt">Langkah-langkah lengkap untuk melakukan crimping kabel UTP dengan connector RJ45.</p>
-                <div class="news-stats">
-                  <span><i class="far fa-comment"></i> 18</span>
-                  <span><i class="far fa-heart"></i> 89</span>
-                </div>
-              </div>
-            </article>
+            // Custom cursor effect (hanya di non-mobile)
+            if (!isMobile) {
+                const cursor = document.querySelector('.cursor');
+                const cursorFollower = document.querySelector('.cursor-follower');
+                let mouseX = 0, mouseY = 0;
+                let followerX = 0, followerY = 0;
 
-            <!--  Artikel 4 (Tambahan Baru) -->
-            <article class="news-card">
-              <div class="news-card-image">
-                <img src="img/cm.png" alt="Web Development" />
-                <div class="news-badge web-badge">Cooming Soon</div>
-              </div>
-              <div class="news-card-content">
-                <div class="news-meta">
-                  <span class="news-category web-category">Cooming Soon</span>
-                  <span class="news-date">7 Februari 2026</span>
-                </div>
-                <h3 class="news-card-title">Cooming Soon</h3>
-                <p class="news-card-excerpt">Coomig Soon</p>
-                <div class="news-stats">
-                  <span><i class="far fa-comment"></i> 42</span>
-                  <span><i class="far fa-heart"></i> 210</span>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
+                document.addEventListener('mousemove', (e) => {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                    
+                    cursor.style.left = mouseX + 'px';
+                    cursor.style.top = mouseY + 'px';
+                });
 
-        <!-- Breaking News Ticker -->
-        <div class="breaking-news">
-          <div class="breaking-label">
-            <span class="breaking-badge"><i class="fas fa-bolt"></i> TRENDING</span>
-          </div>
-          <div class="breaking-content">
-            <marquee behavior="scroll" direction="left">
-              <span class="breaking-item">• Panduan Lengkap Jaringan UTP Telah Rilis</span>
-              <span class="breaking-item">• Workshop UI/UX Gratis Minggu Depan</span>
-              <span class="breaking-item">• Tools Produktivitas Terbaru untuk Developer</span>
-            </marquee>
-          </div>
-        </div>
+                function animateFollower() {
+                    followerX += (mouseX - followerX) * 0.1;
+                    followerY += (mouseY - followerY) * 0.1;
+                    
+                    cursorFollower.style.left = followerX + 'px';
+                    cursorFollower.style.top = followerY + 'px';
+                    
+                    requestAnimationFrame(animateFollower);
+                }
+                animateFollower();
 
-        <div class="section-footer">
-          <a href="halamanartikel.html" class="btn btn-outline"> <i class="fas fa-newspaper"></i> Lihat Semua Jurnal </a>
-        </div>
-      </div>
-    </section>
+                // Button hover effect
+                const buttons = document.querySelectorAll('.btn');
+                buttons.forEach(button => {
+                    button.addEventListener('mouseenter', () => {
+                        cursor.style.transform = 'translate(-50%, -50%) scale(2)';
+                        cursorFollower.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                    });
+                    
+                    button.addEventListener('mouseleave', () => {
+                        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                        cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+                    });
+                });
+            }
 
-    <!-- Section Puisi - Dengan Genre -->
-<section id="puisi" class="puisi-section">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">Puisi</h2>
-      <p class="section-subtitle">Kumpulan karya puisi yang telah dibuat</p>
-      <div class="underline"></div>
-    </div>
+            // Scroll animation
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const heroContent = document.querySelector('.hero-content');
+                const video = document.querySelector('.video-background video');
+                
+                if (heroContent && scrolled < window.innerHeight) {
+                    heroContent.style.opacity = 1 - (scrolled * 0.001);
+                    heroContent.style.transform = `translateY(${scrolled * 0.2}px)`;
+                }
+                
+                if (video && scrolled < window.innerHeight) {
+                    video.style.transform = `translateX(-50%) translateY(${-50 + scrolled * 0.05}%)`;
+                }
+            });
 
-    <div class="puisi-grid">
-      <!-- Puisi 1 -->
-      <a href="puisi.html" class="puisi-item">
-        <div class="puisi-image">
-          <img src="img/puisi1.webp" alt="Puisi Cinta">
-          <div class="image-overlay"></div>
-        </div>
-        <div class="puisi-info">
-          <span class="puisi-genre genre-cinta">Cinta</span>
-          <h3 class="puisi-title">Aku dan suara mu</h3>
-          <span class="puisi-date">1 Januari 2026</span>
-        </div>
-      </a>
+            // Remove loading bar
+            setTimeout(() => {
+                const loadingBar = document.querySelector('.loading-bar');
+                if (loadingBar) {
+                    loadingBar.style.opacity = '0';
+                }
+            }, 2000);
 
-      <!-- Puisi 2 -->
-      <a href="puisi2.html" class="puisi-item">
-        <div class="puisi-image">
-          <img src="img/puisi2.webp" alt="Puisi Alam">
-          <div class="image-overlay"></div>
-        </div>
-        <div class="puisi-info">
-          <span class="puisi-genre genre-alam">Renungan</span>
-          <h3 class="puisi-title">Kembalikan kebahagian yang kau renggut</h3>
-          <span class="puisi-date">10 Januari 2026</span>
-        </div>
-      </a>
-
-      <!-- Puisi 3 -->
-      <a href="puisi3.html" class="puisi-item">
-        <div class="puisi-image">
-          <img src="img/puisi3.jpg" alt="Puisi Renungan">
-          <div class="image-overlay"></div>
-        </div>
-        <div class="puisi-info">
-          <span class="puisi-genre genre-renungan">Renungan</span>
-          <h3 class="puisi-title">Dalam Diam</h3>
-          <span class="puisi-date">5 Januari 2026</span>
-        </div>
-      </a>
-
-    <div class="section-footer">
-      <a href="halamanpuisi.html" class="btn btn-outline">
-        <i class="fas fa-book-open"></i> Lihat Semua Puisi
-      </a>
-    </div>
-  </div>
-</section>
-
-
-        <!-- Section Cerpen - Dengan Kategori -->
-<section id="cerpen" class="cerpen-section">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">Cerpen</h2>
-      <p class="section-subtitle">Kumpulan cerita pendek yang telah ditulis</p>
-      <div class="underline"></div>
-    </div>
-
-    <div class="cerpen-grid">
-      <!-- Cerpen 1 -->
-      <article class="cerpen-item" data-category="romantis">
-        <a href="cerpen1.html" class="cerpen-link">
-          <div class="cerpen-image">
-            <img src="img/cerpen1.jpg" alt="Cerpen Romantis">
-            <div class="image-overlay"></div>
-            <div class="cerpen-stats">
-              <span><i class="fas fa-clock"></i> 10 min read</span>
-              <span><i class="fas fa-comment"></i> 24</span>
-            </div>
-          </div>
-          <div class="cerpen-info">
-            <span class="cerpen-category category-romantis">Drama Sosial</span>
-            <h3 class="cerpen-title">Mah, Pah, kenapa aku terlahir Miskin?</h3>
-            <p class="cerpen-excerpt">Judul di ambil dari pertanyaan seorang anak kepada ibu nya di kota kediri.</p>
-            <div class="cerpen-meta">
-              <span class="cerpen-date">12 Febuari 2026</span>
-              <span class="cerpen-author">Muhamad Fauzan Atarsyah</span>
-            </div>
-          </div>
-        </a>
-      </article>
-
-      <!-- Cerpen 2 -->
-      <article class="cerpen-item" data-category="misteri">
-        <a href="cerpen-detail.html" class="cerpen-link">
-          <div class="cerpen-image">
-            <img src="img/cm.png" alt="Cerpen Misteri">
-            <div class="image-overlay"></div>
-            <div class="cerpen-stats">
-              <span><i class="fas fa-clock"></i> 20 min read</span>
-              <span><i class="fas fa-comment"></i> 18</span>
-            </div>
-          </div>
-          <div class="cerpen-info">
-            <span class="cerpen-category category-misteri">Misteri</span>
-            <h3 class="cerpen-title">Cooming Soon</h3>
-            <p class="cerpen-excerpt">Cooming Soon</p>
-            <div class="cerpen-meta">
-              <span class="cerpen-date">Cooming Soon</span>
-              <span class="cerpen-author">Cooming Soon</span>
-            </div>
-          </div>
-        </a>
-      </article>
-
-      <!-- Cerpen 3 -->
-      <article class="cerpen-item" data-category="drama">
-        <a href="cerpen-detail.html" class="cerpen-link">
-          <div class="cerpen-image">
-            <img src="img/cm.png" alt="Cerpen Drama">
-            <div class="image-overlay"></div>
-            <div class="cerpen-stats">
-              <span><i class="fas fa-clock"></i> 12 min read</span>
-              <span><i class="fas fa-comment"></i> 32</span>
-            </div>
-          </div>
-          <div class="cerpen-info">
-            <span class="cerpen-category category-drama">Drama</span>
-            <h3 class="cerpen-title">Cooming Soon</h3>
-            <p class="cerpen-excerpt">Cooming Soon</p>
-            <div class="cerpen-meta">
-              <span class="cerpen-date">Cooming Soon</span>
-              <span class="cerpen-author">Cooming Soon</span>
-            </div>
-          </div>
-        </a>
-      </article>
-    </div>
-
-    <!-- Featured Cerpen -->
-    <div class="featured-cerpen">
-      <div class="section-header">
-        <h3 class="section-subtitle">Cerpen Pilihan</h3>
-        <p class="section-subtitle">Karya terbaik yang direkomendasikan untuk dibaca</p>
-      </div>
-      
-      <div class="featured-cerpen-content">
-        <article class="featured-cerpen-card">
-          <div class="featured-cerpen-image">
-            <img src="img/cm.png" alt="Cerpen Terbaik">
-            <div class="featured-badge">
-              <i class="fas fa-crown"></i> CERPEN TERBAIK
-            </div>
-          </div>
-          <div class="featured-cerpen-info">
-            <span class="cerpen-category category-romantis">Romantis</span>
-            <h3>Cooming Soon</h3>
-            <p class="cerpen-excerpt">Cooming Soon</p>
-            <div class="cerpen-stats">
-              <span><i class="fas fa-clock"></i> 30 min read</span>
-              <span><i class="fas fa-comment"></i> 128 Comments</span>
-              <span><i class="fas fa-heart"></i> 256 Likes</span>
-            </div>
-            <a href="halamancerpen.html" class="btn btn-primary">Baca Cerpen Lengkap</a>
-          </div>
-        </article>
-      </div>
-    </div>
-
-    <div class="section-footer">
-      <a href="#" class="btn btn-outline">
-        <i class="fas fa-book-reader"></i> Lihat Semua Cerpen
-      </a>
-    </div>
-  </div>
-</section>
-<!-- Penutup cerpen-grid -->
-
-
-        <!-- Portfolio Section - Professional News Style -->
-<section id="portfolio" class="portfolio news-style">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Proyek & Karya Terbaru</h2>
-            <p class="section-subtitle">Hasil implementasi nyata dari ide dan konsep yang telah dikembangkan</p>
-            <div class="underline"></div>
-        </div>
-
-        <!-- Grid Portfolio -->
-        <div class="portfolio-news-grid">
-            <!-- Portfolio Item 1 - Featured -->
-            <article class="portfolio-news-card featured" data-category="web">
-                <div class="portfolio-news-image">
-                    <img src="img/cm.png" alt="E-commerce Website" />
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-badge">
-                            <span class="featured-badge"><i class="fas fa-star"></i> COOMING SOON</span>
-                            <span class="category-badge web-badge">Cooming Soon</span>
-                        </div>
-                        <div class="portfolio-actions">
-                            <a href="#" class="portfolio-action-btn" title="Lihat Detail"><i class="fas fa-eye"></i></a>
-                            <a href="#" class="portfolio-action-btn" title="Kunjungi Website"><i class="fas fa-external-link-alt"></i></a>
-                            <a href="#" class="portfolio-action-btn" title="Source Code"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-news-content">
-                    <div class="portfolio-meta">
-                        <span class="portfolio-client"><i class="fas fa-building"></i> Cooming Soon</span>
-                        <span class="portfolio-date"><i class="far fa-calendar"></i> Cooming Soon</span>
-                    </div>
-                    <h3 class="portfolio-news-title">Cooming Soon</h3>
-                    <p class="portfolio-news-excerpt">Cooming Soon</p>
-
-                    <div class="portfolio-tech-stack">
-                        <span class="tech-tag">Cooming Soon</span>
-                        <span class="tech-tag">Cooming Soon</span>
-                        <span class="tech-tag">Cooming Soon</span>
-                        <span class="tech-tag">Cooming Soon</span>
-                        <span class="tech-tag">Cooming Soon</span>
-                    </div>
-
-                    <div class="portfolio-stats">
-                        <div class="stat-item">
-                            <i class="fas fa-code"></i>
-                            <span>Cooming Soon</span>
-                        </div>
-                        <div class="stat-item">
-                            <i class="fas fa-clock"></i>
-                            <span>Cooming Soon</span>
-                        </div>
-                        <div class="stat-item">
-                            <i class="fas fa-chart-line"></i>
-                            <span>Cooming Soon</span>
-                        </div>
-                    </div>
-
-                    <a href="#" class="portfolio-news-link">Lihat Studi Kasus <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </article>
-
-            <!-- Portfolio Item 2 -->
-            <article class="portfolio-news-card" data-category="mobile">
-                <div class="portfolio-news-image">
-                    <img src="img/cm.png" alt="Mobile App" />
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-badge">
-                            <span class="category-badge mobile-badge">Cooming Soon</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-news-content">
-                    <div class="portfolio-meta">
-                        <span class="portfolio-client"><i class="fas fa-user"></i> Cooming Soon</span>
-                        <span class="portfolio-date">Cooming Soon</span>
-                    </div>
-                    <h3 class="portfolio-news-title">Cooming Soon</h3>
-                    <p class="portfolio-news-excerpt">Cooming Soon</p>
-
-                    <div class="portfolio-tech-stack">
-                        <span class="tech-tag">Cooming Soon</span>
-                        <span class="tech-tag">Cooming Soon</span>
-                        <span class="tech-tag">Cooming Soon</span>
-                    </div>
-
-                    <div class="portfolio-stats">
-                        <div class="stat-item">
-                            <i class="fas fa-download"></i>
-                            <span>Cooming Soon</span>
-                        </div>
-                        <div class="stat-item">
-                            <i class="fas fa-star"></i>
-                            <span>Cooming Soon</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Portfolio Item 3 -->
-            <article class="portfolio-news-card" data-category="design">
-                <div class="portfolio-news-image">
-                    <img src="img/cm.png" alt="Dashboard Design" />
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-badge">
-                            <span class="category-badge design-badge">Cooming Soon</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-news-content">
-                    <div class="portfolio-meta">
-                        <span class="portfolio-client"><i class="fas fa-hospital"></i> Cooming Soon</span>
-                        <span class="portfolio-date">Cooming Soon</span>
-                    </div>
-                    <h3 class="portfolio-news-title">Cooming Soon</h3>
-                    <p class="portfolio-news-excerpt">Cooming Soon</p>
-
-                    <div class="portfolio-tech-stack">
-                        <span class="tech-tag">Cooming Soon</span>
-                        <span class="tech-tag">Cooming Soon</span>
-                        <span class="tech-tag">Cooming Soon</span>
-                    </div>
-
-                    <div class="portfolio-stats">
-                        <div class="stat-item">
-                            <i class="fas fa-users"></i>
-                            <span>Cooming Soon</span>
-                        </div>
-                        <div class="stat-item">
-                            <i class="fas fa-thumbs-up"></i>
-                            <span>Cooming Soon</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Portfolio Item 4 -->
-            <article class="portfolio-news-card" data-category="network">
-                <div class="portfolio-news-image">
-                    <img src="img/cm.png" alt="Network Infrastructure" />
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-badge">
-                            <span class="category-badge network-badge">Cooming Soon</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-news-content">
-                    <div class="portfolio-meta">
-                        <span class="portfolio-client"><i class="fas fa-school"></i> Cooming Soon</span>
-                        <span class="portfolio-date">Cooming Soon</span>
-                    </div>
-                    <h3 class="portfolio-news-title">Cooming Soon</h3>
-                    <p class="portfolio-news-excerpt">Cooming Soon</p>
-
-                    <div class="portfolio-tech-stack">
-                        <span class="tech-tag">Cooming Soon</span>
-                        <span class="tech-tag">Cooming Soon</span>
-                        <span class="tech-tag">Cooming Soon</span>
-                        <span class="tech-tag">Cooming Soon</span>
-                    </div>
-
-                    <div class="portfolio-stats">
-                        <div class="stat-item">
-                            <i class="fas fa-wifi"></i>
-                            <span>Cooming Soon</span>
-                        </div>
-                        <div class="stat-item">
-                            <i class="fas fa-bolt"></i>
-                            <span>Cooming Soon</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        </div>
-
-        <div class="section-footer">
-            <a href="#contact" class="btn btn-primary">
-                <i class="fas fa-paper-plane"></i> Diskusikan Proyek Anda
-            </a>
-            <a href="#" class="btn btn-outline">
-                <i class="fas fa-download"></i> Download Portfolio PDF
-            </a>
-        </div>
-    </div>
-</section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Hubungi Saya</h2>
-          <p class="section-subtitle">Mari berkolaborasi atau sekadar menyapa</p>
-          <div class="underline"></div>
-        </div>
-        <div class="contact-content">
-          <div class="contact-info">
-            <h3>Informasi Kontak</h3>
-            <div class="contact-item">
-              <i class="fas fa-envelope"></i>
-              <div>
-                <h4>Email</h4>
-                <p>fauzanatarsyah79@gmail.com</p>
-              </div>
-            </div>
-            <div class="contact-item">
-              <i class="fas fa-phone"></i>
-              <div>
-                <h4>Telepon</h4>
-                <p>+62 858 9111 1702</p>
-              </div>
-            </div>
-            <div class="contact-item">
-              <i class="fas fa-map-marker-alt"></i>
-              <div>
-                <h4>Lokasi</h4>
-                <p>Jakarta, Indonesia</p>
-              </div>
-            </div>
-            <div class="social-links">
-              <a href="#"><i class="fab fa-linkedin"></i></a>
-              <a href="#"><i class="fab fa-github"></i></a>
-              <a href="#"><i class="fab fa-twitter"></i></a>
-              <a href="#"><i class="fab fa-instagram"></i></a>
-            </div>
-          </div>
-          <div class="contact-form">
-            <form id="contactForm">
-              <div class="form-group">
-                <input type="text" id="name" placeholder="Nama Lengkap" required />
-              </div>
-              <div class="form-group">
-                <input type="email" id="email" placeholder="Alamat Email" required />
-              </div>
-              <div class="form-group">
-                <input type="text" id="subject" placeholder="Subjek" required />
-              </div>
-              <div class="form-group">
-                <textarea id="message" rows="5" placeholder="Pesan Anda" required></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary">Kirim Pesan</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Di bagian Footer - Perbaiki struktur -->
-    <footer class="professional-footer">
-      <div class="footer-container">
-        <!-- Bottom Section -->
-        <div class="footer-bottom">
-          <div class="copyright">
-            <p>&copy; <span id="currentYear">2025</span> Muhamad Fauzan Atarsyah. All rights reserved.</p>
-          </div>
-
-          <div class="footer-legal">
-            <a href="#" class="legal-link">Privacy Policy</a>
-            <span class="separator">•</span>
-            <a href="#" class="legal-link">Terms of Service</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tambahkan Back to Top Button yang hilang -->
-      <button id="backToTop" class="back-to-top" aria-label="Scroll to top">
-        <i class="fas fa-chevron-up"></i>
-      </button>
-
-      <!-- Mobile Floating Action Button -->
-      <div class="mobile-fab">
-        <a href="#contact" class="btn btn-primary">
-          <i class="fas fa-envelope"></i>
-        </a>
-      </div>
-    </footer>
-
-    <script src="script.js"></script>
-  </body>
+            // Video error handling
+            const video = document.querySelector('video');
+            if (video) {
+                video.addEventListener('error', function() {
+                    document.querySelector('.video-background').style.background = '#0c0c0c';
+                });
+            }
+        })();
+    </script>
+</body>
 </html>

@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <link rel="shortcut icon" type="image/png" href="img/Muhamad Fauzan Atarsyah.png">
+    <!-- Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=JetBrains+Mono:wght@300..700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0c0c0c;
+            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            font-weight: 350;
+            line-height: 1.6;
+            letter-spacing: -0.01em;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 450;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: #ffffff;
+        }
+
+        /* navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.8rem 6% 1.2rem 6%;
+            background: transparent;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .logo a {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            font-weight: 350;
+            text-decoration: none;
+            color: #64ffda;
+            letter-spacing: -0.1rem;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s ease;
+        }
+
+        .logo a:hover {
+            border-bottom-color: #64ffda;
+            color: #ffffff;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 3.5rem;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.8rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #9e9e9e;
+            font-weight: 400;
+            font-size: 1.1rem;
+            padding: 0.2rem 0;
+            border-bottom: 2px solid transparent;
+            transition: 0.15s;
+        }
+
+        .nav-links a:hover {
+            border-bottom-color: #64ffda;
+            color: #64ffda;
+        }
+
+        .nav-index {
+            font-family: 'JetBrains Mono', monospace;
+            color: #a0a0a0;
+            font-size: 1rem;
+            font-weight: 300;
+            letter-spacing: -0.02rem;
+            background: #1a1a1a;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            transition: 0.2s;
+            border: 1px solid #2a2a2a;
+            cursor: default;
+        }
+
+        .nav-index i {
+            font-size: 0.7rem;
+            color: #64ffda;
+            margin-left: 6px;
+        }
+
+        /* --- LAYOUT UTAMA DENGAN SIDEBAR --- */
+        .main-with-sidebar {
+            display: flex;
+            gap: 3rem;
+            padding: 1.5rem 6% 3rem;
+            align-items: flex-start;
+        }
+
+        /* konten utama (lebih lebar) */
+        .content-primary {
+            flex: 3;
+            min-width: 0;
+        }
+
+        /* sidebar tetap (lebih ramping) */
+        .content-sidebar {
+            flex: 1.1;
+            min-width: 220px;
+            background: #141414;
+            padding: 1.8rem 1.5rem;
+            border-radius: 20px;
+            border: 1px solid #2a2a2a;
+            box-shadow: 0 8px 18px -12px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 2rem;
+        }
+
+        .sidebar-section {
+            margin-bottom: 2.5rem;
+        }
+        .sidebar-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .sidebar-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: -0.02rem;
+            color: #64ffda;
+            border-bottom: 2px solid #2a2a2a;
+            padding-bottom: 0.6rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .sidebar-title i {
+            font-size: 0.9rem;
+            color: #64ffda;
+        }
+
+        /* Style untuk sidebar item (meniru puisi.html) */
+        .puisi-sidebar-list, .cerpen-sidebar-list, .artikel-sidebar-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .puisi-sidebar-list li, .cerpen-sidebar-list li, .artikel-sidebar-list li {
+            margin-bottom: 1.2rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px dashed #2a2a2a;
+        }
+
+        .puisi-sidebar-list li:last-child, .cerpen-sidebar-list li:last-child, .artikel-sidebar-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .puisi-sidebar-item, .cerpen-sidebar-item, .artikel-sidebar-item {
+            display: flex;
+            gap: 0.8rem;
+            align-items: flex-start;
+        }
+
+        .puisi-sidebar-item .icon, .cerpen-sidebar-item .icon, .artikel-sidebar-item .icon {
+            color: #64ffda;
+            font-size: 0.9rem;
+            margin-top: 0.2rem;
+            min-width: 20px;
+        }
+
+        .puisi-sidebar-item .info, .cerpen-sidebar-item .info, .artikel-sidebar-item .info {
+            flex: 1;
+        }
+
+        .puisi-sidebar-item .judul, .cerpen-sidebar-item .judul, .artikel-sidebar-item .judul {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            font-weight: 400;
+            margin-bottom: 0.3rem;
+            line-height: 1.4;
+        }
+
+        .puisi-sidebar-item .judul a, .cerpen-sidebar-item .judul a, .artikel-sidebar-item .judul a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+
+        .puisi-sidebar-item .judul a:hover, .cerpen-sidebar-item .judul a:hover, .artikel-sidebar-item .judul a:hover {
+            color: #64ffda;
+        }
+
+        .puisi-sidebar-item .meta-puisi, .cerpen-sidebar-item .meta-puisi, .artikel-sidebar-item .meta-puisi {
+            font-size: 0.7rem;
+            color: #606060;
+            display: flex;
+            gap: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .puisi-sidebar-item .meta-puisi i, .cerpen-sidebar-item .meta-puisi i, .artikel-sidebar-item .meta-puisi i {
+            color: #64ffda;
+            margin-right: 3px;
+            font-size: 0.65rem;
+        }
+
+        /* hero minimal */
+        .hero-minimal {
+            padding: 2rem 6% 1.5rem;
+            max-width: 780px;
+        }
+
+        .hero-minimal h1 {
+            font-size: 3.8rem;
+            font-weight: 400;
+            line-height: 1.1;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-minimal h1 span {
+            font-family: 'JetBrains Mono', monospace;
+            background: #1a1a1a;
+            padding: 0.1rem 0.8rem;
+            display: inline-block;
+            font-size: 3rem;
+            font-weight: 300;
+            border-radius: 100px;
+            color: #64ffda;
+            border: 1px solid #2a2a2a;
+        }
+
+        .hero-minimal p {
+            color: #9e9e9e;
+            font-size: 1.2rem;
+            max-width: 600px;
+            border-left: 3px solid #2a2a2a;
+            padding-left: 1.8rem;
+            margin-top: 1rem;
+        }
+
+        /* section label */
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.2px;
+            color: #64ffda;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #2a2a2a;
+            padding-bottom: 0.7rem;
+        }
+
+        /* FEATURED ENTRY - SATU GEDE POLOSAN */
+        .featured-entry {
+            display: block;
+            margin-bottom: 3rem;
+        }
+
+        .featured-image-wrapper {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .featured-entry .card-image {
+            width: 100%;
+            aspect-ratio: 21/9;
+            object-fit: cover;
+            border-radius: 16px;
+            border: 1px solid #2a2a2a;
+            filter: brightness(0.9);
+            transition: 0.3s ease;
+            display: block;
+        }
+
+        .featured-entry:hover .card-image {
+            filter: brightness(1);
+            border-color: #64ffda;
+        }
+
+        .click-badge {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            color: #64ffda;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            border: 1px solid #64ffda;
+            letter-spacing: 0.5px;
+            z-index: 2;
+            pointer-events: none;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .featured-entry .entry-meta {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            color: #64ffda;
+            gap: 1.5rem;
+        }
+
+        .featured-entry h2 {
+            font-size: 3.2rem;
+            font-weight: 450;
+            margin-bottom: 1.2rem;
+            line-height: 1.2;
+        }
+
+        .featured-entry h2 a {
+            text-decoration: none;
+            color: #ffffff;
+            border-bottom: 3px solid transparent;
+            transition: 0.2s;
+        }
+
+        .featured-entry h2 a:hover {
+            border-bottom-color: #64ffda;
+            color: #64ffda;
+        }
+
+        .featured-entry .entry-summary {
+            font-size: 1.3rem;
+            color: #b0b0b0;
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+            max-width: 90%;
+        }
+
+        .featured-entry .entry-foot {
+            font-size: 1rem;
+            color: #808080;
+            gap: 2rem;
+        }
+
+        /* grid 3 kolom untuk konten biasa */
+        .grid-3col {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem 1.8rem;
+            margin-bottom: 3rem;
+        }
+
+        .entry-card {
+            background: transparent;
+            padding: 0;
+            transition: 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .entry-card .card-image {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            background: #1a1a1a;
+            border-radius: 12px;
+            margin-bottom: 1.2rem;
+            box-shadow: 0 6px 15px -10px rgba(0, 0, 0, 0.5);
+            transition: 0.25s ease;
+            border: 1px solid #2a2a2a;
+            filter: brightness(0.8);
+        }
+
+        .entry-card:hover .card-image {
+            box-shadow: 0 12px 20px -12px rgba(100, 255, 218, 0.2);
+            border-color: #64ffda;
+            transform: scale(1.01);
+            filter: brightness(1);
+        }
+
+        .entry-meta {
+            display: flex;
+            gap: 1.2rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #64ffda;
+            margin-bottom: 0.6rem;
+        }
+
+        .entry-meta .dot {
+            color: #2a2a2a;
+            font-weight: 300;
+        }
+
+        .entry-card h3 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin-bottom: 0.6rem;
+        }
+
+        .entry-card h3 a {
+            text-decoration: none;
+            color: #ffffff;
+            transition: 0.1s;
+            border-bottom: 2px solid transparent;
+        }
+
+        .entry-card h3 a:hover {
+            border-bottom-color: #64ffda;
+            color: #64ffda;
+        }
+
+        .entry-summary {
+            color: #9e9e9e;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .entry-foot {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: #6a6a6a;
+            margin-top: 0.2rem;
+        }
+
+        /* cerpen section */
+        .cerpen-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cerpen-card {
+            background: #141414;
+            padding: 1.5rem 1.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px -8px rgba(0, 0, 0, 0.3);
+            border: 1px solid #2a2a2a;
+        }
+
+        .cerpen-card h2 {
+            font-size: 1.5rem;
+            font-weight: 380;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #64ffda;
+            padding-left: 1.2rem;
+            color: #ffffff;
+        }
+
+        .cerpen-list {
+            list-style: none;
+        }
+        .cerpen-list li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .cerpen-list li:last-child {
+            border-bottom: none;
+        }
+        .cerpen-list img {
+            width: 42px;
+            height: 42px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 1px solid #2a2a2a;
+            filter: brightness(0.8);
+        }
+        .cerpen-judul {
+            text-decoration: none;
+            color: #d0d0d0;
+            font-weight: 400;
+            flex: 1;
+            font-size: 1rem;
+        }
+        .cerpen-judul:hover {
+            color: #64ffda;
+        }
+        .cerpen-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            background: #1f1f1f;
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            color: #64ffda;
+            border: 1px solid #2a2a2a;
+        }
+
+       /* Footer Styles */
+        .professional-footer {
+            color: #ffffff;
+            padding: 2rem 0;
+            position: relative;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .copyright p {
+            color: #b0b0b0;
+            font-size: 0.9rem;
+        }
+
+        .footer-legal {
+            margin-top: 0.5rem;
+        }
+
+        .legal-link {
+            color: #b0b0b0;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .separator {
+            color: #666;
+        }
+
+        /* responsive */
+        @media (max-width: 900px) {
+            .main-with-sidebar {
+                flex-direction: column;
+            }
+            .content-sidebar {
+                width: 100%;
+                position: static;
+            }
+            .grid-3col { 
+                grid-template-columns: repeat(2, 1fr); 
+            }
+            .featured-entry .card-image {
+                aspect-ratio: 16/9;
+            }
+            .featured-entry h2 {
+                font-size: 2.5rem;
+            }
+        }
+        @media (max-width: 600px) {
+            .grid-3col, .cerpen-grid { 
+                grid-template-columns: 1fr; 
+            }
+            
+            .hero-minimal {
+                padding: 1.5rem 6% 1rem;
+            }
+            .hero-minimal h1 { 
+                font-size: 1.8rem !important; 
+                line-height: 1.3;
+                margin-bottom: 1rem;
+            }
+            .hero-minimal h1 span {
+                font-size: 1.5rem !important;
+                padding: 0.1rem 0.4rem;
+                display: inline-block;
+            }
+            .hero-minimal p {
+                font-size: 0.9rem;
+                padding-left: 1rem;
+                border-left-width: 2px;
+            }
+            
+            .navbar { 
+                flex-direction: column; 
+                align-items: flex-start; 
+                padding: 1.2rem 6% 0.8rem;
+            }
+            .nav-right { 
+                width: 100%; 
+                flex-wrap: wrap; 
+                row-gap: 0.5rem; 
+                margin-top: 0.5rem;
+            }
+            .nav-links {
+                gap: 1.5rem;
+                flex-wrap: wrap;
+            }
+            .nav-links a {
+                font-size: 1rem;
+            }
+            .logo a {
+                font-size: 1.8rem;
+            }
+            
+            .featured-entry h2 {
+                font-size: 2rem;
+            }
+            .featured-entry .entry-summary {
+                font-size: 1.1rem;
+                max-width: 100%;
+            }
+            .featured-entry .card-image {
+                aspect-ratio: 4/3;
+            }
+            .click-badge {
+                font-size: 0.7rem;
+                padding: 0.4rem 1rem;
+            }
+        }
+
+        a {
+            transition: all 0.2s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="#">Blog Attar</a>
+        </div>
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="#">Journey</a>
+                <a href="#">Jurnal</a>
+                <a href="#">Puisi</a>
+                <a href="#">Cerpen</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- hero minimal -->
+    <div class="hero-minimal">
+        <h1>
+            Dari terbentur, <br>
+            terbentur, terbentur,<br>kemudian terbentuk.
+        </h1>
+        <p> <em>- Tan Malaka</em> </p>
+    </div>
+
+    <!-- area utama dengan sidebar -->
+    <div class="main-with-sidebar">
+        <div class="content-primary">
+            <div class="section-label">/ Kesukaan Gue</div>
+            <article class="featured-entry">
+                <div class="featured-image-wrapper">
+                    <a href="puisi.html">
+                        <img class="card-image" src="img/puisi1.webp" alt="Meja tulis dengan puisi" loading="lazy">
+                    </a>
+                    <span class="click-badge">Klik Disini</span>
+                </div>
+                <div class="entry-meta">
+                    <span>PUISI</span>
+                    <span class="dot">◆</span>
+                    <span>7 Januari 2026</span>
+                </div>
+                <h2><a href="puisi.html">Aku Dan Suara mu</a></h2>
+                <div class="entry-summary">
+                    "Dalam diamku kau bercerita dengan suara yang hanya kupahami. 
+                    Sebuah perjumpaan yang tak terduga antara kata dan hening."
+                </div>
+                <div class="entry-foot">
+                    <span>Attar</span>
+                    <span>—</span>
+                    <span>7 Januari 2026</span>
+                </div>
+            </article>
+
+            <!-- grid 3 kolom biasa (kecil-kecil) -->
+            <div class="grid-3col">
+                <!-- puisi -->
+                <article class="entry-card">
+                    <img class="card-image" src="img/cerpen1.jpg" alt="senja kabut" loading="lazy">
+                    <div class="entry-meta">
+                        <span>CERPEN</span>
+                        <span class="dot">◇</span>
+                    </div>
+                    <h3><a href="#">Mah, Pah, kenapa aku terlahir Miskin</a></h3>
+                    <div class="entry-summary">“Judul di ambil dari pertanyaan seorang anak kepada ibu nya”.</div>
+                    <div class="entry-foot">
+                        <span>Attar</span>
+                        <span>—</span>
+                        <span>7 Febuari 2026</span>
+                    </div>
+                </article>
+                
+                <!-- cerpen -->
+                <article class="entry-card">
+                    <img class="card-image" src="img/puisi2.webp" alt="pintu kayu tua" loading="lazy">
+                    <div class="entry-meta">
+                        <span>PUISI</span>
+                        <span class="dot">○</span>
+                    </div>
+                    <h3><a href="#">Kembalikan Kebahagian Yang Kau Renggut</a></h3>
+                    <div class="entry-summary">"Ia masuk dan merenggut kebahagian ku tanpa permisi".</div>
+                    <div class="entry-foot">
+                        <span>Attar</span>
+                        <span>—</span>
+                        <span>15 Febuari 2026</span>
+                    </div>
+                </article>
+
+                <!-- artikel tambahan -->
+                <article class="entry-card">
+                    <img class="card-image" src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=500&auto=format" alt="diam" loading="lazy">
+                    <div class="entry-meta"><span>artikel</span><span class="dot">⸻</span></div>
+                    <h3><a href="#">tentang tidak menulis</a></h3>
+                    <div class="entry-summary">Justru ketika diam, banyak hal muncul.</div>
+                    <div class="entry-foot"><span>Kinan</span><span>•</span><span>4 jam lalu</span></div>
+                </article>
+            </div>
+
+            <!-- cerpen pilihan -->
+            <div class="section-label">/ Goresan lainnya</div>
+            <div class="cerpen-grid">
+                <div class="cerpen-card">
+                    <h2>// cerpen </h2>
+                    <ul class="cerpen-list">
+                        <li>
+                            <img src="img/cm.png" alt="jendela" loading="lazy">
+                            <span class="cerpen-tag">Cooming Soon</span>
+                            <a href="#" class="cerpen-judul">Coomig Soon</a>
+                            <span style="color:#6a6a6a;">Cooming Soon</span>
+                        </li>
+                        <li>
+                            <img src="img/cm.png" alt="kopi" loading="lazy">
+                            <span class="cerpen-tag">Cooming Soon</span>
+                            <a href="#" class="cerpen-judul">Cooming Soon</a>
+                            <span style="color:#6a6a6a;">Cooming Soon</span>
+                        </li>
+                        <li>
+                            <img src="img/cm.png" alt="pohon" loading="lazy">
+                            <span class="cerpen-tag">Cooming Soon</span>
+                            <a href="#" class="cerpen-judul">Cooming Soon</a>
+                            <span style="color:#6a6a6a;">Cooming Soon</span>
+                        </li>
+                    </ul>
+                    <div style="margin-top:1.5rem;">
+                        <a href="#" style="color:#64ffda; border-bottom: 1px solid #2a2a2a; text-decoration: none; padding-bottom:2px;">semua cerpen →</a>
+                    </div>
+                </div>
+                <div class="cerpen-card">
+                    <h2>// puisi </h2>
+                    <ul class="cerpen-list">
+                        <li>
+                            <img src="img/cm.png" alt="stasiun" loading="lazy">
+                            <span class="cerpen-tag">Cooming Soon</span>
+                            <a href="#" class="cerpen-judul">Cooming Soon</a>
+                            <span style="color:#6a6a6a;">Cooming Soon</span>
+                        </li>
+                        <li>
+                            <img src="img/cm.png" alt="warung" loading="lazy">
+                            <span class="cerpen-tag">Cooming Soon</span>
+                            <a href="#" class="cerpen-judul">Cooming Soon</a>
+                            <span style="color:#6a6a6a;">Cooming Soon</span>
+                        </li>
+                        <li>
+                            <img src="img/cm.png" alt="malam" loading="lazy">
+                            <span class="cerpen-tag">Cooming Soon</span>
+                            <a href="#" class="cerpen-judul">Cooming Soon</a>
+                            <span style="color:#6a6a6a;">Cooming Soon</span>
+                        </li>
+                    </ul>
+                    <div style="margin-top:1.5rem;">
+                        <a href="#" style="color:#64ffda; border-bottom: 1px solid #2a2a2a; text-decoration: none; padding-bottom:2px;">cerpen lainnya →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SIDEBAR KANAN (SEMUA SECTION SEKARANG KONSISTEN) -->
+        <aside class="content-sidebar">
+            <!-- sidebar: puisi pilihan -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">
+                     Puisi
+                </div>
+                <ul class="puisi-sidebar-list">
+                    <li>
+                        <div class="puisi-sidebar-item">
+                            
+                            <div class="info">
+                                <div class="judul"><a href="#">Cooming Soon</a></div>
+                                <div class="meta-puisi">
+                                    <span><i class="far fa-calendar-alt"></i>Cooming Soon</span>
+                                    <span><i class="far fa-heart"></i> Cooming Soon</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="puisi-sidebar-item">
+                           
+                            <div class="info">
+                                <div class="judul"><a href="#">Cooming Soon</a></div>
+                                <div class="meta-puisi">
+                                    <span><i class="far fa-calendar-alt"></i>Cooming Soon</span>
+                                    <span><i class="far fa-heart"></i> Cooming Soon</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="puisi-sidebar-item">
+                           
+                            <div class="info">
+                                <div class="judul"><a href="#">Cooming Soon</a></div>
+                                <div class="meta-puisi">
+                                    <span><i class="far fa-calendar-alt"></i> Cooming Soon</span>
+                                    <span><i class="far fa-heart"></i> Cooming Soon</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- sidebar: cerpen segar -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">
+                     Cerpen 
+                </div>
+                <ul class="cerpen-sidebar-list">
+                    <li>
+                        <div class="cerpen-sidebar-item">
+                            
+                            <div class="info">
+                                <div class="judul"><a href="#">Cooming Soon</a></div>
+                                <div class="meta-puisi">
+                                    <span><i class="far fa-calendar-alt"></i>Cooming Soon</span>
+                                    <span><i class="far fa-heart"></i> Cooming Soon</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="cerpen-sidebar-item">
+                            
+                            <div class="info">
+                                <div class="judul"><a href="#">Cooming Soon</a></div>
+                                <div class="meta-puisi">
+                                    <span><i class="far fa-calendar-alt"></i>Cooming Soon</span>
+                                    <span><i class="far fa-heart"></i>Cooming Soon</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="cerpen-sidebar-item">
+                            <div class="info">
+                                <div class="judul"><a href="#">Cooming Soon</a></div>
+                                <div class="meta-puisi">
+                                    <span><i class="far fa-calendar-alt"></i>Cooming Soon</span>
+                                    <span><i class="far fa-heart"></i>Cooming Soon</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- sidebar: artikel terhangat (SEKARANG SUDAH DIPERBAIKI) -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">
+                   Artikel 
+                </div>
+                <ul class="artikel-sidebar-list">
+                    <li>
+                        <div class="artikel-sidebar-item">
+                            
+                            <div class="info">
+                                <div class="judul"><a href="#">Cooming Soon</a></div>
+                                <div class="meta-puisi">
+                                    <span><i class="far fa-calendar-alt"></i>Cooming Soon</span>
+                                    <span><i class="far fa-eye"></i>Cooming Soon</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="artikel-sidebar-item">
+                            
+                            <div class="info">
+                                <div class="judul"><a href="#">Cooming Soon</a></div>
+                                <div class="meta-puisi">
+                                    <span><i class="far fa-calendar-alt"></i>Cooming Soon</span>
+                                    <span><i class="far fa-eye"></i>Cooming Soon</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="artikel-sidebar-item">
+                           
+                            <div class="info">
+                                <div class="judul"><a href="#">Cooming Soon</a></div>
+                                <div class="meta-puisi">
+                                    <span><i class="far fa-calendar-alt"></i>Cooming Soon</span>
+                                    <span><i class="far fa-eye"></i> Cooming Soon</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- indeks mini -->
+            <div style="margin-top:2rem; background:#1a1a1a; border-radius:30px; padding:0.7rem 1.4rem; text-align:center; font-size:0.85rem; color:#64ffda; border:1px solid #2a2a2a;">
+                <i class="fas fa-smile-wink" style="color:#64ffda;"></i> 62 cerpen · 43 puisi · 28 artikel
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="professional-footer">
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>&copy; <span id="currentYear">2026</span> Muhamad Fauzan Atarsyah.</p>
+                </div>
+                <div class="footer-legal">
+                    <a href="#" class="legal-link">Privacy Policy</a>
+                    <span class="separator">•</span>
+                    <a href="#" class="legal-link">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
