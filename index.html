@@ -72,8 +72,8 @@
             overflow: hidden;
         }
 
-        /* Video Background */
-        .video-background {
+        /* Image Background (Menggantikan Video) */
+        .image-background {
             position: absolute;
             top: 0;
             left: 0;
@@ -83,9 +83,9 @@
             overflow: hidden;
         }
 
-        .video-background video {
+        .image-background img {
             position: absolute;
-            top: 50%;
+            top: 75%;
             left: 50%;
             min-width: 100%;
             min-height: 100%;
@@ -94,9 +94,10 @@
             transform: translateX(-50%) translateY(-50%);
             object-fit: cover;
             filter: brightness(0.4) contrast(1.2);
+            transition: transform 0.1s ease-out; /* Halus untuk efek scroll */
         }
 
-        .video-overlay {
+        .image-overlay {
             position: absolute;
             top: 0;
             left: 0;
@@ -106,6 +107,10 @@
             z-index: 1;
             pointer-events: none;
         }
+        .image-background img {
+    object-fit: contain; /* Gambar utuh tapi mungkin ada ruang kosong */
+    background-color: #0c0c0c; /* Warna background jika ada ruang kosong */
+}
 
         /* Geometric shapes - static */
         .geo-shape {
@@ -510,7 +515,7 @@
                 width: 60px;
             }
 
-            .video-background video {
+            .image-background img {
                 filter: brightness(0.3) contrast(1.2);
             }
         }
@@ -563,7 +568,7 @@
                 min-height: auto;
             }
             
-            .video-background, .geo-shape, .diagonal-line, .dot-pattern, .particle, .cursor, .cursor-follower {
+            .image-background, .geo-shape, .diagonal-line, .dot-pattern, .particle, .cursor, .cursor-follower {
                 display: none;
             }
             
@@ -589,13 +594,15 @@
 
     <!-- Hero Section -->
     <section class="hero" id="hero">
-        <!-- Video Background -->
-        <div class="video-background">
-            <video autoplay muted loop playsinline poster="https://via.placeholder.com/1920x1080/0c0c0c/64ffda?text=Loading+Video...">
-                <source src="video/ojan.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div class="video-overlay"></div>
+        <!-- Image Background (Menggantikan Video) -->
+        <div class="image-background">
+            <img 
+                src="img/ojan.jpg" 
+                alt="Background Image" 
+                id="background-img"
+                fetchpriority="high"
+            >
+            <div class="image-overlay"></div>
         </div>
         
         <!-- Geometric shapes -->
@@ -649,9 +656,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Scroll Indicator -->
-        <div class="scroll-indicator">SCROLL</div>
     </section>
 
     <script>
@@ -724,19 +728,22 @@
                 });
             }
 
-            // Scroll animation
+            // Scroll animation (Diadaptasi untuk gambar)
             window.addEventListener('scroll', () => {
                 const scrolled = window.pageYOffset;
                 const heroContent = document.querySelector('.hero-content');
-                const video = document.querySelector('.video-background video');
+                const bgImage = document.getElementById('background-img');
                 
                 if (heroContent && scrolled < window.innerHeight) {
                     heroContent.style.opacity = 1 - (scrolled * 0.001);
                     heroContent.style.transform = `translateY(${scrolled * 0.2}px)`;
                 }
                 
-                if (video && scrolled < window.innerHeight) {
-                    video.style.transform = `translateX(-50%) translateY(${-50 + scrolled * 0.05}%)`;
+                // Efek parallax halus pada gambar background
+                if (bgImage && scrolled < window.innerHeight) {
+                    // Menggerakkan gambar sedikit ke atas saat scroll (parallax)
+                    // Nilai 0.1 membuat gerakannya lebih halus dan tidak terlalu cepat
+                    bgImage.style.transform = `translateX(-50%) translateY(${-50 + (scrolled * 0.1)}%)`;
                 }
             });
 
@@ -748,12 +755,19 @@
                 }
             }, 2000);
 
-            // Video error handling
-            const video = document.querySelector('video');
-            if (video) {
-                video.addEventListener('error', function() {
-                    document.querySelector('.video-background').style.background = '#0c0c0c';
-                });
+            // Error handling untuk gambar
+            const bgImage = document.getElementById('background-img');
+            if (bgImage) {
+                bgImage.onerror = function() {
+                    console.log('Gambar background gagal dimuat, menggunakan fallback warna solid.');
+                    document.querySelector('.image-background').style.background = '#0c0c0c';
+                    this.style.display = 'none'; // Sembunyikan elemen img yang error
+                };
+                
+                // Opsional: Tampilkan pesan jika gambar berhasil dimuat
+                bgImage.onload = function() {
+                    console.log('Gambar background berhasil dimuat.');
+                };
             }
         })();
     </script>
