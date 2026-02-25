@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Blog — Attar</title>
+    <title>Blog</title>
     <link rel="shortcut icon" type="image/png" href="img/Muhamad Fauzan Atarsyah.png">
     <!-- Fonts: Inter & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -93,6 +93,38 @@
         .nav-links a:hover {
             border-bottom-color: #64ffda;
             color: #64ffda;
+        }
+
+        /* breadcrumb baru */
+        .breadcrumb {
+            padding: 0.8rem 5% 0.2rem 5%;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #6a6a6a;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem 0.8rem;
+            background: transparent;
+            border-bottom: 1px solid #1f1f1f;
+        }
+        .breadcrumb a {
+            color: #9e9e9e;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: 0.2s;
+        }
+        .breadcrumb a:hover {
+            color: #64ffda;
+            border-bottom-color: #64ffda;
+        }
+        .breadcrumb .separator {
+            color: #2a2a2a;
+            font-weight: 400;
+        }
+        .breadcrumb .current {
+            color: #64ffda;
+            font-weight: 400;
+            border-bottom: 1px solid #64ffda40;
         }
 
         /* hero minimal */
@@ -197,7 +229,6 @@
             display: block;
         }
 
-        /* ===== MODIFIED: Pindah ke kiri bawah ===== */
         .click-badge {
             position: absolute;
             left: 1rem;
@@ -211,7 +242,6 @@
             border-radius: 40px;
             border: 1px solid #64ffda;
             white-space: nowrap;
-            transform: none; /* Hapus transform sebelumnya */
         }
 
         .featured-entry h2 {
@@ -530,6 +560,11 @@
             .hero-minimal h1 {
                 font-size: 1.8rem;
             }
+
+            .breadcrumb {
+                font-size: 0.75rem;
+                padding: 0.6rem 5%;
+            }
             
             .grid-3col, .cerpen-grid {
                 grid-template-columns: 1fr;
@@ -635,13 +670,20 @@
         </div>
         <div class="nav-right">
             <div class="nav-links">
-                <a href="#">Journey</a>
-                <a href="#">Jurnal</a>
-                <a href="#">Puisi</a>
-                <a href="#">Cerpen</a>
+                <a href="halamanjourney.html">Journey</a>
+                <a href="halamanpuisi.html">Puisi</a>
+                <a href="halamancerpen.html">Cerpen</a>
+                <a href="halamanarts.html">Art</a>
+                <a href="halamanalbum.html">Albums</a>
             </div>
         </div>
     </nav>
+
+    <!-- ********** BREADCRUMB BARU ********** -->
+    <div class="breadcrumb">
+        <a href="index.html">Kembali</a>
+        <span class="separator">/</span>
+    </div>
 
     <!-- hero minimal -->
     <div class="hero-minimal">
@@ -689,12 +731,12 @@
                         <span>CERPEN</span>
                         <span class="dot">◇</span>
                     </div>
-                    <h3><a href="#">Mah, Pah, kenapa aku terlahir Miskin</a></h3>
+                    <h3><a href="cerpen.html">Mah, Pah, kenapa aku terlahir Miskin</a></h3>
                     <div class="entry-summary">“Judul di ambil dari pertanyaan seorang anak kepada ibu nya”.</div>
                     <div class="entry-foot">
                         <span>Attar</span>
                         <span>—</span>
-                        <span>7 Febuari 2026</span>
+                        <span>17 Febuari 2026</span>
                     </div>
                 </article>
                 
@@ -905,11 +947,6 @@
                     </li>
                 </ul>
             </div>
-
-            <!-- indeks mini -->
-            <div style="margin-top:2rem; background:#1a1a1a; border-radius:30px; padding:0.7rem 1.4rem; text-align:center; font-size:0.85rem; color:#64ffda; border:1px solid #2a2a2a;">
-                <i class="fas fa-smile-wink"></i> 62 cerpen · 43 puisi · 28 artikel
-            </div>
         </aside>
     </div>
 
@@ -929,4 +966,4 @@
         </div>
     </footer>
 </body>
-</html>     
+</html>

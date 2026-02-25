@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Arts · visual only</title>
+    <link rel="shortcut icon" type="image/png" href="img/Muhamad Fauzan Atarsyah.png">
+    <!-- Fonts: buat navbar aja -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=JetBrains+Mono:wght@300..700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (optional, buat icon kecil) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0c0c0c;
+            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            font-weight: 350;
+            line-height: 1.6;
+            letter-spacing: -0.01em;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* navbar (sama seperti blog) */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.8rem 5% 1.2rem 5%;
+            background: transparent;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #2a2a2a;
+            width: 100%;
+        }
+
+        .logo a {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            font-weight: 350;
+            text-decoration: none;
+            color: #64ffda;
+            letter-spacing: -0.1rem;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .logo a:hover {
+            border-bottom-color: #64ffda;
+            color: #ffffff;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: clamp(1rem, 3vw, 3.5rem);
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: clamp(1rem, 2.5vw, 2.8rem);
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #9e9e9e;
+            font-weight: 400;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            padding: 0.2rem 0;
+            border-bottom: 2px solid transparent;
+            transition: 0.15s;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            border-bottom-color: #64ffda;
+            color: #64ffda;
+        }
+
+        /* breadcrumb minimal */
+        .breadcrumb {
+            padding: 0.8rem 5% 0.2rem 5%;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #6a6a6a;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem 0.8rem;
+            background: transparent;
+            border-bottom: 1px solid #1f1f1f;
+        }
+        .breadcrumb a {
+            color: #9e9e9e;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: 0.2s;
+        }
+        .breadcrumb a:hover {
+            color: #64ffda;
+            border-bottom-color: #64ffda;
+        }
+        .breadcrumb .separator {
+            color: #2a2a2a;
+            font-weight: 400;
+        }
+        .breadcrumb .current {
+            color: #64ffda;
+            font-weight: 400;
+            border-bottom: 1px solid #64ffda40;
+        }
+
+        /* HERO — judul tetap boleh sedikit, tapi simple */
+        .hero-simple {
+            padding: 2rem 5% 1rem 5%;
+        }
+        .hero-simple h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 350;
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: -0.1rem;
+        }
+        .hero-simple h1 span {
+            color: #64ffda;
+        }
+
+        /* GALLERY MURNI — cuma gambar */
+        .gallery-grid {
+            column-count: 4;           /* jumlah kolom berubah sesuai lebar */
+            column-gap: 1.2rem;
+            padding: 2rem 5% 4rem 5%;
+            width: 100%;
+        }
+
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 1.2rem;
+            display: inline-block;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #0f0f0f;
+            border: 1px solid #2a2a2a;
+            transition: 0.15s ease;
+        }
+
+        .gallery-item:hover {
+            border-color: #64ffda;
+            opacity: 0.95;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            background: #1a1a1a;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.02);
+        }
+
+        /* footer sama persis */
+        .professional-footer {
+            color: #ffffff;
+            padding: 2rem 5%;
+            width: 100%;
+            border-top: 1px solid #2a2a2a;
+        }
+
+        .footer-container {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .footer-legal .legal-link {
+            color: #9e9e9e;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .footer-legal .legal-link:hover {
+            color: #64ffda;
+        }
+
+        .footer-legal .separator {
+            color: #2a2a2a;
+            margin: 0 0.5rem;
+        }
+
+        /* responsive */
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                column-count: 3;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                column-count: 2;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                column-count: 1;
+            }
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+
+        a {
+            transition: all 0.2s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- navbar (link Arts aktif) -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="blog.html">Blog Attar</a>
+        </div>
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="halamanjourney.html">Journey</a>
+                <a href="halamanpuisi.html">Puisi</a>
+                <a href="halamancerpen.html">Cerpen</a>
+                <a href="arts.html" class="active">Arts</a>
+                <a href="halamancerpen.html">Albums</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- breadcrumb -->
+    <div class="breadcrumb">
+        <a href="blog.html">Kembali</a>
+        <span class="separator">/</span>
+        <span class="current">Art</span>
+    </div>
+
+    <!-- judul kecil saja -->
+    <div class="hero-simple">
+        <h1> Hasil coretan gue</h1>
+    </div>
+
+    <!-- GALLERY TANPA TEKS: semua gambar pakai cm.png -->
+    <div class="gallery-grid">
+        <!-- karya 1 -->
+        <div class="gallery-item">
+            <img src="img/arts1.png" alt="karya 1" loading="lazy">
+        </div>
+        <!-- karya 2 -->
+        <div class="gallery-item">
+            <img src="img/cm.png" alt="karya 2" loading="lazy">
+        </div>
+        <!-- karya 3 -->
+        <div class="gallery-item">
+            <img src="img/cm.png" alt="karya 3" loading="lazy">
+        </div>
+        <!-- karya 4 -->
+        <div class="gallery-item">
+            <img src="img/cm.png" alt="karya 4" loading="lazy">
+        </div>
+        <!-- karya 5 -->
+        <div class="gallery-item">
+            <img src="img/cm.png" alt="karya 5" loading="lazy">
+        </div>
+        <!-- karya 6 -->
+        <div class="gallery-item">
+            <img src="img/cm.png" alt="karya 6" loading="lazy">
+        </div>
+        <!-- karya 7 -->
+        <div class="gallery-item">
+            <img src="img/cm.png" alt="karya 7" loading="lazy">
+        </div>
+        <!-- karya 8 -->
+        <div class="gallery-item">
+            <img src="img/cm.png" alt="karya 8" loading="lazy">
+        </div>
+        <!-- karya 9 -->
+        <div class="gallery-item">
+            <img src="img/cm.png" alt="karya 9" loading="lazy">
+        </div>
+        <!-- karya 10 -->
+        <div class="gallery-item">
+            <img src="img/cm.png" alt="karya 10" loading="lazy">
+        </div>
+        <!-- karya 11 -->
+        <div class="gallery-item">
+            <img src="img/cm.png" alt="karya 11" loading="lazy">
+        </div>
+        <!-- karya 12 -->
+        <div class="gallery-item">
+            <img src="img/cm.png" alt="karya 12" loading="lazy">
+        </div>
+        <!-- karya 13 -->
+        <div class="gallery-item">
+            <img src="img/cm.png" alt="karya 13" loading="lazy">
+        </div>
+        <!-- karya 14 -->
+        <div class="gallery-item">
+            <img src="img/cm.png" alt="karya 14" loading="lazy">
+        </div>
+        <!-- karya 15 -->
+        <div class="gallery-item">
+            <img src="img/cm.png" alt="karya 15" loading="lazy">
+        </div>
+        <!-- karya 16 -->
+        <div class="gallery-item">
+            <img src="img/cm.png" alt="karya 16" loading="lazy">
+        </div>
+        <!-- karya 17 -->
+        <div class="gallery-item">
+            <img src="img/cm.png" alt="karya 17" loading="lazy">
+        </div>
+        <!-- karya 18 -->
+        <div class="gallery-item">
+            <img src="img/cm.png" alt="karya 18" loading="lazy">
+        </div>
+        <!-- karya 19 -->
+        <div class="gallery-item">
+            <img src="img/cm.png" alt="karya 19" loading="lazy">
+        </div>
+        <!-- karya 20 -->
+        <div class="gallery-item">
+            <img src="img/cm.png" alt="karya 20" loading="lazy">
+        </div>
+        <!-- tambah / kurangi sesuai koleksi Anda -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="professional-footer">
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>&copy; <span id="currentYear">2026</span> Muhamad Fauzan Atarsyah.</p>
+                </div>
+                <div class="footer-legal">
+                    <a href="#" class="legal-link">Privacy</a>
+                    <span class="separator">•</span>
+                    <a href="#" class="legal-link">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
