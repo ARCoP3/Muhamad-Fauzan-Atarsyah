@@ -238,7 +238,7 @@
             100% { opacity: 0; backdrop-filter: blur(4px); visibility: hidden; }
         }
 
-        /* ========== HERO SECTION dengan VIDEO BACKGROUND ========== */
+        /* ========== HERO SECTION dengan responsive background ========== */
         .hero {
             height: 100vh;
             position: relative;
@@ -248,8 +248,7 @@
             overflow: hidden;
         }
 
-        /* Video Background - DIPERBAIKI UKURANNYA */
-        .video-background {
+        .image-background {
             position: absolute;
             top: 0;
             left: 0;
@@ -259,54 +258,55 @@
             overflow: hidden;
         }
 
-        .video-background video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto%;
-            height: auto;
-            transform: translateX(-50%) translateY(-50%) scale(1);
-            object-fit: cover; /* fallback */
-            filter: brightness(0.5) contrast(1.1);
+        /* Background untuk Desktop */
+        .bg-desktop {
+            display: block;
+        }
+
+        .bg-mobile {
+            display: none;
+        }
+
+        .image-background img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.5);
+            transform-origin: center;
+            animation: kenBurnsZoom 24s ease-in-out infinite alternate;
+        }
+
+        /* Media query untuk mobile */
+        @media (max-width: 768px) {
+            .bg-desktop {
+                display: none;
+            }
             
-        }
-        
-        /* Untuk memastikan video selalu menutupi layar dengan proporsi tepat */
-        @media (min-aspect-ratio: 16/9) {
-            .video-background video {
-                width: 100%;
-                height: auto;
-            }
-        }
-        @media (max-aspect-ratio: 16/9) {
-            .video-background video {
-                width: auto;
-                height: 100%;
+            .bg-mobile {
+                display: block;
             }
         }
 
-        @keyframes videoSlowZoom {
-            0% { transform: translateX(-50%) translateY(-50%) scale(1); }
-            100% { transform: translateX(-50%) translateY(-50%) scale(1.08); }
+        @keyframes kenBurnsZoom {
+            0% { transform: scale(1) translate(0, 0); }
+            50% { transform: scale(1.1) translate(-1%, -1%); }
+            100% { transform: scale(1.05) translate(1%, 1%); }
         }
 
-        /* Overlay gradien dinamis */
-        .video-overlay {
+        .image-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 30% 50%, transparent 0%, rgba(0,0,0,0.7) 90%);
+            background: radial-gradient(circle at 30% 40%, transparent 20%, rgba(0,0,0,0.7) 90%);
             z-index: 1;
             animation: overlayBreathing 12s ease-in-out infinite alternate;
         }
 
         @keyframes overlayBreathing {
             0% { opacity: 0.5; backdrop-filter: blur(0px); }
-            100% { opacity: 0.8; backdrop-filter: blur(2px); }
+            100% { opacity: 0.8; backdrop-filter: blur(1px); }
         }
 
         /* particle canvas (animasi hero) */
@@ -521,18 +521,6 @@
             text-transform: uppercase;
         }
 
-        /* Fallback background jika video tidak bisa dimuat */
-        .fallback-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #0c0c0c url('img/BACKGROUND.png') center/cover no-repeat;
-            z-index: 0;
-            display: none;
-        }
-
         /* MOBILE */
         @media (max-width: 768px) {
             .typing-line {
@@ -638,10 +626,10 @@
                     <span class="glitch-text">"Dari terbentur, terbentur,</span>
                 </div>
                 <div class="typing-line line2">
-                    <span class="glitch-text">terbentur, kemudian terbentuk"</span>
+                    <span class="glitch-text">kemudian terbentuk"</span>
                 </div>
             </div>
-            <div class="credit">— Tan Malaka</div>
+            <div class="credit"><em>—Tan Malaka</em></div>
         </div>
 
         <div class="loading-bar-container">
@@ -649,20 +637,17 @@
         </div>
     </div>
 
-    <!-- HERO SECTION dengan VIDEO BACKGROUND - UKURAN SEMPURNA -->
+    <!-- HERO SECTION dengan responsive background -->
     <section class="hero">
-        <div class="video-background">
-            <video autoplay loop muted playsinline poster="img/BACKGROUND.png">
-                <source src="video/bg.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div class="video-overlay"></div>
+        <div class="image-background">
+            <!-- Background untuk Desktop -->
+            <img src="img/BACKGROUND.png" alt="background desktop" class="bg-desktop">
+            <!-- Background untuk Mobile -->
+            <img src="img/BACKGROUND-MOBILE.png" alt="background mobile" class="bg-mobile">
+            <div class="image-overlay"></div>
         </div>
 
-        <!-- Fallback jika video gagal -->
-        <div class="fallback-bg" id="fallbackBg"></div>
-
-        <!-- Canvas partikel (efek bintang/berkilau) -->
+        <!-- Canvas partikel (ditanam langsung dengan style) -->
         <canvas id="hero-particles"></canvas>
 
         <div class="hero-content">
@@ -706,24 +691,7 @@
             }
         }, 4000);
 
-        // Fallback jika video gagal dimuat
-        const video = document.querySelector('video');
-        const fallback = document.getElementById('fallbackBg');
-        
-        if (video) {
-            video.addEventListener('error', function() {
-                fallback.style.display = 'block';
-            });
-            
-            // Coba muat video, jika dalam 3 detik belum bisa dimuat, tampilkan fallback
-            setTimeout(() => {
-                if (video.readyState < 2) { // HAVE_CURRENT_DATA atau kurang
-                    fallback.style.display = 'block';
-                }
-            }, 3000);
-        }
-
-        // ========== PARTICLE ANIMATION untuk hero (efek bintang/berkilau) ==========
+        // ========== PARTICLE ANIMATION dengan warna EMAS dan efek MENDEKAT ke mouse ==========
         (function() {
             const canvas = document.getElementById('hero-particles');
             if (!canvas) return;
@@ -731,19 +699,25 @@
             const ctx = canvas.getContext('2d');
             let width, height;
             let particles = [];
+            let mouseX = -1000, mouseY = -1000; // default di luar layar
 
             function initParticles() {
                 const count = Math.floor((width * height) / 7000); // kepadatan partikel
                 particles = [];
                 for (let i = 0; i < count; i++) {
+                    // HANYA PARTIKEL YANG DIUBAH JADI EMAS
+                    const goldColor = '#FFD700'; // Warna emas murni
+                    
                     particles.push({
                         x: Math.random() * width,
                         y: Math.random() * height,
                         radius: Math.random() * 2.2 + 0.8,
                         speedX: (Math.random() - 0.5) * 0.3,
                         speedY: (Math.random() - 0.5) * 0.15,
-                        opacity: Math.random() * 0.5 + 0.2,
-                        color: `rgba(100, 255, 218, ${Math.random() * 0.6 + 0.2})`
+                        baseSpeedX: (Math.random() - 0.5) * 0.3,
+                        baseSpeedY: (Math.random() - 0.5) * 0.15,
+                        opacity: Math.random() * 0.6 + 0.2,
+                        color: goldColor
                     });
                 }
             }
@@ -756,27 +730,73 @@
                 initParticles();
             }
 
-            function drawParticles() {
-                ctx.clearRect(0, 0, width, height);
-                
-                for (let p of particles) {
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                    ctx.fillStyle = p.color;
-                    ctx.shadowColor = '#64ffda';
-                    ctx.shadowBlur = 8;
-                    ctx.fill();
-                    
-                    // gerakan
-                    p.x += p.speedX;
-                    p.y += p.speedY;
+            // Track posisi mouse
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
 
-                    // loop pingpong / wrap lembut
+            // Reset mouse position saat keluar window
+            window.addEventListener('mouseout', () => {
+                mouseX = -1000;
+                mouseY = -1000;
+            });
+
+            // Fungsi untuk membuat partikel mendekati mouse
+            function applyMouseAttract() {
+                for (let p of particles) {
+                    // Hitung jarak ke mouse
+                    const dx = mouseX - p.x;
+                    const dy = mouseY - p.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    
+                    // Jika mouse di dalam layar dan jarak kurang dari 200px
+                    if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height && dist < 200) {
+                        // Hitung arah menuju mouse
+                        const angle = Math.atan2(dy, dx);
+                        // Kekuatan tarikan (semakin dekat semakin kuat)
+                        const force = (1 - dist / 200) * 0.8;
+                        
+                        // Tambahkan kecepatan menuju mouse
+                        p.x += Math.cos(angle) * force * 3;
+                        p.y += Math.sin(angle) * force * 3;
+                    }
+                    
+                    // Gerakan normal (drift)
+                    p.x += p.baseSpeedX;
+                    p.y += p.baseSpeedY;
+
+                    // Wrap around (muncul di sisi lain)
                     if (p.x < 0) p.x = width;
                     if (p.x > width) p.x = 0;
                     if (p.y < 0) p.y = height;
                     if (p.y > height) p.y = 0;
                 }
+            }
+
+            function drawParticles() {
+                ctx.clearRect(0, 0, width, height);
+                
+                // Terapkan efek mendekat ke mouse
+                applyMouseAttract();
+                
+                // Gambar semua partikel dengan warna emas
+                for (let p of particles) {
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    
+                    // Gunakan warna emas dengan opacity
+                    ctx.fillStyle = p.color;
+                    ctx.shadowColor = '#FFD700';
+                    ctx.shadowBlur = 10;
+                    
+                    // Tambah efek kilau dengan opacity
+                    ctx.globalAlpha = p.opacity;
+                    ctx.fill();
+                }
+                
+                // Reset globalAlpha
+                ctx.globalAlpha = 1;
                 
                 requestAnimationFrame(drawParticles);
             }
@@ -787,52 +807,6 @@
 
             resizeCanvas();
             drawParticles();
-
-            // tambahan efek interaksi: partikel menjauh dari mouse
-            let mouseX = -1000, mouseY = -1000;
-            window.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-            });
-
-            // modifikasi sedikit pergerakan menjauh (sederhana)
-            function applyMouseRepel() {
-                for (let p of particles) {
-                    const dx = p.x - mouseX;
-                    const dy = p.y - mouseY;
-                    const dist = Math.sqrt(dx*dx + dy*dy);
-                    if (dist < 100) {
-                        const angle = Math.atan2(dy, dx);
-                        const force = (100 - dist) * 0.003;
-                        p.x += Math.cos(angle) * force * 5;
-                        p.y += Math.sin(angle) * force * 5;
-                    }
-                }
-            }
-
-            // override sedikit drawParticles dengan repel
-            function drawWithRepel() {
-                applyMouseRepel();
-                ctx.clearRect(0, 0, width, height);
-                for (let p of particles) {
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                    ctx.fillStyle = p.color;
-                    ctx.shadowColor = '#64ffda';
-                    ctx.shadowBlur = 8;
-                    ctx.fill();
-                    
-                    p.x += p.speedX;
-                    p.y += p.speedY;
-                    if (p.x < 0) p.x = width;
-                    if (p.x > width) p.x = 0;
-                    if (p.y < 0) p.y = height;
-                    if (p.y > height) p.y = 0;
-                }
-                requestAnimationFrame(drawWithRepel);
-            }
-            
-            drawWithRepel();
         })();
     </script>
     
