@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog</title>
+    <title>Blog · Fauzan Atarsyah</title>
     <link rel="shortcut icon" type="image/png" href="img/Muhamad Fauzan Atarsyah.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -22,134 +22,223 @@
             height: 100vh;
         }
 
-        /* INTRO */
+        /* INTRO OVERLAY - Minimalis, Modern */
         .intro-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #000;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
             z-index: 20000;
             display: flex;
             align-items: center;
             justify-content: center;
-            animation: fadeOutIntro 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            animation: fadeOutOverlay 0.9s ease-in-out 3.2s forwards;
             pointer-events: none;
         }
 
-        .intro-text {
-            color: #64ffda;
-            font-size: clamp(1.5rem, 6vw, 2.5rem);
-            font-family: 'Playfair Display', serif;
+        /* Shape geometris bergerak */
+        .geo-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            background: rgba(100, 255, 218, 0.02);
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            top: -150px;
+            right: -100px;
+            border-radius: 43% 57% 70% 30% / 46% 40% 60% 54%;
+            animation: floatShape 25s infinite alternate ease-in-out;
+        }
+
+        .shape-2 {
+            width: 250px;
+            height: 250px;
+            bottom: -100px;
+            left: -80px;
+            border-radius: 63% 37% 41% 59% / 40% 43% 57% 60%;
+            animation: floatShape 20s infinite alternate-reverse ease-in-out;
+            border-color: rgba(100, 255, 218, 0.15);
+        }
+
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            top: 40%;
+            left: 20%;
+            border-radius: 50%;
+            animation: pulseShape 15s infinite alternate ease-in-out;
+            border-color: rgba(100, 255, 218, 0.08);
+        }
+
+        .shape-4 {
+            width: 1px;
+            height: 200px;
+            top: 20%;
+            right: 20%;
+            background: linear-gradient(to bottom, transparent, #64ffda, transparent);
+            border: none;
+            animation: moveLine 18s infinite alternate ease-in-out;
+        }
+
+        .shape-5 {
+            height: 1px;
+            width: 300px;
+            bottom: 30%;
+            left: 10%;
+            background: linear-gradient(to right, transparent, #64ffda, transparent);
+            border: none;
+            animation: moveLine2 22s infinite alternate ease-in-out;
+        }
+
+        @keyframes floatShape {
+            0% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 0.3; }
+            100% { transform: translate(40px, 30px) rotate(10deg) scale(1.1); opacity: 0.7; }
+        }
+
+        @keyframes pulseShape {
+            0% { transform: scale(1); opacity: 0.2; }
+            100% { transform: scale(1.3); opacity: 0.5; }
+        }
+
+        @keyframes moveLine {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.2; }
+            100% { transform: translateY(50px) rotate(5deg); opacity: 0.6; }
+        }
+
+        @keyframes moveLine2 {
+            0% { transform: translateX(0) rotate(0deg); opacity: 0.2; }
+            100% { transform: translateX(-40px) rotate(-3deg); opacity: 0.6; }
+        }
+
+        /* Kontainer teks */
+        .intro-content {
+            position: relative;
+            z-index: 10;
             text-align: center;
-            line-height: 1.4;
-            text-shadow: 0 0 20px rgba(100, 255, 218, 0.5);
             width: 90%;
             max-width: 800px;
-            /* Teks akan tetap terlihat sampai overlay benar-benar menghilang */
-            animation: textStay 4s forwards;
         }
 
-        /* Baris 1 */
+        /* Teks dengan efek typing (tanpa blink) */
+        .intro-text {
+            color: #64ffda;
+            font-size: clamp(1.5rem, 6vw, 2.8rem);
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.4;
+            text-shadow: 0 0 20px rgba(100, 255, 218, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .typing-line {
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 0 auto;
+            width: 0;
+        }
+
         .line1 {
-            overflow: hidden;
-            white-space: nowrap;
-            margin: 0 auto;
-            width: 0;
-            animation: typing1 1.2s steps(15, end) forwards;
+            animation: typing 1.2s steps(25, end) forwards;
         }
 
-        /* Baris 2 */
         .line2 {
-            overflow: hidden;
-            white-space: nowrap;
-            margin: 0 auto;
-            width: 0;
-            animation: typing2 1.2s steps(15, end) 1.2s forwards;
-            opacity: 0;
+            animation: typing 1.2s steps(30, end) 1.3s forwards;
         }
 
         /* Credit Tan Malaka */
         .credit {
+            color: #64ffda;
             font-size: 1rem;
-            margin-top: 20px;
-            opacity: 0;
-            animation: fadeIn 0.5s 2.4s forwards;
             font-family: 'Inter', sans-serif;
             font-style: italic;
-            color: #64ffda;
+            opacity: 0;
             letter-spacing: 1px;
+            margin-top: 20px;
+            text-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
+            animation: fadeInCredit 0.5s ease-in-out 2.6s forwards;
         }
 
-        @keyframes typing1 {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
-        @keyframes typing2 {
-            from { 
-                width: 0;
-                opacity: 1;
-            }
-            to { 
-                width: 100%;
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeIn {
-            from { 
+        @keyframes fadeInCredit {
+            from {
                 opacity: 0;
                 transform: translateY(10px);
             }
-            to { 
+            to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        /* Teks tetap utuh sampai akhir */
-        @keyframes textStay {
-            0%, 90% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            95% {
-                opacity: 0.8;
-                transform: scale(0.98);
-            }
-            100% {
-                opacity: 0;
-                transform: scale(0.95);
-            }
+        /* Efek glitch ringan pada teks utama */
+        .glitch-text {
+            display: inline-block;
+            animation: glitch 3s infinite 2.8s;
         }
 
-        @keyframes fadeOutIntro {
-            0% {
-                background: #000;
-                backdrop-filter: blur(0);
-            }
-            80% {
-                background: #000;
-                backdrop-filter: blur(0);
-            }
-            90% {
-                background: rgba(0, 0, 0, 0.9);
-                backdrop-filter: blur(2px);
-            }
-            95% {
-                background: rgba(0, 0, 0, 0.5);
-                backdrop-filter: blur(4px);
-            }
-            100% {
-                background: rgba(0, 0, 0, 0);
-                backdrop-filter: blur(6px);
-                visibility: hidden;
-            }
+        @keyframes typing {
+            0% { width: 0; }
+            100% { width: 100%; }
         }
 
-        /* HERO SECTION */
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); text-shadow: 0 0 2px #64ffda; }
+            94% { transform: skew(0deg); }
+            95% { transform: skew(2deg) translate(-1px, 0.5px); text-shadow: 2px 0 #ff00aa, -2px 0 #00ffff; }
+            96% { transform: skew(-2deg) translate(1px, -0.5px); text-shadow: -2px 0 #ff00aa, 2px 0 #00ffff; }
+            97% { transform: skew(0); text-shadow: 0 0 10px #64ffda; }
+        }
+
+        /* Loading bar tipis */
+        .loading-bar-container {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            z-index: 20;
+            overflow: hidden;
+        }
+
+        .loading-bar {
+            width: 0%;
+            height: 100%;
+            background: #64ffda;
+            box-shadow: 0 0 20px #64ffda;
+            animation: loading 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes loading {
+            0% { width: 0%; }
+            20% { width: 20%; }
+            50% { width: 50%; }
+            80% { width: 85%; }
+            100% { width: 100%; }
+        }
+
+        /* Fade out overlay */
+        @keyframes fadeOutOverlay {
+            0% { opacity: 1; backdrop-filter: blur(0); visibility: visible; }
+            100% { opacity: 0; backdrop-filter: blur(4px); visibility: hidden; }
+        }
+
+        /* ========== HERO SECTION dengan VIDEO BACKGROUND ========== */
         .hero {
             height: 100vh;
             position: relative;
@@ -159,7 +248,8 @@
             overflow: hidden;
         }
 
-        .image-background {
+        /* Video Background - DIPERBAIKI UKURANNYA */
+        .video-background {
             position: absolute;
             top: 0;
             left: 0;
@@ -169,45 +259,83 @@
             overflow: hidden;
         }
 
-        .image-background img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.5);
-            animation: zoomBackground 20s ease-in-out infinite alternate;
-            transform-origin: center;
+        .video-background video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto%;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%) scale(1);
+            object-fit: cover; /* fallback */
+            filter: brightness(0.5) contrast(1.1);
+            
+        }
+        
+        /* Untuk memastikan video selalu menutupi layar dengan proporsi tepat */
+        @media (min-aspect-ratio: 16/9) {
+            .video-background video {
+                width: 100%;
+                height: auto;
+            }
+        }
+        @media (max-aspect-ratio: 16/9) {
+            .video-background video {
+                width: auto;
+                height: 100%;
+            }
         }
 
-        .image-overlay {
+        @keyframes videoSlowZoom {
+            0% { transform: translateX(-50%) translateY(-50%) scale(1); }
+            100% { transform: translateX(-50%) translateY(-50%) scale(1.08); }
+        }
+
+        /* Overlay gradien dinamis */
+        .video-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, transparent, rgba(0,0,0,0.6));
+            background: radial-gradient(circle at 30% 50%, transparent 0%, rgba(0,0,0,0.7) 90%);
             z-index: 1;
-            animation: pulseOverlay 8s ease-in-out infinite alternate;
+            animation: overlayBreathing 12s ease-in-out infinite alternate;
         }
 
-        @keyframes zoomBackground {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.08); }
+        @keyframes overlayBreathing {
+            0% { opacity: 0.5; backdrop-filter: blur(0px); }
+            100% { opacity: 0.8; backdrop-filter: blur(2px); }
         }
 
-        @keyframes pulseOverlay {
-            0% { opacity: 0.6; }
-            100% { opacity: 0.8; }
+        /* particle canvas (animasi hero) */
+        #hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
         }
 
         .hero-content {
             position: relative;
-            z-index: 10;
+            z-index: 15;
             text-align: center;
             color: white;
             max-width: 800px;
             padding: 20px;
             opacity: 0;
-            animation: showContent 0.8s 3.1s ease forwards;
+            animation: showContent 0.8s 3.3s ease forwards;
+            transform: translateY(0);
+            transition: transform 0.4s ease;
+        }
+
+        /* efek hover pada hero-content */
+        .hero-content:hover {
+            transform: scale(1.01) translateY(-4px);
         }
 
         @keyframes showContent {
@@ -231,6 +359,18 @@
             margin-bottom: 20px;
             font-size: 0.85rem;
             backdrop-filter: blur(5px);
+            animation: badgePulse 3s infinite alternate;
+            transition: all 0.3s;
+        }
+
+        .badge:hover {
+            border-color: #fff;
+            background: rgba(100,255,218,0.2);
+        }
+
+        @keyframes badgePulse {
+            0% { box-shadow: 0 0 5px #64ffda; }
+            100% { box-shadow: 0 0 20px #64ffda; }
         }
 
         .badge img {
@@ -239,6 +379,10 @@
             border-radius: 50%;
             margin-right: 8px;
             border: 2px solid #64ffda;
+            transition: transform 0.4s;
+        }
+        .badge:hover img {
+            transform: rotate(360deg);
         }
 
         h1 {
@@ -252,6 +396,14 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-style: italic;
+            display: inline-block;
+            animation: floatText 6s ease-in-out infinite;
+        }
+
+        @keyframes floatText {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+            100% { transform: translateY(0px); }
         }
 
         p {
@@ -261,6 +413,14 @@
             color: #ddd;
             line-height: 1.6;
             padding: 0 15px;
+            border-right: 2px solid transparent;
+            animation: gentleCursor 4s infinite;
+        }
+
+        @keyframes gentleCursor {
+            0% { border-right-color: transparent; }
+            50% { border-right-color: rgba(100,255,218,0.3); }
+            100% { border-right-color: transparent; }
         }
 
         .cta-group {
@@ -282,6 +442,30 @@
             align-items: center;
             gap: 8px;
             font-size: 0.95rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+            z-index: 0;
+        }
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        .btn i, .btn span {
+            position: relative;
+            z-index: 2;
         }
 
         .btn-primary {
@@ -295,8 +479,13 @@
         }
 
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(100, 255, 218, 0.3);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(100, 255, 218, 0.4);
+        }
+
+        .btn-outline:hover {
+            background: #64ffda;
+            color: #000;
         }
 
         .stats {
@@ -307,10 +496,23 @@
             padding: 0 15px;
         }
 
+        .stat-item {
+            transition: transform 0.2s;
+            cursor: default;
+        }
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
         .stat-number {
             font-size: 1.8rem;
             font-weight: bold;
             color: #64ffda;
+            animation: countPop 1.5s infinite alternate;
+        }
+        @keyframes countPop {
+            0% { text-shadow: 0 0 2px #64ffda; }
+            100% { text-shadow: 0 0 12px #64ffda, 0 0 4px white; }
         }
 
         .stat-label {
@@ -319,71 +521,43 @@
             text-transform: uppercase;
         }
 
-        /* MOBILE SPECIFIC */
+        /* Fallback background jika video tidak bisa dimuat */
+        .fallback-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0c0c0c url('img/BACKGROUND.png') center/cover no-repeat;
+            z-index: 0;
+            display: none;
+        }
+
+        /* MOBILE */
         @media (max-width: 768px) {
-            .intro-text {
+            .typing-line {
                 font-size: 1.3rem;
             }
-
+            
             .line1 {
-                animation: typing1 1s steps(12, end) forwards;
+                animation: typing 1s steps(20, end) forwards;
             }
 
             .line2 {
-                animation: typing2 1s steps(12, end) 1s forwards;
+                animation: typing 1s steps(25, end) 1.1s forwards;
             }
 
             .credit {
                 font-size: 0.9rem;
                 margin-top: 15px;
-                animation: fadeIn 0.4s 2s forwards;
             }
 
-            @keyframes textStay {
-                0%, 88% {
-                    opacity: 1;
-                    transform: scale(1);
-                }
-                94% {
-                    opacity: 0.8;
-                    transform: scale(0.98);
-                }
-                100% {
-                    opacity: 0;
-                    transform: scale(0.95);
-                }
-            }
-
-            @keyframes fadeOutIntro {
-                0% {
-                    background: #000;
-                    backdrop-filter: blur(0);
-                }
-                75% {
-                    background: #000;
-                    backdrop-filter: blur(0);
-                }
-                85% {
-                    background: rgba(0, 0, 0, 0.9);
-                    backdrop-filter: blur(1px);
-                }
-                92% {
-                    background: rgba(0, 0, 0, 0.6);
-                    backdrop-filter: blur(2px);
-                }
-                98% {
-                    background: rgba(0, 0, 0, 0.2);
-                    backdrop-filter: blur(4px);
-                }
-                100% {
-                    background: rgba(0, 0, 0, 0);
-                    backdrop-filter: blur(5px);
-                    visibility: hidden;
-                }
+            .loading-bar-container {
+                width: 150px;
             }
 
             .hero-content {
-                animation: showContent 0.7s 2.7s ease forwards;
+                animation: showContent 0.7s 3.3s ease forwards;
             }
 
             h1 {
@@ -404,8 +578,13 @@
         }
 
         @media (max-width: 480px) {
-            .intro-text {
+            .typing-line {
                 font-size: 1.1rem;
+            }
+
+            .credit {
+                font-size: 0.8rem;
+                margin-top: 12px;
             }
 
             h1 {
@@ -420,11 +599,6 @@
             .badge img {
                 width: 18px;
                 height: 18px;
-            }
-
-            .credit {
-                font-size: 0.8rem;
-                margin-top: 12px;
             }
 
             .cta-group {
@@ -448,21 +622,48 @@
     </style>
 </head>
 <body>
-    <!-- INTRO -->
-    <div class="intro-overlay">
-        <div class="intro-text">
-            <div class="line1">"Terbentur, terbentur,</div>
-            <div class="line2">terbentur, kemudian terbentuk"</div>
+    <!-- INTRO OVERLAY (tetap sama) -->
+    <div class="intro-overlay" id="introOverlay">
+        <div class="geo-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape-4"></div>
+            <div class="shape-5"></div>
+        </div>
+
+        <div class="intro-content">
+            <div class="intro-text">
+                <div class="typing-line line1">
+                    <span class="glitch-text">"Dari terbentur, terbentur,</span>
+                </div>
+                <div class="typing-line line2">
+                    <span class="glitch-text">terbentur, kemudian terbentuk"</span>
+                </div>
+            </div>
             <div class="credit">— Tan Malaka</div>
+        </div>
+
+        <div class="loading-bar-container">
+            <div class="loading-bar"></div>
         </div>
     </div>
 
-    <!-- HERO -->
+    <!-- HERO SECTION dengan VIDEO BACKGROUND - UKURAN SEMPURNA -->
     <section class="hero">
-        <div class="image-background">
-            <img src="img/BACKGROUND.png" alt="background">
-            <div class="image-overlay"></div>
+        <div class="video-background">
+            <video autoplay loop muted playsinline poster="img/BACKGROUND.png">
+                <source src="video/bg.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-overlay"></div>
         </div>
+
+        <!-- Fallback jika video gagal -->
+        <div class="fallback-bg" id="fallbackBg"></div>
+
+        <!-- Canvas partikel (efek bintang/berkilau) -->
+        <canvas id="hero-particles"></canvas>
 
         <div class="hero-content">
             <div class="badge">
@@ -497,17 +698,143 @@
     </section>
 
     <script>
-        // Timing yang tepat:
-        // - Typing baris 1: 0-1.2s
-        // - Typing baris 2: 1.2-2.4s
-        // - Credit muncul: 2.4s
-        // - Teks mulai fade: 3.6s (baru mulai fade di akhir)
-        // - Overlay selesai: 4s
-        // - Hero content muncul: 3.1s (lebih cepat dari fade teks)
-
+        // Hilangkan overlay setelah 4 detik
         setTimeout(() => {
-            document.querySelector('.intro-overlay').style.display = 'none';
+            const overlay = document.getElementById('introOverlay');
+            if (overlay) {
+                overlay.style.display = 'none';
+            }
         }, 4000);
+
+        // Fallback jika video gagal dimuat
+        const video = document.querySelector('video');
+        const fallback = document.getElementById('fallbackBg');
+        
+        if (video) {
+            video.addEventListener('error', function() {
+                fallback.style.display = 'block';
+            });
+            
+            // Coba muat video, jika dalam 3 detik belum bisa dimuat, tampilkan fallback
+            setTimeout(() => {
+                if (video.readyState < 2) { // HAVE_CURRENT_DATA atau kurang
+                    fallback.style.display = 'block';
+                }
+            }, 3000);
+        }
+
+        // ========== PARTICLE ANIMATION untuk hero (efek bintang/berkilau) ==========
+        (function() {
+            const canvas = document.getElementById('hero-particles');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            let particles = [];
+
+            function initParticles() {
+                const count = Math.floor((width * height) / 7000); // kepadatan partikel
+                particles = [];
+                for (let i = 0; i < count; i++) {
+                    particles.push({
+                        x: Math.random() * width,
+                        y: Math.random() * height,
+                        radius: Math.random() * 2.2 + 0.8,
+                        speedX: (Math.random() - 0.5) * 0.3,
+                        speedY: (Math.random() - 0.5) * 0.15,
+                        opacity: Math.random() * 0.5 + 0.2,
+                        color: `rgba(100, 255, 218, ${Math.random() * 0.6 + 0.2})`
+                    });
+                }
+            }
+
+            function resizeCanvas() {
+                width = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width = width;
+                canvas.height = height;
+                initParticles();
+            }
+
+            function drawParticles() {
+                ctx.clearRect(0, 0, width, height);
+                
+                for (let p of particles) {
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = p.color;
+                    ctx.shadowColor = '#64ffda';
+                    ctx.shadowBlur = 8;
+                    ctx.fill();
+                    
+                    // gerakan
+                    p.x += p.speedX;
+                    p.y += p.speedY;
+
+                    // loop pingpong / wrap lembut
+                    if (p.x < 0) p.x = width;
+                    if (p.x > width) p.x = 0;
+                    if (p.y < 0) p.y = height;
+                    if (p.y > height) p.y = 0;
+                }
+                
+                requestAnimationFrame(drawParticles);
+            }
+
+            window.addEventListener('resize', () => {
+                resizeCanvas();
+            });
+
+            resizeCanvas();
+            drawParticles();
+
+            // tambahan efek interaksi: partikel menjauh dari mouse
+            let mouseX = -1000, mouseY = -1000;
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            // modifikasi sedikit pergerakan menjauh (sederhana)
+            function applyMouseRepel() {
+                for (let p of particles) {
+                    const dx = p.x - mouseX;
+                    const dy = p.y - mouseY;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    if (dist < 100) {
+                        const angle = Math.atan2(dy, dx);
+                        const force = (100 - dist) * 0.003;
+                        p.x += Math.cos(angle) * force * 5;
+                        p.y += Math.sin(angle) * force * 5;
+                    }
+                }
+            }
+
+            // override sedikit drawParticles dengan repel
+            function drawWithRepel() {
+                applyMouseRepel();
+                ctx.clearRect(0, 0, width, height);
+                for (let p of particles) {
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = p.color;
+                    ctx.shadowColor = '#64ffda';
+                    ctx.shadowBlur = 8;
+                    ctx.fill();
+                    
+                    p.x += p.speedX;
+                    p.y += p.speedY;
+                    if (p.x < 0) p.x = width;
+                    if (p.x > width) p.x = 0;
+                    if (p.y < 0) p.y = height;
+                    if (p.y > height) p.y = 0;
+                }
+                requestAnimationFrame(drawWithRepel);
+            }
+            
+            drawWithRepel();
+        })();
     </script>
+    
 </body>
 </html>
