@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visual Mapping · Hover Permanen di Semua Node</title>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ===== RESET ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0a0f1e;
+      font-family: 'Inter', system-ui, sans-serif;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Canvas untuk partikel */
+    #particle-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .map-canvas {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      max-width: 1600px;
+      margin: 0 auto;
+      z-index: 10;
+    }
+
+    #line-svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 5;
+      stroke: #4f6f9f;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      filter: drop-shadow(0 2px 5px black);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    #line-svg.visible {
+      opacity: 1;
+    }
+
+    /* NODE UTAMA - DIPERBESAR dengan efek hover permanen */
+    .node-utama {
+      position: absolute;
+      text-align: center;
+      z-index: 20;
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(1.03);
+      transition: opacity 0.3s ease, transform 0.25s, filter 0.25s;
+      cursor: pointer;
+      width: 380px;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+      filter: drop-shadow(0 0 15px #3b82f6);
+    }
+
+    .node-utama.visible {
+      opacity: 1;
+    }
+
+    .node-utama:hover {
+      transform: translate(-50%, -50%) scale(1.08);
+      filter: drop-shadow(0 0 25px #3b82f6);
+    }
+
+    .foto-bulat {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      margin: 0 auto 1rem auto;
+      overflow: hidden;
+      border: 5px solid #38bdf8;
+      box-shadow: 0 20px 35px -8px #000000;
+      transition: all 0.25s;
+    }
+
+    .node-utama:hover .foto-bulat {
+      border-color: #60a5fa;
+      box-shadow: 0 25px 45px -5px #3b82f6;
+    }
+
+    .foto-bulat img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .nama {
+      font-weight: 700;
+      font-size: 2.2rem;
+      background: linear-gradient(135deg, #fff, #b9d2ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+      margin-top: 0.5rem;
+    }
+
+    .profesi {
+      font-size: 1.3rem;
+      color: #9fb3db;
+      margin-top: 0.3rem;
+      text-shadow: 0 1px 4px black;
+    }
+
+    .node-utama a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    /* NODE CABANG dengan efek hover permanen */
+    .node-cabang {
+      position: absolute;
+      z-index: 5;
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(1.04);
+      transition: left 4s cubic-bezier(0.25, 1, 0.5, 1), 
+                  top 4s cubic-bezier(0.25, 1, 0.5, 1), 
+                  opacity 0.3s ease,
+                  transform 0.25s,
+                  filter 0.25s;
+      cursor: default;
+      width: 200px;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+      will-change: left, top;
+      filter: drop-shadow(0 0 15px #3b82f6);
+    }
+
+    .node-cabang.visible {
+      opacity: 1;
+    }
+
+    .node-cabang.finished {
+      z-index: 20;
+    }
+
+    .node-cabang:hover {
+      transform: translate(-50%, -50%) scale(1.1);
+      filter: drop-shadow(0 0 25px #3b82f6);
+    }
+
+    .foto-persegi-panjang {
+      position: relative;
+      width: 200px;
+      height: 130px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 3px solid transparent;
+      box-shadow: 0 12px 20px -8px #000000;
+      transition: all 0.25s;
+    }
+
+    .foto-persegi-panjang img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.3s;
+      border-radius: 17px;
+    }
+
+    .node-cabang:hover .foto-persegi-panjang img {
+      transform: scale(1.1);
+    }
+
+    .overlay-judul {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.4), transparent);
+      padding: 1.2rem 0.5rem 0.6rem 0.5rem;
+      text-align: center;
+      border-bottom-left-radius: 17px;
+      border-bottom-right-radius: 17px;
+    }
+
+    .overlay-judul h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: white;
+      text-shadow: 0 2px 5px black;
+      margin: 0;
+    }
+
+    /* ===== MOBILE (FULL SCREEN BOTTOM SHEET) ===== */
+    @media (max-width: 768px) {
+      body {
+        overflow: hidden;
+      }
+
+      .map-canvas {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      /* Node utama di tengah layar */
+      .node-utama {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: auto;
+        max-width: 280px;
+        margin: 0;
+        filter: none;
+        transition: none;
+      }
+
+      .foto-bulat {
+        width: 140px;
+        height: 140px;
+      }
+
+      .nama {
+        font-size: 1.5rem;
+      }
+
+      .profesi {
+        font-size: 1rem;
+      }
+
+      /* Full screen bottom sheet */
+      .bottom-sheet-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.7);
+        backdrop-filter: blur(5px);
+        z-index: 25;
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .bottom-sheet-overlay.show {
+        display: block;
+        opacity: 1;
+      }
+
+      .bottom-sheet {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(10, 15, 30, 0.98);
+        backdrop-filter: blur(10px);
+        z-index: 30;
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        overflow-y: auto;
+        padding: 2rem 1rem;
+      }
+
+      .bottom-sheet.show {
+        display: block;
+        opacity: 1;
+      }
+
+      /* Tombol close */
+      .close-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.3);
+        color: white;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 31;
+      }
+
+      .close-btn:hover {
+        background: rgba(255,255,255,0.2);
+      }
+
+      /* Grid untuk node cabang di dalam bottom sheet */
+      .branch-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 1.5rem;
+        margin-top: 3rem; /* memberi ruang untuk tombol close */
+      }
+
+      .branch-grid .node-cabang {
+        position: relative !important;
+        width: calc(50% - 0.75rem); /* 2 kolom dengan gap */
+        transform: none !important;
+        filter: none !important;
+        opacity: 1 !important;
+        margin: 0;
+        transition: transform 0.2s;
+      }
+
+      .branch-grid .node-cabang .foto-persegi-panjang {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 200 / 130;
+      }
+
+      .branch-grid .node-cabang:hover {
+        transform: scale(1.05) !important;
+      }
+
+      /* Nonaktifkan elemen desktop */
+      #particle-canvas,
+      #line-svg {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particle-canvas"></canvas>
+  
+  <div class="map-canvas" id="mapCanvas">
+    <svg id="line-svg" xmlns="http://www.w3.org/2000/svg"></svg>
+
+    <!-- NODE UTAMA -->
+    <div class="node-utama" id="node-utama">
+      <a href="#" id="foto-link">
+        <div class="foto-bulat">
+          <img src="img/Muhamad Fauzan Atarsyah 2.png" alt="profile utama">
+        </div>
+        <div class="nama">M.Fauzan Atarsyah</div>
+        <div class="profesi">IT Support & Frealance</div>
+      </a>
+    </div>
+
+    <!-- NODE CABANG -->
+    <div class="node-cabang" id="node-tentang">
+      <div class="foto-persegi-panjang">
+        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&auto=format" alt="tentang">
+        <div class="overlay-judul">
+          <h3>Tentang</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="node-cabang" id="node-pengalaman">
+      <div class="foto-persegi-panjang">
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&auto=format" alt="pengalaman">
+        <div class="overlay-judul">
+          <h3>Blog</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="node-cabang" id="node-kontak">
+      <div class="foto-persegi-panjang">
+        <img src="https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=400&auto=format" alt="kontak">
+        <div class="overlay-judul">
+          <h3>Kontak</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="node-cabang" id="node-skill">
+      <div class="foto-persegi-panjang">
+        <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&auto=format" alt="skill">
+        <div class="overlay-judul">
+          <h3>Skill</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="node-cabang" id="node-project">
+      <div class="foto-persegi-panjang">
+        <img src="https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=400&auto=format" alt="project">
+        <div class="overlay-judul">
+          <h3>Project</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="node-cabang" id="node-sertifikat">
+      <div class="foto-persegi-panjang">
+        <img src="img/1.jpg" alt="sertifikat">
+        <div class="overlay-judul">
+          <h3>Sertifikat</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ===== PARTIKEL ANIMASI =====
+    (function() {
+      const canvas = document.getElementById('particle-canvas');
+      const ctx = canvas.getContext('2d');
+      
+      let width, height;
+      let particles = [];
+      let mouseX = 0, mouseY = 0;
+      let mouseActive = false;
+      
+      function initParticles() {
+        const particleCount = 300;
+        particles = [];
+        
+        for (let i = 0; i < particleCount; i++) {
+          particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vx: (Math.random() - 0.5) * 0.15,
+            vy: (Math.random() - 0.5) * 0.15,
+            size: Math.random() * 1.5 + 0.5,
+            baseSize: Math.random() * 1.5 + 0.5,
+            color: `rgba(96, 165, 250, ${Math.random() * 0.3 + 0.15})`,
+            speed: Math.random() * 0.6 + 0.2
+          });
+        }
+      }
+      
+      function resizeCanvas() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+        initParticles();
+      }
+      
+      function updateParticles() {
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          
+          p.x += p.vx;
+          p.y += p.vy;
+          
+          if (p.x < 0) p.x = width;
+          if (p.x > width) p.x = 0;
+          if (p.y < 0) p.y = height;
+          if (p.y > height) p.y = 0;
+          
+          if (mouseActive) {
+            const dx = mouseX - p.x;
+            const dy = mouseY - p.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < 200) {
+              const force = (1 - distance / 200) * 0.015 * p.speed;
+              p.x += dx * force;
+              p.y += dy * force;
+              p.size = p.baseSize * (1 + (1 - distance / 200) * 0.8);
+            } else {
+              p.size += (p.baseSize - p.size) * 0.05;
+            }
+          } else {
+            p.size += (p.baseSize - p.size) * 0.03;
+          }
+        }
+      }
+      
+      function drawParticles() {
+        ctx.clearRect(0, 0, width, height);
+        
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.fill();
+          
+          ctx.shadowColor = '#60a5fa';
+          ctx.shadowBlur = 4;
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        }
+      }
+      
+      function animate() {
+        updateParticles();
+        drawParticles();
+        requestAnimationFrame(animate);
+      }
+      
+      window.addEventListener('resize', resizeCanvas);
+      
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        mouseActive = true;
+      });
+      
+      window.addEventListener('mouseleave', () => {
+        mouseActive = false;
+      });
+      
+      window.addEventListener('mouseenter', () => {
+        mouseActive = true;
+      });
+      
+      resizeCanvas();
+      animate();
+    })();
+
+    // ===== KODE UTAMA =====
+    (function() {
+      const canvas = document.getElementById('mapCanvas');
+      const svg = document.getElementById('line-svg');
+      const utama = document.getElementById('node-utama');
+      
+      const branchNodes = [
+        document.getElementById('node-tentang'),
+        document.getElementById('node-pengalaman'),
+        document.getElementById('node-kontak'),
+        document.getElementById('node-skill'),
+        document.getElementById('node-project'),
+        document.getElementById('node-sertifikat')
+      ];
+      
+      const allNodes = [utama, ...branchNodes];
+
+      let animationStarted = false;
+      let animationTimer = null;
+      let bottomSheet = null;
+      let overlay = null;
+      let closeBtn = null;
+      let branchesVisible = false; // untuk mobile toggle
+
+      // Fungsi untuk menangani klik pada node cabang
+      function branchClickHandler(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const title = e.currentTarget.querySelector('h3')?.innerText || 'Cabang';
+        alert('Kamu memilih: ' + title);
+        // Ganti dengan navigasi sesuai kebutuhan
+        // Contoh: window.location.href = '/halaman/' + title;
+      }
+
+      // Klik foto utama
+      document.getElementById('foto-link').addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (window.innerWidth <= 768) {
+          // Mode mobile: toggle bottom sheet
+          toggleBottomSheet();
+        } else {
+          // Mode desktop: konfirmasi buka link
+          if (confirm('Buka halaman portfolio detail?')) {
+            window.location.href = 'https://linkedin.com/in/example';
+          }
+        }
+      });
+
+      // Fungsi untuk toggle bottom sheet
+      function toggleBottomSheet() {
+        if (bottomSheet && overlay && closeBtn) {
+          branchesVisible = !branchesVisible;
+          if (branchesVisible) {
+            overlay.classList.add('show');
+            bottomSheet.classList.add('show');
+          } else {
+            overlay.classList.remove('show');
+            bottomSheet.classList.remove('show');
+          }
+        }
+      }
+
+      // Fungsi untuk membuat bottom sheet dan overlay
+      function createBottomSheet() {
+        // Hapus bottom sheet lama jika ada
+        if (bottomSheet) {
+          bottomSheet.remove();
+          bottomSheet = null;
+        }
+        if (overlay) {
+          overlay.remove();
+          overlay = null;
+        }
+        if (closeBtn) {
+          closeBtn.remove();
+          closeBtn = null;
+        }
+
+        // Buat elemen overlay
+        overlay = document.createElement('div');
+        overlay.className = 'bottom-sheet-overlay';
+        overlay.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (branchesVisible) {
+            toggleBottomSheet(); // tutup bottom sheet
+          }
+        });
+        canvas.appendChild(overlay);
+
+        // Buat elemen bottom sheet
+        bottomSheet = document.createElement('div');
+        bottomSheet.className = 'bottom-sheet';
+        
+        // Tombol close
+        closeBtn = document.createElement('div');
+        closeBtn.className = 'close-btn';
+        closeBtn.innerHTML = '&times;';
+        closeBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (branchesVisible) {
+            toggleBottomSheet();
+          }
+        });
+        bottomSheet.appendChild(closeBtn);
+
+        // Buat grid container
+        const grid = document.createElement('div');
+        grid.className = 'branch-grid';
+        
+        // Pindahkan semua node cabang ke dalam grid
+        branchNodes.forEach(node => {
+          // Hapus inline style yang mungkin tersisa dari desktop
+          node.style.position = '';
+          node.style.left = '';
+          node.style.top = '';
+          node.style.transform = '';
+          node.style.transition = '';
+          node.style.zIndex = '';
+          node.classList.remove('visible', 'finished');
+          
+          // Pastikan node terlihat di dalam grid
+          grid.appendChild(node);
+        });
+        
+        bottomSheet.appendChild(grid);
+        canvas.appendChild(bottomSheet);
+        
+        // Tambahkan event listener ke node cabang (pastikan tidak dobel)
+        branchNodes.forEach(node => {
+          node.removeEventListener('click', branchClickHandler);
+          node.addEventListener('click', branchClickHandler);
+        });
+      }
+
+      // Fungsi untuk mengembalikan node cabang ke posisi semula (untuk desktop)
+      function restoreBranchNodes() {
+        if (bottomSheet) {
+          // Kembalikan node cabang ke canvas langsung (di luar bottom sheet)
+          branchNodes.forEach(node => {
+            canvas.appendChild(node); // pindah kembali
+            // Reset style agar siap untuk desktop
+            node.style.position = '';
+            node.style.left = '';
+            node.style.top = '';
+            node.style.transform = '';
+            node.style.transition = '';
+            node.style.zIndex = '';
+            node.classList.remove('visible', 'finished');
+          });
+          bottomSheet.remove();
+          bottomSheet = null;
+        }
+        if (overlay) {
+          overlay.remove();
+          overlay = null;
+        }
+        if (closeBtn) {
+          closeBtn.remove();
+          closeBtn = null;
+        }
+      }
+
+      // Hitung posisi akhir node cabang (mode desktop)
+      function computeFinalPositions() {
+        const w = canvas.clientWidth;
+        const h = canvas.clientHeight;
+
+        const centerX = w / 2;
+        const centerY = h / 2;
+
+        const jarakHorizontalDasar = Math.min(w, h) * 0.55;
+        const jarakVertikal = Math.min(w, h) * 0.35;
+        const jarakExtra = Math.min(w, h) * 0.15;
+
+        const utamaPos = { left: centerX, top: centerY };
+
+        const positions = {
+          nodeTentang: { left: centerX - jarakHorizontalDasar, top: centerY - jarakVertikal },
+          nodePengalaman: { left: centerX - (jarakHorizontalDasar + jarakExtra), top: centerY },
+          nodeKontak: { left: centerX - jarakHorizontalDasar, top: centerY + jarakVertikal },
+          nodeSkill: { left: centerX + jarakHorizontalDasar, top: centerY - jarakVertikal },
+          nodeProject: { left: centerX + (jarakHorizontalDasar + jarakExtra), top: centerY },
+          nodeSertifikat: { left: centerX + jarakHorizontalDasar, top: centerY + jarakVertikal }
+        };
+
+        // Batasi agar tidak keluar canvas
+        const padding = 30;
+        Object.keys(positions).forEach(key => {
+          positions[key].left = Math.min(Math.max(positions[key].left, padding), w - padding);
+          positions[key].top = Math.min(Math.max(positions[key].top, padding), h - padding);
+        });
+
+        return { utamaPos, positions };
+      }
+
+      // Gambar garis berdasarkan posisi target
+      function drawLinesToTarget(utamaPos, branchPositions) {
+        svg.innerHTML = ''; // hapus garis lama
+
+        const centerX = utamaPos.left;
+        const centerY = utamaPos.top;
+
+        Object.values(branchPositions).forEach(pos => {
+          const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+          path.setAttribute("d", `M ${centerX},${centerY} L ${pos.left},${pos.top}`);
+          path.setAttribute("stroke", "#94a3b8");
+          path.setAttribute("stroke-width", "2.5");
+          path.setAttribute("fill", "none");
+          path.setAttribute("stroke-linecap", "round");
+          svg.appendChild(path);
+        });
+
+        const paths = svg.querySelectorAll('path');
+        paths.forEach(path => {
+          const length = path.getTotalLength();
+          path.style.strokeDasharray = length;
+          path.style.strokeDashoffset = length;
+          path.getBoundingClientRect();
+          path.style.transition = `stroke-dashoffset 4s cubic-bezier(0.25, 1, 0.5, 1)`;
+          path.style.strokeDashoffset = '0';
+        });
+
+        svg.classList.add('visible');
+      }
+
+      // Set posisi node cabang ke suatu koordinat
+      function setBranchPositions(positions, useTransition = true) {
+        branchNodes.forEach((node, index) => {
+          const key = Object.keys(positions)[index];
+          const pos = positions[key];
+          if (!useTransition) {
+            node.style.transition = 'none';
+          }
+          node.style.left = pos.left + 'px';
+          node.style.top = pos.top + 'px';
+          node.style.position = 'absolute';
+          node.style.transform = 'translate(-50%, -50%)';
+        });
+        if (!useTransition) {
+          void branchNodes[0].offsetHeight;
+          branchNodes.forEach(node => {
+            node.style.transition = '';
+          });
+        }
+      }
+
+      // Menyiapkan posisi awal desktop
+      function setInitialPositions() {
+        const w = canvas.clientWidth;
+        const h = canvas.clientHeight;
+        const centerX = w / 2;
+        const centerY = h / 2;
+
+        utama.style.left = centerX + 'px';
+        utama.style.top = centerY + 'px';
+        utama.style.position = 'absolute';
+        utama.style.transform = 'translate(-50%, -50%)';
+
+        branchNodes.forEach(node => {
+          node.style.transition = 'none';
+          node.style.left = centerX + 'px';
+          node.style.top = centerY + 'px';
+          node.style.zIndex = '5';
+          node.classList.remove('finished');
+        });
+
+        void branchNodes[0]?.offsetHeight;
+
+        branchNodes.forEach(node => {
+          node.style.transition = '';
+        });
+
+        svg.innerHTML = '';
+        svg.classList.remove('visible');
+      }
+
+      // Animasi slide desktop
+      function startAnimation() {
+        animationStarted = true;
+
+        const { utamaPos, positions } = computeFinalPositions();
+
+        utama.style.left = utamaPos.left + 'px';
+        utama.style.top = utamaPos.top + 'px';
+
+        branchNodes.forEach(node => {
+          node.style.transition = 'none';
+          node.style.zIndex = '5';
+        });
+        branchNodes.forEach(node => {
+          node.style.left = utamaPos.left + 'px';
+          node.style.top = utamaPos.top + 'px';
+        });
+
+        void branchNodes[0].offsetHeight;
+
+        branchNodes.forEach(node => {
+          node.style.transition = '';
+        });
+
+        drawLinesToTarget(utamaPos, positions);
+        setBranchPositions(positions, true);
+
+        const onTransitionEnd = (e) => {
+          if (e.propertyName === 'left' || e.propertyName === 'top') {
+            e.target.style.zIndex = '20';
+            e.target.classList.add('finished');
+            e.target.removeEventListener('transitionend', onTransitionEnd);
+          }
+        };
+
+        branchNodes.forEach(node => {
+          node.addEventListener('transitionend', onTransitionEnd);
+        });
+
+        setTimeout(() => {
+          branchNodes.forEach(node => {
+            node.style.zIndex = '20';
+            node.classList.add('finished');
+          });
+        }, 4500);
+      }
+
+      // Inisialisasi mode mobile
+      function initMobile() {
+        if (animationTimer) {
+          clearTimeout(animationTimer);
+          animationTimer = null;
+        }
+        animationStarted = false;
+
+        // Kembalikan node cabang ke keadaan awal jika sebelumnya desktop
+        restoreBranchNodes();
+
+        // Siapkan node utama (posisi sudah di CSS)
+        utama.classList.add('visible');
+        utama.style.position = 'absolute';
+        utama.style.left = '50%';
+        utama.style.top = '50%';
+        utama.style.transform = 'translate(-50%, -50%)';
+
+        // Buat bottom sheet dan pindahkan node cabang
+        createBottomSheet();
+
+        // Sembunyikan bottom sheet awalnya
+        branchesVisible = false;
+
+        // Nonaktifkan SVG
+        svg.classList.remove('visible');
+        svg.innerHTML = '';
+      }
+
+      // Inisialisasi desktop
+      function initDesktop() {
+        // Kembalikan node cabang ke canvas utama
+        restoreBranchNodes();
+
+        // Reset node utama
+        utama.classList.add('visible');
+
+        if (!animationStarted) {
+          if (animationTimer) {
+            clearTimeout(animationTimer);
+            animationTimer = null;
+          }
+
+          setInitialPositions();
+          allNodes.forEach(n => n.classList.add('visible'));
+
+          animationTimer = setTimeout(() => {
+            startAnimation();
+            animationTimer = null;
+          }, 200);
+        } else {
+          const { utamaPos, positions } = computeFinalPositions();
+
+          utama.style.left = utamaPos.left + 'px';
+          utama.style.top = utamaPos.top + 'px';
+
+          branchNodes.forEach(node => {
+            node.style.transition = 'none';
+            node.style.zIndex = '20';
+          });
+          setBranchPositions(positions, false);
+
+          svg.innerHTML = '';
+          const centerX = utamaPos.left;
+          const centerY = utamaPos.top;
+          Object.values(positions).forEach(pos => {
+            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            path.setAttribute("d", `M ${centerX},${centerY} L ${pos.left},${pos.top}`);
+            path.setAttribute("stroke", "#94a3b8");
+            path.setAttribute("stroke-width", "2.5");
+            path.setAttribute("fill", "none");
+            path.setAttribute("stroke-linecap", "round");
+            svg.appendChild(path);
+          });
+          const paths = svg.querySelectorAll('path');
+          paths.forEach(path => {
+            path.style.strokeDasharray = 'none';
+            path.style.strokeDashoffset = '0';
+          });
+          svg.classList.add('visible');
+
+          allNodes.forEach(n => n.classList.add('visible'));
+        }
+      }
+
+      // Deteksi mode
+      function updateLayout() {
+        const isMobile = window.innerWidth <= 768;
+        if (isMobile) {
+          initMobile();
+        } else {
+          initDesktop();
+        }
+      }
+
+      window.addEventListener('resize', updateLayout);
+      window.addEventListener('load', updateLayout);
+    })();
+  </script>
+</body>
+</html>
