@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>project</title>
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="img/Muhamad Fauzan Atarsyah.png">
+    <!-- Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=JetBrains+Mono:wght@300..700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0c0c0c;
+            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            font-weight: 350;
+            line-height: 1.6;
+            letter-spacing: -0.01em;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 450;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: #ffffff;
+            word-wrap: break-word;
+        }
+
+        /* navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.8rem 5% 1.2rem 5%;
+            background: transparent;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #2a2a2a;
+            width: 100%;
+        }
+
+        .logo a {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            font-weight: 350;
+            text-decoration: none;
+            color: #64ffda;
+            letter-spacing: -0.1rem;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .logo a:hover {
+            border-bottom-color: #64ffda;
+            color: #ffffff;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: clamp(1rem, 3vw, 3.5rem);
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: clamp(1rem, 2.5vw, 2.8rem);
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #9e9e9e;
+            font-weight: 400;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            padding: 0.2rem 0;
+            border-bottom: 2px solid transparent;
+            transition: 0.15s;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            border-bottom-color: #64ffda;
+            color: #64ffda;
+        }
+
+        .breadcrumb {
+            padding: 0.8rem 5% 0.2rem 5%;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #6a6a6a;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem 0.8rem;
+            border-bottom: 1px solid #1f1f1f;
+        }
+        .breadcrumb a {
+            color: #9e9e9e;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+        .breadcrumb a:hover {
+            color: #64ffda;
+            border-bottom-color: #64ffda;
+        }
+        .breadcrumb .separator { color: #2a2a2a; }
+        .breadcrumb .current {
+            color: #64ffda;
+            border-bottom: 1px solid #64ffda40;
+        }
+
+        /* Hero Section - BOOK COMMUNITY */
+        .project-hero {
+            padding: 3rem 5% 2rem 5%;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .project-hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+        .project-hero .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            color: #9e9e9e;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+        .project-hero .project-meta i {
+            color: #64ffda;
+            margin-right: 0.3rem;
+        }
+        .project-hero .project-description {
+            max-width: 800px;
+            color: #b0b0b0;
+            font-size: 1.1rem;
+        }
+
+        /* FILTER BUTTONS - versi buku */
+        .filter-section {
+            padding: 2rem 5% 1rem 5%;
+        }
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+        .filter-btn {
+            background: transparent;
+            border: 1px solid #2a2a2a;
+            color: #9e9e9e;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .filter-btn:hover {
+            border-color: #64ffda;
+            color: #64ffda;
+        }
+        .filter-btn.active {
+            background: #64ffda10;
+            border-color: #64ffda;
+            color: #64ffda;
+        }
+
+        /* GRID UTAMA */
+        .gallery-grid {
+            padding: 2rem 5% 4rem 5%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #111111;
+            border: 1px solid #2a2a2a;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .gallery-item.hide {
+            display: none;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-4px);
+            border-color: #64ffda60;
+            box-shadow: 0 20px 30px -15px rgba(100, 255, 218, 0.15);
+        }
+
+        .gallery-item.wide {
+            grid-column: span 2;
+        }
+        .gallery-item.tall {
+            grid-row: span 2;
+        }
+        .gallery-item.big {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Badge untuk status */
+        .status-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            border: 1px solid #64ffda;
+            color: #64ffda;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 400;
+            z-index: 3;
+        }
+
+        /* Tag kategori */
+        .gallery-tag {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(12, 12, 12, 0.8);
+            backdrop-filter: blur(4px);
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            border: 1px solid #64ffda60;
+            color: #64ffda;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            z-index: 3;
+        }
+
+        /* Overlay info */
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+            padding: 2rem 1.5rem 1.2rem 1.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        .gallery-overlay h4 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 0.2rem;
+        }
+        .gallery-overlay .category {
+            color: #64ffda;
+            font-size: 0.7rem;
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.2rem;
+        }
+        .gallery-overlay .desc {
+            color: #b0b0b0;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 0.3rem;
+        }
+        .gallery-overlay .desc i {
+            color: #64ffda;
+            font-size: 0.7rem;
+        }
+
+        /* LIGHTBOX */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            backdrop-filter: blur(8px);
+        }
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            border: 2px solid #2a2a2a;
+            border-radius: 16px;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            color: #64ffda;
+            font-size: 2rem;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            background: #1a1a1a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #2a2a2a;
+            transition: 0.2s;
+        }
+        .lightbox-close:hover {
+            background: #64ffda;
+            color: #000;
+        }
+        .lightbox-prev, .lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            background: #1a1a1a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #2a2a2a;
+            transition: 0.2s;
+        }
+        .lightbox-prev { left: 2rem; }
+        .lightbox-next { right: 2rem; }
+        .lightbox-prev:hover, .lightbox-next:hover {
+            background: #64ffda;
+            color: #000;
+        }
+        .lightbox-caption {
+            position: absolute;
+            bottom: 2rem;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+        .lightbox-caption span {
+            background: rgba(0,0,0,0.6);
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            border: 1px solid #64ffda40;
+        }
+
+        /* RELATED PROJECTS - sesuai portfolio asli */
+        .related-section {
+            padding: 2rem 5% 4rem 5%;
+            border-top: 1px solid #2a2a2a;
+        }
+        .related-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .related-title h3 {
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+        .related-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, #2a2a2a, transparent);
+        }
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+        }
+        .related-card {
+            background: #111;
+            border: 1px solid #2a2a2a;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: 0.2s;
+            text-decoration: none;
+            color: white;
+        }
+        .related-card:hover {
+            border-color: #64ffda60;
+            transform: translateY(-2px);
+        }
+        .related-card img {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+        .related-info {
+            padding: 1rem;
+        }
+        .related-info h4 {
+            font-size: 1rem;
+            font-weight: 400;
+            margin-bottom: 0.2rem;
+        }
+        .related-info p {
+            color: #64ffda;
+            font-size: 0.7rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .professional-footer {
+            color: #ffffff;
+            padding: 2rem 5%;
+            border-top: 1px solid #2a2a2a;
+        }
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .footer-legal .legal-link {
+            color: #9e9e9e;
+            text-decoration: none;
+        }
+        .footer-legal .legal-link:hover { color: #64ffda; }
+        .footer-legal .separator { color: #2a2a2a; margin: 0 0.5rem; }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .gallery-item.wide,
+            .gallery-item.tall,
+            .gallery-item.big {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+            .related-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1.2rem 5% 1rem 5%;
+            }
+            .nav-right {
+                width: 100%;
+                margin-top: 0.5rem;
+            }
+            .nav-links {
+                width: 100%;
+                justify-content: flex-start;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .gallery-item {
+                aspect-ratio: 16/9;
+            }
+            .gallery-item img {
+                aspect-ratio: 16/9;
+            }
+            .gallery-overlay {
+                opacity: 1;
+                background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            }
+            .lightbox-prev, .lightbox-next {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            .lightbox-prev { left: 0.5rem; }
+            .lightbox-next { right: 0.5rem; }
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .logo {
+                width: 100%;
+            }
+            .logo a {
+                font-size: 1.8rem;
+            }
+            .nav-links {
+                gap: 1.2rem;
+            }
+            .nav-links a {
+                font-size: 0.95rem;
+            }
+            .project-hero h1 {
+                font-size: 2rem;
+            }
+            .project-hero .project-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        a { transition: all 0.2s ease; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <!-- navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="#">attar</a>
+        </div>
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="#">tentang</a>
+                <a href="#">project</a>
+                <a href="#">pengalaman</a>
+                <a href="#">contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="index.html">kembali</a>
+        <span class="separator">/</span>
+        <a href="portofolio.html">portofolio</a>
+        <span class="separator">/</span>
+        <span class="current">booknchill</span>
+    </div>
+
+    <!-- Hero - BOOKNCHILL -->
+    <div class="project-hero">
+        <h1>Booknchill</h1>
+        <div class="project-meta">
+            <span><i class="far fa-calendar-alt"></i> 2026 · dalam pengembangan</span>
+            <span><i class="fas fa-users"></i> komunitas baca</span>
+            <span><i class="fas fa-book-open"></i> 15 diskusi · 30+ anggota</span>
+        </div>
+        <div class="project-description">
+            Platform komunitas buku berbasis web. Tempat diskusi, review, dan arsip bacaan. Dibangun untuk connecting pembaca dan penulis lokal. Saat ini dalam tahap pengembangan fitur forum dan katalog buku.
+        </div>
+    </div>
+
+    <!-- FILTER BUTTONS - versi literasi -->
+    <div class="filter-section">
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">Semua</button>
+            <button class="filter-btn" data-filter="diskusi">Diskusi</button>
+            <button class="filter-btn" data-filter="review">Review</button>
+            <button class="filter-btn" data-filter="event">Event</button>
+            <button class="filter-btn" data-filter="koleksi">Koleksi</button>
+            <button class="filter-btn" data-filter="tulisan">Tulisan</button>
+        </div>
+    </div>
+
+    <!-- GALLERY GRID - Booknchill -->
+    <div class="gallery-grid" id="gallery-grid">
+        <!-- Item 1 - Big (Featured) - Diskusi -->
+        <div class="gallery-item big" data-category="diskusi">
+            <img src="img/booknchill.png" alt="forum diskusi" loading="lazy">
+            <span class="status-badge"><i class="fas fa-circle" style="font-size: 0.4rem; margin-right: 0.3rem;"></i> 80%</span>
+            <span class="gallery-tag">forum</span>
+            <div class="gallery-overlay">
+                <span class="category">fitur utama</span>
+                <h4>Ruang Diskusi</h4>
+                <div class="desc"><i class="fas fa-comments"></i> 8 topik aktif</div>
+            </div>
+        </div>
+
+        <!-- Item 2 - Tall - Review -->
+        <div class="gallery-item tall" data-category="review">
+            <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=600&h=900&fit=crop" alt="review buku" loading="lazy">
+            <span class="status-badge"><i class="fas fa-circle" style="font-size: 0.4rem; margin-right: 0.3rem;"></i> 100%</span>
+            <span class="gallery-tag">ulasan</span>
+            <div class="gallery-overlay">
+                <span class="category">halaman review</span>
+                <h4>Catatan Pembaca</h4>
+                <div class="desc"><i class="fas fa-star"></i> rating & resensi</div>
+            </div>
+        </div>
+
+        <!-- Item 3 - Wide - Event -->
+        <div class="gallery-item wide" data-category="event">
+            <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=900&h=500&fit=crop" alt="event literasi" loading="lazy">
+            <span class="status-badge"><i class="fas fa-circle" style="font-size: 0.4rem; margin-right: 0.3rem;"></i> 60%</span>
+            <span class="gallery-tag">agenda</span>
+            <div class="gallery-overlay">
+                <span class="category">komunitas</span>
+                <h4>Jadwal Diskusi</h4>
+                <div class="desc"><i class="fas fa-calendar"></i> baca bareng · workshop</div>
+            </div>
+        </div>
+
+        <!-- Item 4 - Regular - Koleksi -->
+        <div class="gallery-item" data-category="koleksi">
+            <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&h=600&fit=crop" alt="rak buku" loading="lazy">
+            <span class="status-badge"><i class="fas fa-circle" style="font-size: 0.4rem; margin-right: 0.3rem;"></i> 90%</span>
+            <span class="gallery-tag">rak</span>
+            <div class="gallery-overlay">
+                <span class="category">koleksi</span>
+                <h4>Rak Baca</h4>
+                <div class="desc"><i class="fas fa-bookmark"></i> 120+ judul</div>
+            </div>
+        </div>
+
+        <!-- Item 5 - Regular - Tulisan -->
+        <div class="gallery-item" data-category="tulisan">
+            <img src="https://images.unsplash.com/photo-1455390582262-04458cad664c?w=600&h=600&fit=crop" alt="tulisan anggota" loading="lazy">
+            <span class="status-badge"><i class="fas fa-circle" style="font-size: 0.4rem; margin-right: 0.3rem;"></i> 100%</span>
+            <span class="gallery-tag">esai</span>
+            <div class="gallery-overlay">
+                <span class="category">karya anggota</span>
+                <h4>Catatan Pinggir</h4>
+                <div class="desc"><i class="fas fa-pen"></i> 12 esai</div>
+            </div>
+        </div>
+
+        <!-- Item 6 - Tall - Diskusi -->
+        <div class="gallery-item tall" data-category="diskusi">
+            <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=600&h=900&fit=crop" alt="thread diskusi" loading="lazy">
+            <span class="status-badge"><i class="fas fa-circle" style="font-size: 0.4rem; margin-right: 0.3rem;"></i> 50%</span>
+            <span class="gallery-tag">thread</span>
+            <div class="gallery-overlay">
+                <span class="category">forum</span>
+                <h4>Diskusi Bulanan</h4>
+                <div class="desc"><i class="fas fa-message"></i> 200+ komentar</div>
+            </div>
+        </div>
+
+        <!-- Item 7 - Regular - Profil -->
+        <div class="gallery-item" data-category="koleksi">
+            <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?w=600&h=600&fit=crop" alt="profil pembaca" loading="lazy">
+            <span class="status-badge"><i class="fas fa-circle" style="font-size: 0.4rem; margin-right: 0.3rem;"></i> 100%</span>
+            <span class="gallery-tag">profil</span>
+            <div class="gallery-overlay">
+                <span class="category">anggota</span>
+                <h4>Profil Pembaca</h4>
+                <div class="desc"><i class="fas fa-user"></i> rak & riwayat</div>
+            </div>
+        </div>
+
+        <!-- Item 8 - Wide - Pencarian -->
+        <div class="gallery-item wide" data-category="review">
+            <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=900&h=500&fit=crop" alt="katalog buku" loading="lazy">
+            <span class="status-badge"><i class="fas fa-circle" style="font-size: 0.4rem; margin-right: 0.3rem;"></i> 75%</span>
+            <span class="gallery-tag">katalog</span>
+            <div class="gallery-overlay">
+                <span class="category">pencarian</span>
+                <h4>Jelajah Buku</h4>
+                <div class="desc"><i class="fas fa-search"></i> filter genre · penulis</div>
+            </div>
+        </div>
+
+        <!-- Item 9 - Big - Event -->
+        <div class="gallery-item big" data-category="event">
+            <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=800&h=800&fit=crop" alt="kopdar" loading="lazy">
+            <span class="status-badge"><i class="fas fa-circle" style="font-size: 0.4rem; margin-right: 0.3rem;"></i> 85%</span>
+            <span class="gallery-tag">kopdar</span>
+            <div class="gallery-overlay">
+                <span class="category">event</span>
+                <h4>Ngobrol Buku</h4>
+                <div class="desc"><i class="fas fa-coffee"></i> meet-up bulanan</div>
+            </div>
+        </div>
+
+        <!-- Item 10 - Regular - Arsip -->
+        <div class="gallery-item" data-category="tulisan">
+            <img src="https://images.unsplash.com/photo-1463320898484-9be5f5854fc9?w=600&h=600&fit=crop" alt="arsip tulisan" loading="lazy">
+            <span class="status-badge"><i class="fas fa-circle" style="font-size: 0.4rem; margin-right: 0.3rem;"></i> 40%</span>
+            <span class="gallery-tag">arsip</span>
+            <div class="gallery-overlay">
+                <span class="category">zine</span>
+                <h4>Antologi</h4>
+                <div class="desc"><i class="fas fa-file-lines"></i> kumpulan tulisan</div>
+            </div>
+        </div>
+
+        <!-- Item 11 - Regular - Komunitas -->
+        <div class="gallery-item" data-category="diskusi">
+            <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=600&h=600&fit=crop" alt="komunitas" loading="lazy">
+            <span class="status-badge"><i class="fas fa-circle" style="font-size: 0.4rem; margin-right: 0.3rem;"></i> 70%</span>
+            <span class="gallery-tag">anggota</span>
+            <div class="gallery-overlay">
+                <span class="category">komunitas</span>
+                <h4>Direktori Anggota</h4>
+                <div class="desc"><i class="fas fa-users"></i> 30+ pembaca</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RELATED PROJECTS - dari portfolio asli -->
+    <div class="related-section">
+        <div class="related-title">
+            <h3>proyek lainnya</h3>
+            <div class="related-line"></div>
+        </div>
+        <div class="related-grid">
+            <a href="#" class="related-card">
+                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=250&fit=crop" alt="pinggir.org">
+                <div class="related-info">
+                    <h4>pinggir.org</h4>
+                    <p>arsip web · 2025</p>
+                </div>
+            </a>
+            <a href="#" class="related-card">
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&h=250&fit=crop" alt="poster sunyi">
+                <div class="related-info">
+                    <h4>poster sunyi</h4>
+                    <p>cetak · 2024</p>
+                </div>
+            </a>
+            <a href="#" class="related-card">
+                <img src="https://images.unsplash.com/photo-1554080353-a576cf803bda?w=400&h=250&fit=crop" alt="catatan kaki">
+                <div class="related-info">
+                    <h4>catatan kaki</h4>
+                    <p>tulisan · 2024</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-close" id="lightbox-close"><i class="fas fa-times"></i></div>
+        <div class="lightbox-prev" id="lightbox-prev"><i class="fas fa-chevron-left"></i></div>
+        <div class="lightbox-next" id="lightbox-next"><i class="fas fa-chevron-right"></i></div>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="">
+        </div>
+        <div class="lightbox-caption">
+            <span id="lightbox-caption"></span>
+        </div>
+    </div>
+
+    <footer class="professional-footer">
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>&copy; <span id="currentYear">2026</span> Muhamad Fauzan Atarsyah</p>
+                </div>
+                <div class="footer-legal">
+                    <a href="#" class="legal-link">Privacy</a>
+                    <span class="separator">•</span>
+                    <a href="#" class="legal-link">Terms</a>
+                    <span class="separator">•</span>
+                    <a href="#" class="legal-link">Instagram</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Update copyright year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // FILTER FUNCTION
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Get filter value
+                const filterValue = button.getAttribute('data-filter');
+                
+                // Filter items
+                galleryItems.forEach(item => {
+                    if (filterValue === 'all') {
+                        item.classList.remove('hide');
+                    } else {
+                        const category = item.getAttribute('data-category');
+                        if (category === filterValue) {
+                            item.classList.remove('hide');
+                        } else {
+                            item.classList.add('hide');
+                        }
+                    }
+                });
+            });
+        });
+        
+        // LIGHTBOX FUNCTION
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const closeBtn = document.getElementById('lightbox-close');
+        const prevBtn = document.getElementById('lightbox-prev');
+        const nextBtn = document.getElementById('lightbox-next');
+        
+        let currentIndex = 0;
+        const galleryImages = [];
+        const galleryTitles = [];
+        
+        // Collect all gallery items
+        document.querySelectorAll('.gallery-item').forEach((item, index) => {
+            const img = item.querySelector('img');
+            const title = item.querySelector('h4') ? item.querySelector('h4').textContent : 'Booknchill';
+            const category = item.querySelector('.category') ? item.querySelector('.category').textContent : '';
+            
+            if (img) {
+                galleryImages.push(img.src);
+                galleryTitles.push(`${title} · ${category}`);
+            }
+            
+            // Add click event to each item
+            item.addEventListener('click', () => {
+                currentIndex = index;
+                openLightbox(img.src, galleryTitles[index]);
+            });
+        });
+        
+        function openLightbox(src, caption) {
+            lightboxImg.src = src;
+            lightboxCaption.innerHTML = `<span>${caption}</span>`;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+            lightboxImg.src = galleryImages[currentIndex];
+            lightboxCaption.innerHTML = `<span>${galleryTitles[currentIndex]}</span>`;
+        }
+        
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % galleryImages.length;
+            lightboxImg.src = galleryImages[currentIndex];
+            lightboxCaption.innerHTML = `<span>${galleryTitles[currentIndex]}</span>`;
+        }
+        
+        closeBtn.addEventListener('click', closeLightbox);
+        prevBtn.addEventListener('click', prevImage);
+        nextBtn.addEventListener('click', nextImage);
+        
+        // Keyboard navigation
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
+            if (e.key === 'ArrowLeft' && lightbox.classList.contains('active')) {
+                prevImage();
+            }
+            if (e.key === 'ArrowRight' && lightbox.classList.contains('active')) {
+                nextImage();
+            }
+        });
+        
+        // Close when clicking outside
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+        
+        console.log('Booknchill gallery siap!');
+    </script>
+</body>
+</html>
